@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-type newEvent = {
+type Event = {
     nome: string;
     descricao: string;
     data: string;
@@ -13,12 +13,12 @@ type newEvent = {
     status: string;
 };
 
-type formErrors = Partial<Record<keyof newEvent, string>>;
-
 const STATUS_OPTIONS = ['Ativo', 'Cancelado', 'Encerrado', 'Rascunho'];
 
-export default function NewEventForm() {
-    const [formData, setFormData] = useState<newEvent>({
+type formErrors = Partial<Record<keyof Event, string>>;
+
+export default function EventForm() {
+    const [formData, setFormData] = useState<Event>({
         nome: '',
         descricao: '',
         data: '',
@@ -26,7 +26,7 @@ export default function NewEventForm() {
         horarioFim: '',
         local: '',
         vagasDisponiveis: 0,
-        status: 'Ativo',
+        status: 'Rascunho',
     });
 
     const [errors, setErrors] = useState<formErrors>({});
