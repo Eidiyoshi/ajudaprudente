@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { divLayout } from './layout';
 
 type Event = {
     nome: string;
@@ -14,7 +15,6 @@ type Event = {
 };
 
 const STATUS_OPTIONS = ['Ativo', 'Cancelado', 'Encerrado', 'Rascunho'];
-
 type formErrors = Partial<Record<keyof Event, string>>;
 
 export default function EventForm() {
@@ -70,56 +70,22 @@ export default function EventForm() {
     return (
         <div className="min-h-screen bg-zinc-900 flex items-center justify-center p-6">
         <form onSubmit={handleSubmit} noValidate className="w-full max-w-lg bg-zinc-800 border border-zinc-700 rounded-xl shadow-xl p-8 flex flex-col gap-5">
-            <div>
-                <label htmlFor='nome' className={labelClass}>Nome do Evento</label>
-                <input id="nome" name="nome" type="text" value={formData.nome} onChange={handleChange} className={inputClass} placeholder="Ex: Workshop de React"/>
-                {errors.nome && <span className={errorClass}>{errors.nome}</span>}
-            </div>
+            {divLayout('nome', labelClass, 'Nome do Evento', 'text', formData.nome, handleChange, inputClass, errorClass, errors.nome)}
+            {divLayout('descricao', labelClass, 'Descrição do Evento', 'textarea', formData.descricao, handleChange, inputClass, errorClass, errors.descricao)}
 
-            <div>
-                <label htmlFor='descricao' className={labelClass}>Descrição do Evento</label>
-                <textarea id="descricao" name="descricao" value={formData.descricao} onChange={handleChange} className={inputClass} placeholder="Descreva o evento..."/>
-                {errors.descricao && <span className={errorClass}>{errors.descricao}</span>}
-            </div>
+            {divLayout('data', labelClass, 'Data do Evento', 'date', formData.data, handleChange, inputClass, errorClass, errors.data)}
 
-            <div>
-                <label htmlFor='data' className={labelClass}>Data do Evento</label>
-                <input id="data" name="data" type="date" value={formData.data} onChange={handleChange} className={inputClass}/>
-                {errors.data && <span className={errorClass}>{errors.data}</span>}
-            </div>
+            {divLayout('horarioInicio', labelClass, 'Horário de Início', 'time', formData.horarioInicio, handleChange, inputClass, errorClass, errors.horarioInicio)}
 
-            <div>
-                <label htmlFor='horarioInicio' className={labelClass}>Horário de Início</label>
-                <input id="horarioInicio" name="horarioInicio" type="time" value={formData.horarioInicio} onChange={handleChange} className={inputClass}/>
-                {errors.horarioInicio && <span className={errorClass}>{errors.horarioInicio}</span>}
-            </div>
+            {divLayout('horarioFim', labelClass, 'Horário do Fim', 'time', formData.horarioFim, handleChange, inputClass, errorClass, errors.horarioFim)}
 
-            <div>
-                <label htmlFor='horarioFim' className={labelClass}>Horário de Fim</label>
-                <input id="horarioFim" name="horarioFim" type="time" value={formData.horarioFim} onChange={handleChange} className={inputClass}/>
-                {errors.horarioFim && <span className={errorClass}>{errors.horarioFim}</span>}
-            </div>
+            {divLayout('local', labelClass, 'Local do Evento', 'text', formData.local, handleChange, inputClass, errorClass, errors.local)}
 
-            <div>
-                <label htmlFor='local' className={labelClass}>Local do Evento</label>
-                <input id="local" name="local" type="text" value={formData.local} onChange={handleChange} className={inputClass} placeholder="Ex: Auditório 1"/>
-                {errors.local && <span className={errorClass}>{errors.local}</span>}
-            </div>
-            <div>
-                <label htmlFor='vagasDisponiveis' className={labelClass}>Vagas Disponíveis</label>
-                <input id="vagasDisponiveis" name="vagasDisponiveis" type="number" value={formData.vagasDisponiveis} onChange={handleChange} className={inputClass}/>
-                {errors.vagasDisponiveis && <span className={errorClass}>{errors.vagasDisponiveis}</span>}
-            </div>
-            <div>
-                <label htmlFor='status' className={labelClass}>Status</label>
-                <select id="status" name="status" value={formData.status} onChange={handleChange} className={inputClass}>
-                    {STATUS_OPTIONS.map((option) => (
-                        <option key={option} value={option}>{option}</option>))}
-                </select>
-                {errors.status && <span className={errorClass}>{errors.status}</span>}
-            </div>
+            {divLayout('vagasDisponiveis', labelClass, 'Vagas Disponíveis', 'number', formData.vagasDisponiveis.toString(), handleChange, inputClass, errorClass, errors.vagasDisponiveis)}
 
-            <button type="submit">Criar Evento</button>
+            {divLayout('status', labelClass, 'Status', 'select', formData.status, handleChange, inputClass, errorClass, errors.status, STATUS_OPTIONS)}
+
+            <button type="submit" className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-md transition">Criar Evento</button>
         </form>
         </div>
     );
