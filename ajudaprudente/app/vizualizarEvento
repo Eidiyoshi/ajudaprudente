@@ -1,0 +1,35 @@
+async function getEventos() {
+  const res = await fetch("http://localhost:3000/api/eventos", {
+    cache: "no-store"
+  });
+
+  return res.json();
+}
+
+export default async function EventosPage() {
+  const eventos = await getEventos();
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>Lista de Eventos</h1>
+
+      {eventos.map((evento: any) => (
+        <div key={evento.idevento} style={{ marginBottom: "20px" }}>
+          <h2>{evento.descricao || "Sem descrição"}</h2>
+
+          <p><strong>Status:</strong> {evento.status}</p>
+          <p><strong>Vagas:</strong> {evento.vagas}</p>
+          <p><strong>Data:</strong> {evento.data}</p>
+
+          {evento.endere_o && (
+            <p>
+              <strong>Local:</strong> {evento.endere_o.cidade} - {evento.endere_o.bairro}
+            </p>
+          )}
+
+          <hr />
+        </div>
+      ))}
+    </div>
+  );
+}
