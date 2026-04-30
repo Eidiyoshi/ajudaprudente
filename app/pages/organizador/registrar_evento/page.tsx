@@ -2,32 +2,24 @@
 
 import { useState } from 'react';
 import { divLayout } from './layout';
+import { Evento } from '@/app/lib/Evento'
+import { Status } from '@/app/lib/Status'
 
-type Event = {
-    nome: string;
-    descricao: string;
-    data: string;
-    horarioInicio: string;
-    horarioFim: string;
-    local: string;
-    vagasDisponiveis: number;
-    status: string;
-};
+const STATUS_OPTIONS = Object.values(Status);
 
-const STATUS_OPTIONS = ['Ativo', 'Cancelado', 'Encerrado', 'Rascunho'];
-type formErrors = Partial<Record<keyof Event, string>>;
+type formErrors = Partial<Record<keyof Evento, string>>;
 
 export default function EventForm() {
-    const [formData, setFormData] = useState<Event>({
-        nome: '',
-        descricao: '',
-        data: '',
-        horarioInicio: '',
-        horarioFim: '',
-        local: '',
-        vagasDisponiveis: 0,
-        status: 'Rascunho',
-    });
+    const [formData, setFormData] = useState<Evento>(() => new Evento (
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        0,
+        Status.Rascunho
+    ));
 
     const [errors, setErrors] = useState<formErrors>({});
 
@@ -41,7 +33,7 @@ export default function EventForm() {
         if (!formData.horarioFim) newErrors.horarioFim = 'O horário de fim é obrigatório.';
         if (!formData.local.trim()) newErrors.local = 'O local do evento é obrigatório.';
         if (formData.vagasDisponiveis < 0) newErrors.vagasDisponiveis = 'As vagas disponíveis não podem ser negativas.';
-        if (!STATUS_OPTIONS.includes(formData.status)) newErrors.status = 'Status inválido.';
+        if (!STATUS_OPTIONS.map(String).includes(String(formData.status))) newErrors.status = 'Status inválido.';
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -49,7 +41,21 @@ export default function EventForm() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: name === 'vagasDisponiveis' ? Number(value) : value }));
+
+        setFormData((prev) => {
+            const updatedValue = name === 'vagasDisponiveis' ? Number(value) : value;
+            const updatedData = { ...prev, [name]: updatedValue };
+            return new Evento(
+                updatedData.nome,
+                updatedData.descricao,
+                updatedData.data,
+                updatedData.horarioInicio,
+                updatedData.horarioFim,
+                updatedData.local,
+                updatedData.vagasDisponiveis,
+                updatedData.status as Status
+            );
+        });
         setErrors((prev) => ({ ...prev, [name]: undefined }));
     };
 
@@ -60,6 +66,7 @@ export default function EventForm() {
         }
 
         console.log('Novo evento:', formData);
+        console.log('É instância de Evento:', formData instanceof Evento);
         // TODO: sendToDataBase
     };
 
@@ -83,7 +90,7 @@ export default function EventForm() {
 
             {divLayout('vagasDisponiveis', labelClass, 'Vagas Disponíveis', 'number', formData.vagasDisponiveis.toString(), handleChange, inputClass, errorClass, errors.vagasDisponiveis)}
 
-            {divLayout('status', labelClass, 'Status', 'select', formData.status, handleChange, inputClass, errorClass, errors.status, STATUS_OPTIONS)}
+            {divLayout('status', labelClass, 'Status', 'select', String(formData.status), handleChange, inputClass, errorClass, errors.status, STATUS_OPTIONS.map(String))}
 
             <button type="submit" className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-md transition">Criar Evento</button>
         </form>
