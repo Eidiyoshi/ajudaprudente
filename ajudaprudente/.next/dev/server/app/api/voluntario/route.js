@@ -1,0 +1,10 @@
+var R=require("../../../chunks/[turbopack]_runtime.js")("server/app/api/voluntario/route.js")
+R.c("server/chunks/[root-of-the-server]__0m3li_g._.js")
+R.c("server/chunks/0mio_next_dist_0g1p9_i._.js")
+R.c("server/chunks/0mio_mariadb_01glfxq._.js")
+R.c("server/chunks/0uj8_iconv-lite_0jprnu.._.js")
+R.c("server/chunks/[root-of-the-server]__10-ciym._.js")
+R.c("server/chunks/[root-of-the-server]__0~hsyb6._.js")
+R.c("server/chunks/0_wr_ajudaprudente__next-internal_server_app_api_voluntario_route_actions_0dcwt0m.js")
+R.m("[project]/ajudaPrudente/ajudaprudente/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/ajudaPrudente/ajudaprudente/app/api/voluntario/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/ajudaPrudente/ajudaprudente/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/ajudaPrudente/ajudaprudente/app/api/voluntario/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports

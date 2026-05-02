@@ -1,0 +1,582 @@
+module.exports = [
+"[externals]/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js [external] (next/dist/compiled/next-server/app-route-turbo.runtime.dev.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/compiled/next-server/app-route-turbo.runtime.dev.js", () => require("next/dist/compiled/next-server/app-route-turbo.runtime.dev.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/compiled/@opentelemetry/api [external] (next/dist/compiled/@opentelemetry/api, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/compiled/@opentelemetry/api", () => require("next/dist/compiled/@opentelemetry/api"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/compiled/next-server/app-page-turbo.runtime.dev.js [external] (next/dist/compiled/next-server/app-page-turbo.runtime.dev.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/compiled/next-server/app-page-turbo.runtime.dev.js", () => require("next/dist/compiled/next-server/app-page-turbo.runtime.dev.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/app-render/work-unit-async-storage.external.js [external] (next/dist/server/app-render/work-unit-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/server/app-render/work-unit-async-storage.external.js", () => require("next/dist/server/app-render/work-unit-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/app-render/work-async-storage.external.js [external] (next/dist/server/app-render/work-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/server/app-render/work-async-storage.external.js", () => require("next/dist/server/app-render/work-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/shared/lib/no-fallback-error.external.js [external] (next/dist/shared/lib/no-fallback-error.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/shared/lib/no-fallback-error.external.js", () => require("next/dist/shared/lib/no-fallback-error.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/fs [external] (fs, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("fs", () => require("fs"));
+
+module.exports = mod;
+}),
+"[externals]/path [external] (path, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("path", () => require("path"));
+
+module.exports = mod;
+}),
+"[externals]/os [external] (os, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("os", () => require("os"));
+
+module.exports = mod;
+}),
+"[externals]/crypto [external] (crypto, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("crypto", () => require("crypto"));
+
+module.exports = mod;
+}),
+"[externals]/events [external] (events, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("events", () => require("events"));
+
+module.exports = mod;
+}),
+"[externals]/net [external] (net, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("net", () => require("net"));
+
+module.exports = mod;
+}),
+"[externals]/buffer [external] (buffer, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("buffer", () => require("buffer"));
+
+module.exports = mod;
+}),
+"[externals]/string_decoder [external] (string_decoder, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("string_decoder", () => require("string_decoder"));
+
+module.exports = mod;
+}),
+"[externals]/stream [external] (stream, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("stream", () => require("stream"));
+
+module.exports = mod;
+}),
+"[externals]/zlib [external] (zlib, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("zlib", () => require("zlib"));
+
+module.exports = mod;
+}),
+"[externals]/tls [external] (tls, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("tls", () => require("tls"));
+
+module.exports = mod;
+}),
+"[externals]/node:path [external] (node:path, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("node:path", () => require("node:path"));
+
+module.exports = mod;
+}),
+"[externals]/node:url [external] (node:url, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("node:url", () => require("node:url"));
+
+module.exports = mod;
+}),
+"[project]/ajudaPrudente/ajudaprudente/generated/prisma/internal/class.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "getPrismaClientClass",
+    ()=>getPrismaClientClass
+]);
+/* !!! This is code generated by Prisma. Do not edit directly. !!! */ /* eslint-disable */ // biome-ignore-all lint: generated file
+// @ts-nocheck 
+/*
+ * WARNING: This is an internal file that is subject to change!
+ *
+ * 🛑 Under no circumstances should you import this file directly! 🛑
+ *
+ * Please import the `PrismaClient` class from the `client.ts` file instead.
+ */ var __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__ = __turbopack_context__.i("[externals]/@prisma/client/runtime/client [external] (@prisma/client/runtime/client, cjs, [project]/ajudaPrudente/ajudaprudente/node_modules/@prisma/client)");
+;
+const config = {
+    "previewFeatures": [],
+    "clientVersion": "7.8.0",
+    "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
+    "activeProvider": "mysql",
+    "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel endere_o {\n  idendere_o  Int           @id @map(\"idendereço\")\n  cidade      String        @db.VarChar(255)\n  bairro      String        @db.VarChar(255)\n  rua         Int\n  cep         String        @db.VarChar(8)\n  apartamento String?       @db.VarChar(45)\n  numero      String?       @db.VarChar(45)\n  evento      evento[]\n  organizador organizador[]\n  voluntario  voluntario[]\n\n  @@map(\"endereço\")\n}\n\nmodel evento {\n  idevento                                    Int         @id\n  data                                        DateTime?   @db.DateTime(0)\n  endereco                                    Int?\n  organizador                                 Int\n  publicado                                   Int         @db.TinyInt\n  descricao                                   String?     @db.LongText\n  status                                      String?     @db.VarChar(45)\n  vagas                                       Int?\n  endere_o                                    endere_o?   @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: \"evento_endereco_fkey\")\n  organizador_evento_organizadorToorganizador organizador @relation(\"evento_organizadorToorganizador\", fields: [organizador], references: [idorganizador], onDelete: NoAction, onUpdate: NoAction, map: \"organizador\")\n  inscricao_inscricao_eventoToevento          inscricao[] @relation(\"inscricao_eventoToevento\")\n\n  @@index([endereco], map: \"local_idx\")\n  @@index([organizador], map: \"organizador_idx\")\n}\n\nmodel habilidade {\n  idhabilidade                                                       Int\n  nome                                                               String?    @db.VarChar(45)\n  voluntario                                                         Int\n  voluntario_habilidade_voluntario_voluntario_voluntarioTovoluntario voluntario @relation(\"habilidade_voluntario_voluntario_voluntarioTovoluntario\", fields: [voluntario], references: [idusuarios], onDelete: NoAction, onUpdate: NoAction, map: \"habilidade_voluntario_fkey\")\n\n  @@id([idhabilidade, voluntario])\n  @@index([voluntario], map: \"voluntario_idx\")\n}\n\nmodel inscricao {\n  voluntario                                                        Int\n  evento                                                            Int\n  data                                                              DateTime   @db.DateTime(0)\n  evento_inscricao_eventoToevento                                   evento     @relation(\"inscricao_eventoToevento\", fields: [evento], references: [idevento], onDelete: NoAction, onUpdate: NoAction, map: \"evento\")\n  voluntario_inscricao_voluntario_voluntario_voluntarioTovoluntario voluntario @relation(\"inscricao_voluntario_voluntario_voluntarioTovoluntario\", fields: [voluntario], references: [idusuarios], onDelete: NoAction, onUpdate: NoAction, map: \"inscricao_voluntario_fkey\")\n\n  @@id([voluntario, evento])\n  @@index([evento], map: \"evento_idx\")\n}\n\nmodel interesse {\n  idinteresse                                                       Int\n  nome                                                              Int\n  voluntario                                                        Int\n  voluntario_interesse_voluntario_voluntario_voluntarioTovoluntario voluntario @relation(\"interesse_voluntario_voluntario_voluntarioTovoluntario\", fields: [voluntario], references: [idusuarios], onDelete: NoAction, onUpdate: NoAction, map: \"interesse_voluntario_fkey\")\n\n  @@id([idinteresse, voluntario])\n  @@index([voluntario], map: \"voluntario_idx\")\n}\n\nmodel organizador {\n  idorganizador                          Int      @id\n  nome                                   String   @db.VarChar(255)\n  senha                                  String   @db.VarChar(255)\n  email                                  String   @db.VarChar(45)\n  criado                                 DateTime @db.DateTime(0)\n  endereco                               Int\n  cnpj                                   String?  @db.VarChar(14)\n  telefone                               String?  @db.VarChar(45)\n  empresa                                String?  @db.VarChar(255)\n  evento_evento_organizadorToorganizador evento[] @relation(\"evento_organizadorToorganizador\")\n  endere_o                               endere_o @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: \"organizador_endereco_fkey\")\n\n  @@index([endereco], map: \"endereco_idx\")\n}\n\nmodel voluntario {\n  idusuarios                                                         Int          @id\n  nome                                                               String       @db.VarChar(45)\n  senha                                                              String       @db.VarChar(255)\n  email                                                              String       @db.VarChar(255)\n  criado                                                             DateTime     @db.DateTime(0)\n  endereco                                                           Int\n  rg                                                                 String?      @db.VarChar(11)\n  cpf                                                                String?      @db.VarChar(11)\n  telefone                                                           String?      @db.VarChar(45)\n  notificacao                                                        Int?         @db.TinyInt\n  darkmode                                                           Int?         @db.TinyInt\n  habilidade_habilidade_voluntario_voluntario_voluntarioTovoluntario habilidade[] @relation(\"habilidade_voluntario_voluntario_voluntarioTovoluntario\")\n  inscricao_inscricao_voluntario_voluntario_voluntarioTovoluntario   inscricao[]  @relation(\"inscricao_voluntario_voluntario_voluntarioTovoluntario\")\n  interesse_interesse_voluntario_voluntario_voluntarioTovoluntario   interesse[]  @relation(\"interesse_voluntario_voluntario_voluntarioTovoluntario\")\n  endere_o                                                           endere_o     @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: \"voluntario_endereco_fkey\")\n\n  @@index([endereco], map: \"endereco_idx\")\n}\n",
+    "runtimeDataModel": {
+        "models": {},
+        "enums": {},
+        "types": {}
+    },
+    "parameterizationSchema": {
+        "strings": [],
+        "graph": ""
+    }
+};
+config.runtimeDataModel = JSON.parse("{\"models\":{\"endere_o\":{\"fields\":[{\"name\":\"idendere_o\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"idendereço\"},{\"name\":\"cidade\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bairro\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"rua\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"cep\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"apartamento\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"numero\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"evento\",\"kind\":\"object\",\"type\":\"evento\",\"relationName\":\"endere_oToevento\"},{\"name\":\"organizador\",\"kind\":\"object\",\"type\":\"organizador\",\"relationName\":\"endere_oToorganizador\"},{\"name\":\"voluntario\",\"kind\":\"object\",\"type\":\"voluntario\",\"relationName\":\"endere_oTovoluntario\"}],\"dbName\":\"endereço\"},\"evento\":{\"fields\":[{\"name\":\"idevento\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"data\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"endereco\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"organizador\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"publicado\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"descricao\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"vagas\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"endere_o\",\"kind\":\"object\",\"type\":\"endere_o\",\"relationName\":\"endere_oToevento\"},{\"name\":\"organizador_evento_organizadorToorganizador\",\"kind\":\"object\",\"type\":\"organizador\",\"relationName\":\"evento_organizadorToorganizador\"},{\"name\":\"inscricao_inscricao_eventoToevento\",\"kind\":\"object\",\"type\":\"inscricao\",\"relationName\":\"inscricao_eventoToevento\"}],\"dbName\":null},\"habilidade\":{\"fields\":[{\"name\":\"idhabilidade\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"voluntario\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"voluntario_habilidade_voluntario_voluntario_voluntarioTovoluntario\",\"kind\":\"object\",\"type\":\"voluntario\",\"relationName\":\"habilidade_voluntario_voluntario_voluntarioTovoluntario\"}],\"dbName\":null},\"inscricao\":{\"fields\":[{\"name\":\"voluntario\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"evento\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"data\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"evento_inscricao_eventoToevento\",\"kind\":\"object\",\"type\":\"evento\",\"relationName\":\"inscricao_eventoToevento\"},{\"name\":\"voluntario_inscricao_voluntario_voluntario_voluntarioTovoluntario\",\"kind\":\"object\",\"type\":\"voluntario\",\"relationName\":\"inscricao_voluntario_voluntario_voluntarioTovoluntario\"}],\"dbName\":null},\"interesse\":{\"fields\":[{\"name\":\"idinteresse\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"voluntario\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"voluntario_interesse_voluntario_voluntario_voluntarioTovoluntario\",\"kind\":\"object\",\"type\":\"voluntario\",\"relationName\":\"interesse_voluntario_voluntario_voluntarioTovoluntario\"}],\"dbName\":null},\"organizador\":{\"fields\":[{\"name\":\"idorganizador\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"senha\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"criado\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"endereco\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"cnpj\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"telefone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"empresa\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"evento_evento_organizadorToorganizador\",\"kind\":\"object\",\"type\":\"evento\",\"relationName\":\"evento_organizadorToorganizador\"},{\"name\":\"endere_o\",\"kind\":\"object\",\"type\":\"endere_o\",\"relationName\":\"endere_oToorganizador\"}],\"dbName\":null},\"voluntario\":{\"fields\":[{\"name\":\"idusuarios\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"senha\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"criado\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"endereco\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"rg\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cpf\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"telefone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"notificacao\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"darkmode\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"habilidade_habilidade_voluntario_voluntario_voluntarioTovoluntario\",\"kind\":\"object\",\"type\":\"habilidade\",\"relationName\":\"habilidade_voluntario_voluntario_voluntarioTovoluntario\"},{\"name\":\"inscricao_inscricao_voluntario_voluntario_voluntarioTovoluntario\",\"kind\":\"object\",\"type\":\"inscricao\",\"relationName\":\"inscricao_voluntario_voluntario_voluntarioTovoluntario\"},{\"name\":\"interesse_interesse_voluntario_voluntario_voluntarioTovoluntario\",\"kind\":\"object\",\"type\":\"interesse\",\"relationName\":\"interesse_voluntario_voluntario_voluntarioTovoluntario\"},{\"name\":\"endere_o\",\"kind\":\"object\",\"type\":\"endere_o\",\"relationName\":\"endere_oTovoluntario\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}");
+config.parameterizationSchema = {
+    strings: JSON.parse("[\"where\",\"orderBy\",\"cursor\",\"endere_o\",\"evento_evento_organizadorToorganizador\",\"_count\",\"organizador_evento_organizadorToorganizador\",\"evento_inscricao_eventoToevento\",\"voluntario_habilidade_voluntario_voluntario_voluntarioTovoluntario\",\"habilidade_habilidade_voluntario_voluntario_voluntarioTovoluntario\",\"inscricao_inscricao_voluntario_voluntario_voluntarioTovoluntario\",\"voluntario_interesse_voluntario_voluntario_voluntarioTovoluntario\",\"interesse_interesse_voluntario_voluntario_voluntarioTovoluntario\",\"voluntario_inscricao_voluntario_voluntario_voluntarioTovoluntario\",\"inscricao_inscricao_eventoToevento\",\"evento\",\"organizador\",\"voluntario\",\"endere_o.findUnique\",\"endere_o.findUniqueOrThrow\",\"endere_o.findFirst\",\"endere_o.findFirstOrThrow\",\"endere_o.findMany\",\"data\",\"endere_o.createOne\",\"endere_o.createMany\",\"endere_o.updateOne\",\"endere_o.updateMany\",\"create\",\"update\",\"endere_o.upsertOne\",\"endere_o.deleteOne\",\"endere_o.deleteMany\",\"having\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"endere_o.groupBy\",\"endere_o.aggregate\",\"evento.findUnique\",\"evento.findUniqueOrThrow\",\"evento.findFirst\",\"evento.findFirstOrThrow\",\"evento.findMany\",\"evento.createOne\",\"evento.createMany\",\"evento.updateOne\",\"evento.updateMany\",\"evento.upsertOne\",\"evento.deleteOne\",\"evento.deleteMany\",\"evento.groupBy\",\"evento.aggregate\",\"habilidade.findUnique\",\"habilidade.findUniqueOrThrow\",\"habilidade.findFirst\",\"habilidade.findFirstOrThrow\",\"habilidade.findMany\",\"habilidade.createOne\",\"habilidade.createMany\",\"habilidade.updateOne\",\"habilidade.updateMany\",\"habilidade.upsertOne\",\"habilidade.deleteOne\",\"habilidade.deleteMany\",\"habilidade.groupBy\",\"habilidade.aggregate\",\"inscricao.findUnique\",\"inscricao.findUniqueOrThrow\",\"inscricao.findFirst\",\"inscricao.findFirstOrThrow\",\"inscricao.findMany\",\"inscricao.createOne\",\"inscricao.createMany\",\"inscricao.updateOne\",\"inscricao.updateMany\",\"inscricao.upsertOne\",\"inscricao.deleteOne\",\"inscricao.deleteMany\",\"inscricao.groupBy\",\"inscricao.aggregate\",\"interesse.findUnique\",\"interesse.findUniqueOrThrow\",\"interesse.findFirst\",\"interesse.findFirstOrThrow\",\"interesse.findMany\",\"interesse.createOne\",\"interesse.createMany\",\"interesse.updateOne\",\"interesse.updateMany\",\"interesse.upsertOne\",\"interesse.deleteOne\",\"interesse.deleteMany\",\"interesse.groupBy\",\"interesse.aggregate\",\"organizador.findUnique\",\"organizador.findUniqueOrThrow\",\"organizador.findFirst\",\"organizador.findFirstOrThrow\",\"organizador.findMany\",\"organizador.createOne\",\"organizador.createMany\",\"organizador.updateOne\",\"organizador.updateMany\",\"organizador.upsertOne\",\"organizador.deleteOne\",\"organizador.deleteMany\",\"organizador.groupBy\",\"organizador.aggregate\",\"voluntario.findUnique\",\"voluntario.findUniqueOrThrow\",\"voluntario.findFirst\",\"voluntario.findFirstOrThrow\",\"voluntario.findMany\",\"voluntario.createOne\",\"voluntario.createMany\",\"voluntario.updateOne\",\"voluntario.updateMany\",\"voluntario.upsertOne\",\"voluntario.deleteOne\",\"voluntario.deleteMany\",\"voluntario.groupBy\",\"voluntario.aggregate\",\"AND\",\"OR\",\"NOT\",\"idusuarios\",\"nome\",\"senha\",\"email\",\"criado\",\"endereco\",\"rg\",\"cpf\",\"telefone\",\"notificacao\",\"darkmode\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"search\",\"idorganizador\",\"cnpj\",\"empresa\",\"idinteresse\",\"idhabilidade\",\"idevento\",\"publicado\",\"descricao\",\"status\",\"vagas\",\"idendere_o\",\"cidade\",\"bairro\",\"rua\",\"cep\",\"apartamento\",\"numero\",\"every\",\"some\",\"none\",\"idinteresse_voluntario\",\"idhabilidade_voluntario\",\"voluntario_evento\",\"is\",\"isNot\",\"connectOrCreate\",\"upsert\",\"createMany\",\"set\",\"disconnect\",\"delete\",\"connect\",\"updateMany\",\"deleteMany\",\"_relevance\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
+    graph: "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QAAAAAGEAQIAAAABmwECAAAAAZwBAgAAAAGdAQEAAAABngEBAAAAAZ8BAgAAAAEBFwAAQgAwCwMAALUCACAGAADfAgAgDgAAtgIAIBACAO8BACEXQACzAgAhhAECAPMBACGbAQIA7wEAIZwBAgDvAQAhnQEBAPIBACGeAQEA8gEAIZ8BAgDzAQAhAgAAAAUAIBcAAEQAIAgQAgDvAQAhF0AAswIAIYQBAgDzAQAhmwECAO8BACGcAQIA7wEAIZ0BAQDyAQAhngEBAPIBACGfAQIA8wEAIQIAAAADACAXAABGACADAAAABQAgHAAAQAAgHQAARAAgAQAAAAUAIAEAAAADACAKBQAA2gIAIBcAAOkBACAiAADbAgAgIwAA3gIAICQAAN0CACAlAADcAgAghAEAAOkBACCdAQAA6QEAIJ4BAADpAQAgnwEAAOkBACALEAIAtAEAIRdAAMoBACF8AADJAQAwfQAATAAQfgAAyQEAMIQBAgC4AQAhmwECALQBACGcAQIAtAEAIZ0BAQC3AQAhngEBALcBACGfAQIAuAEAIQMAAAADACABAABLADAhAABMACADAAAAAwAgAQAABAAwAgAABQAgAQAAABEAIAEAAAARACADAAAADwAgAQAAEAAwAgAAEQAgAwAAAA8AIAEAABAAMAIAABEAIAMAAAAPACABAAAQADACAAARACAECAAA2QIAIBECAAAAAYABAQAAAAGaAQIAAAABARcAAFQAIAMRAgAAAAGAAQEAAAABmgECAAAAAQEXAABWADAECAAA2AIAIBECAO8BACGAAQEA8gEAIZoBAgDvAQAhAgAAABEAIBcAAFgAIAMRAgDvAQAhgAEBAPIBACGaAQIA7wEAIQIAAAAPACAXAABaACADAAAAEQAgHAAAVAAgHQAAWAAgAQAAABEAIAEAAAAPACAGBQAA0wIAICIAANQCACAjAADXAgAgJAAA1gIAICUAANUCACCAAQAA6QEAIAYRAgC0AQAhfAAAyAEAMH0AAGAAEH4AAMgBADCAAQEAtwEAIZoBAgC0AQAhAwAAAA8AIAEAAF8AMCEAAGAAIAMAAAAPACABAAAQADACAAARACABAAAADQAgAQAAAA0AIAMAAAALACABAAAMADACAAANACADAAAACwAgAQAADAAwAgAADQAgAwAAAAsAIAEAAAwAMAIAAA0AIAUHAACRAgAgDQAAwQIAIA8CAAAAARECAAAAARdAAAAAAQEXAABoACADDwIAAAABEQIAAAABF0AAAAABARcAAGoAMAUHAACPAgAgDQAAvwIAIA8CAO8BACERAgDvAQAhF0AA8QEAIQIAAAANACAXAABsACADDwIA7wEAIRECAO8BACEXQADxAQAhAgAAAAsAIBcAAG4AIAMAAAANACAcAABoACAdAABsACABAAAADQAgAQAAAAsAIAUFAADOAgAgIgAAzwIAICMAANICACAkAADRAgAgJQAA0AIAIAYPAgC0AQAhEQIAtAEAIRdAALYBACF8AADHAQAwfQAAdAAQfgAAxwEAMAMAAAALACABAABzADAhAAB0ACADAAAACwAgAQAADAAwAgAADQAgAQAAABYAIAEAAAAWACADAAAAFAAgAQAAFQAwAgAAFgAgAwAAABQAIAEAABUAMAIAABYAIAMAAAAUACABAAAVADACAAAWACAECwAAzQIAIBECAAAAAYABAgAAAAGZAQIAAAABARcAAHwAIAMRAgAAAAGAAQIAAAABmQECAAAAAQEXAAB-ADAECwAAzAIAIBECAO8BACGAAQIA7wEAIZkBAgDvAQAhAgAAABYAIBcAAIABACADEQIA7wEAIYABAgDvAQAhmQECAO8BACECAAAAFAAgFwAAggEAIAMAAAAWACAcAAB8ACAdAACAAQAgAQAAABYAIAEAAAAUACAFBQAAxwIAICIAAMgCACAjAADLAgAgJAAAygIAICUAAMkCACAGEQIAtAEAIXwAAMYBADB9AACIAQAQfgAAxgEAMIABAgC0AQAhmQECALQBACEDAAAAFAAgAQAAhwEAMCEAAIgBACADAAAAFAAgAQAAFQAwAgAAFgAgAQAAAB4AIAEAAAAeACADAAAAHAAgAQAAHQAwAgAAHgAgAwAAABwAIAEAAB0AMAIAAB4AIAMAAAAcACABAAAdADACAAAeACALAwAAxgIAIAQAAMUCACCAAQEAAAABgQEBAAAAAYIBAQAAAAGDAUAAAAABhAECAAAAAYcBAQAAAAGWAQIAAAABlwEBAAAAAZgBAQAAAAEBFwAAkAEAIAmAAQEAAAABgQEBAAAAAYIBAQAAAAGDAUAAAAABhAECAAAAAYcBAQAAAAGWAQIAAAABlwEBAAAAAZgBAQAAAAEBFwAAkgEAMAsDAACoAgAgBAAApwIAIIABAQDwAQAhgQEBAPABACGCAQEA8AEAIYMBQADxAQAhhAECAO8BACGHAQEA8gEAIZYBAgDvAQAhlwEBAPIBACGYAQEA8gEAIQIAAAAeACAXAACUAQAgCYABAQDwAQAhgQEBAPABACGCAQEA8AEAIYMBQADxAQAhhAECAO8BACGHAQEA8gEAIZYBAgDvAQAhlwEBAPIBACGYAQEA8gEAIQIAAAAcACAXAACWAQAgAwAAAB4AIBwAAJABACAdAACUAQAgAQAAAB4AIAEAAAAcACAIBQAAogIAICIAAKMCACAjAACmAgAgJAAApQIAICUAAKQCACCHAQAA6QEAIJcBAADpAQAgmAEAAOkBACAMfAAAxQEAMH0AAJwBABB-AADFAQAwgAEBALUBACGBAQEAtQEAIYIBAQC1AQAhgwFAALYBACGEAQIAtAEAIYcBAQC3AQAhlgECALQBACGXAQEAtwEAIZgBAQC3AQAhAwAAABwAIAEAAJsBADAhAACcAQAgAwAAABwAIAEAAB0AMAIAAB4AIAEAAAAiACABAAAAIgAgAwAAACAAIAEAACEAMAIAACIAIAMAAAAgACABAAAhADACAAAiACADAAAAIAAgAQAAIQAwAgAAIgAgDwMAAKECACAJAACeAgAgCgAAnwIAIAwAAKACACB_AgAAAAGAAQEAAAABgQEBAAAAAYIBAQAAAAGDAUAAAAABhAECAAAAAYUBAQAAAAGGAQEAAAABhwEBAAAAAYgBAgAAAAGJAQIAAAABARcAAKQBACALfwIAAAABgAEBAAAAAYEBAQAAAAGCAQEAAAABgwFAAAAAAYQBAgAAAAGFAQEAAAABhgEBAAAAAYcBAQAAAAGIAQIAAAABiQECAAAAAQEXAACmAQAwDwMAAPcBACAJAAD0AQAgCgAA9QEAIAwAAPYBACB_AgDvAQAhgAEBAPABACGBAQEA8AEAIYIBAQDwAQAhgwFAAPEBACGEAQIA7wEAIYUBAQDyAQAhhgEBAPIBACGHAQEA8gEAIYgBAgDzAQAhiQECAPMBACECAAAAIgAgFwAAqAEAIAt_AgDvAQAhgAEBAPABACGBAQEA8AEAIYIBAQDwAQAhgwFAAPEBACGEAQIA7wEAIYUBAQDyAQAhhgEBAPIBACGHAQEA8gEAIYgBAgDzAQAhiQECAPMBACECAAAAIAAgFwAAqgEAIAMAAAAiACAcAACkAQAgHQAAqAEAIAEAAAAiACABAAAAIAAgCgUAAOoBACAiAADrAQAgIwAA7gEAICQAAO0BACAlAADsAQAghQEAAOkBACCGAQAA6QEAIIcBAADpAQAgiAEAAOkBACCJAQAA6QEAIA58AACzAQAwfQAAsAEAEH4AALMBADB_AgC0AQAhgAEBALUBACGBAQEAtQEAIYIBAQC1AQAhgwFAALYBACGEAQIAtAEAIYUBAQC3AQAhhgEBALcBACGHAQEAtwEAIYgBAgC4AQAhiQECALgBACEDAAAAIAAgAQAArwEAMCEAALABACADAAAAIAAgAQAAIQAwAgAAIgAgDnwAALMBADB9AACwAQAQfgAAswEAMH8CALQBACGAAQEAtQEAIYEBAQC1AQAhggEBALUBACGDAUAAtgEAIYQBAgC0AQAhhQEBALcBACGGAQEAtwEAIYcBAQC3AQAhiAECALgBACGJAQIAuAEAIQ0FAAC_AQAgIgAAxAEAICMAAL8BACAkAAC_AQAgJQAAvwEAIIoBAgAAAAGLAQIAAAAEjAECAAAABI0BAgAAAAGOAQIAAAABjwECAAAAAZABAgAAAAGRAQIAwwEAIQ8FAAC_AQAgJAAAwgEAICUAAMIBACCKAQEAAAABiwEBAAAABIwBAQAAAASNAQEAAAABjgEBAAAAAY8BAQAAAAGQAQEAAAABkQEBAMEBACGSAQEAAAABkwEBAAAAAZQBAQAAAAGVAQEAAAABCwUAAL8BACAkAADAAQAgJQAAwAEAIIoBQAAAAAGLAUAAAAAEjAFAAAAABI0BQAAAAAGOAUAAAAABjwFAAAAAAZABQAAAAAGRAUAAvgEAIQ8FAAC6AQAgJAAAvQEAICUAAL0BACCKAQEAAAABiwEBAAAABYwBAQAAAAWNAQEAAAABjgEBAAAAAY8BAQAAAAGQAQEAAAABkQEBALwBACGSAQEAAAABkwEBAAAAAZQBAQAAAAGVAQEAAAABDQUAALoBACAiAAC7AQAgIwAAugEAICQAALoBACAlAAC6AQAgigECAAAAAYsBAgAAAAWMAQIAAAAFjQECAAAAAY4BAgAAAAGPAQIAAAABkAECAAAAAZEBAgC5AQAhDQUAALoBACAiAAC7AQAgIwAAugEAICQAALoBACAlAAC6AQAgigECAAAAAYsBAgAAAAWMAQIAAAAFjQECAAAAAY4BAgAAAAGPAQIAAAABkAECAAAAAZEBAgC5AQAhCIoBAgAAAAGLAQIAAAAFjAECAAAABY0BAgAAAAGOAQIAAAABjwECAAAAAZABAgAAAAGRAQIAugEAIQiKAQgAAAABiwEIAAAABYwBCAAAAAWNAQgAAAABjgEIAAAAAY8BCAAAAAGQAQgAAAABkQEIALsBACEPBQAAugEAICQAAL0BACAlAAC9AQAgigEBAAAAAYsBAQAAAAWMAQEAAAAFjQEBAAAAAY4BAQAAAAGPAQEAAAABkAEBAAAAAZEBAQC8AQAhkgEBAAAAAZMBAQAAAAGUAQEAAAABlQEBAAAAAQyKAQEAAAABiwEBAAAABYwBAQAAAAWNAQEAAAABjgEBAAAAAY8BAQAAAAGQAQEAAAABkQEBAL0BACGSAQEAAAABkwEBAAAAAZQBAQAAAAGVAQEAAAABCwUAAL8BACAkAADAAQAgJQAAwAEAIIoBQAAAAAGLAUAAAAAEjAFAAAAABI0BQAAAAAGOAUAAAAABjwFAAAAAAZABQAAAAAGRAUAAvgEAIQiKAQIAAAABiwECAAAABIwBAgAAAASNAQIAAAABjgECAAAAAY8BAgAAAAGQAQIAAAABkQECAL8BACEIigFAAAAAAYsBQAAAAASMAUAAAAAEjQFAAAAAAY4BQAAAAAGPAUAAAAABkAFAAAAAAZEBQADAAQAhDwUAAL8BACAkAADCAQAgJQAAwgEAIIoBAQAAAAGLAQEAAAAEjAEBAAAABI0BAQAAAAGOAQEAAAABjwEBAAAAAZABAQAAAAGRAQEAwQEAIZIBAQAAAAGTAQEAAAABlAEBAAAAAZUBAQAAAAEMigEBAAAAAYsBAQAAAASMAQEAAAAEjQEBAAAAAY4BAQAAAAGPAQEAAAABkAEBAAAAAZEBAQDCAQAhkgEBAAAAAZMBAQAAAAGUAQEAAAABlQEBAAAAAQ0FAAC_AQAgIgAAxAEAICMAAL8BACAkAAC_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-AEAMB0AAP0BADCvAQAA-QEAMLABAAD6AQAwsQEAAPsBACCyAQAA_AEAMLMBAAD8AQAwtAEAAPwBADC1AQAA_AEAMLYBAAD-AQAwtwEAAP8BADAFHAAAvwMAIB0AAMoDACCvAQAAwAMAILABAADJAwAgtQEAAAEAIAKAAQIAAAABmQECAAAAAQIAAAAWACAcAACDAgAgAwAAABYAIBwAAIMCACAdAACCAgAgARcAAMgDADAICwAA3AEAIBECANEBACF8AADbAQAwfQAAFAAQfgAA2wEAMIABAgDRAQAhmQECANEBACGqAQAA2gEAIAIAAAAWACAXAACCAgAgAgAAAIACACAXAACBAgAgBhECANEBACF8AAD_AQAwfQAAgAIAEH4AAP8BADCAAQIA0QEAIZkBAgDRAQAhBhECANEBACF8AAD_AQAwfQAAgAIAEH4AAP8BADCAAQIA0QEAIZkBAgDRAQAhAoABAgDvAQAhmQECAO8BACECgAECAO8BACGZAQIA7wEAIQKAAQIAAAABmQECAAAAAQMHAACRAgAgDwIAAAABF0AAAAABAgAAAA0AIBwAAJACACADAAAADQAgHAAAkAIAIB0AAI4CACABFwAAxwMAMAkHAADhAQAgDQAA3AEAIA8CANEBACERAgDRAQAhF0AA0AEAIXwAAOABADB9AAALABB-AADgAQAwrAEAAN8BACACAAAADQAgFwAAjgIAIAIAAACMAgAgFwAAjQIAIAYPAgDRAQAhEQIA0QEAIRdAANABACF8AACLAgAwfQAAjAIAEH4AAIsCADAGDwIA0QEAIRECANEBACEXQADQAQAhfAAAiwIAMH0AAIwCABB-AACLAgAwAg8CAO8BACEXQADxAQAhAwcAAI8CACAPAgDvAQAhF0AA8QEAIQUcAADCAwAgHQAAxQMAIK8BAADDAwAgsAEAAMQDACC1AQAABQAgAwcAAJECACAPAgAAAAEXQAAAAAEDHAAAwgMAIK8BAADDAwAgtQEAAAUAIAKAAQEAAAABmgECAAAAAQIAAAARACAcAACdAgAgAwAAABEAIBwAAJ0CACAdAACcAgAgARcAAMEDADAICAAA3AEAIBECANEBACF8AADeAQAwfQAADwAQfgAA3gEAMIABAQDSAQAhmgECANEBACGrAQAA3QEAIAIAAAARACAXAACcAgAgAgAAAJoCACAXAACbAgAgBhECANEBACF8AACZAgAwfQAAmgIAEH4AAJkCADCAAQEA0gEAIZoBAgDRAQAhBhECANEBACF8AACZAgAwfQAAmgIAEH4AAJkCADCAAQEA0gEAIZoBAgDRAQAhAoABAQDyAQAhmgECAO8BACECgAEBAPIBACGaAQIA7wEAIQKAAQEAAAABmgECAAAAAQQcAACSAgAwrwEAAJMCADCxAQAAlQIAILUBAACWAgAwBBwAAIQCADCvAQAAhQIAMLEBAACHAgAgtQEAAIgCADAEHAAA-AEAMK8BAAD5AQAwsQEAAPsBACC1AQAA_AEAMAMcAAC_AwAgrwEAAMADACC1AQAAAQAgAAAAAAALHAAAqQIAMB0AAK4CADCvAQAAqgIAMLABAACrAgAwsQEAAKwCACCyAQAArQIAMLMBAACtAgAwtAEAAK0CADC1AQAArQIAMLYBAACvAgAwtwEAALACADAFHAAArgMAIB0AAL0DACCvAQAArwMAILABAAC8AwAgtQEAAAEAIAkDAADDAgAgDgAAxAIAIBdAAAAAAYQBAgAAAAGbAQIAAAABnAECAAAAAZ0BAQAAAAGeAQEAAAABnwECAAAAAQIAAAAFACAcAADCAgAgAwAAAAUAIBwAAMICACAdAAC0AgAgARcAALsDADAOAwAA5wEAIAYAAOgBACAOAADVAQAgEAIA0QEAIRdAAOYBACF8AADlAQAwfQAAAwAQfgAA5QEAMIQBAgDTAQAhmwECAAAAAZwBAgDRAQAhnQEBANIBACGeAQEA0gEAIZ8BAgDTAQAhAgAAAAUAIBcAALQCACACAAAAsQIAIBcAALICACALEAIA0QEAIRdAAOYBACF8AACwAgAwfQAAsQIAEH4AALACADCEAQIA0wEAIZsBAgDRAQAhnAECANEBACGdAQEA0gEAIZ4BAQDSAQAhnwECANMBACELEAIA0QEAIRdAAOYBACF8AACwAgAwfQAAsQIAEH4AALACADCEAQIA0wEAIZsBAgDRAQAhnAECANEBACGdAQEA0gEAIZ4BAQDSAQAhnwECANMBACEHF0AAswIAIYQBAgDzAQAhmwECAO8BACGcAQIA7wEAIZ0BAQDyAQAhngEBAPIBACGfAQIA8wEAIQGyAUAAAAABCQMAALUCACAOAAC2AgAgF0AAswIAIYQBAgDzAQAhmwECAO8BACGcAQIA7wEAIZ0BAQDyAQAhngEBAPIBACGfAQIA8wEAIQccAACwAwAgHQAAuQMAIK8BAACxAwAgsAEAALgDACCzAQAABwAgtAEAAAcAILUBAAABACALHAAAtwIAMB0AALsCADCvAQAAuAIAMLABAAC5AgAwsQEAALoCACCyAQAAiAIAMLMBAACIAgAwtAEAAIgCADC1AQAAiAIAMLYBAAC8AgAwtwEAAIsCADADDQAAwQIAIBECAAAAARdAAAAAAQIAAAANACAcAADAAgAgAwAAAA0AIBwAAMACACAdAAC-AgAgARcAALcDADACAAAADQAgFwAAvgIAIAIAAACMAgAgFwAAvQIAIAIRAgDvAQAhF0AA8QEAIQMNAAC_AgAgEQIA7wEAIRdAAPEBACEFHAAAsgMAIB0AALUDACCvAQAAswMAILABAAC0AwAgtQEAACIAIAMNAADBAgAgEQIAAAABF0AAAAABAxwAALIDACCvAQAAswMAILUBAAAiACAJAwAAwwIAIA4AAMQCACAXQAAAAAGEAQIAAAABmwECAAAAAZwBAgAAAAGdAQEAAAABngEBAAAAAZ8BAgAAAAEDHAAAsAMAIK8BAACxAwAgtQEAAAEAIAQcAAC3AgAwrwEAALgCADCxAQAAugIAILUBAACIAgAwBBwAAKkCADCvAQAAqgIAMLEBAACsAgAgtQEAAK0CADADHAAArgMAIK8BAACvAwAgtQEAAAEAIAAAAAAABRwAAKkDACAdAACsAwAgrwEAAKoDACCwAQAAqwMAILUBAAAiACADHAAAqQMAIK8BAACqAwAgtQEAACIAIAAAAAAAAAAAAAAFHAAApAMAIB0AAKcDACCvAQAApQMAILABAACmAwAgtQEAACIAIAMcAACkAwAgrwEAAKUDACC1AQAAIgAgAAAAAAAFHAAAnwMAIB0AAKIDACCvAQAAoAMAILABAAChAwAgtQEAAB4AIAMcAACfAwAgrwEAAKADACC1AQAAHgAgAAAAAAALHAAAgQMAMB0AAIUDADCvAQAAggMAMLABAACDAwAwsQEAAIQDACCyAQAArQIAMLMBAACtAgAwtAEAAK0CADC1AQAArQIAMLYBAACGAwAwtwEAALACADALHAAA9QIAMB0AAPoCADCvAQAA9gIAMLABAAD3AgAwsQEAAPgCACCyAQAA-QIAMLMBAAD5AgAwtAEAAPkCADC1AQAA-QIAMLYBAAD7AgAwtwEAAPwCADALHAAA6QIAMB0AAO4CADCvAQAA6gIAMLABAADrAgAwsQEAAOwCACCyAQAA7QIAMLMBAADtAgAwtAEAAO0CADC1AQAA7QIAMLYBAADvAgAwtwEAAPACADANCQAAngIAIAoAAJ8CACAMAACgAgAgfwIAAAABgAEBAAAAAYEBAQAAAAGCAQEAAAABgwFAAAAAAYUBAQAAAAGGAQEAAAABhwEBAAAAAYgBAgAAAAGJAQIAAAABAgAAACIAIBwAAPQCACADAAAAIgAgHAAA9AIAIB0AAPMCACABFwAAngMAMBIDAADXAQAgCQAA1AEAIAoAANUBACAMAADWAQAgfAAAzgEAMH0AACAAEH4AAM4BADB_AgAAAAGAAQEAzwEAIYEBAQDPAQAhggEBAM8BACGDAUAA0AEAIYQBAgDRAQAhhQEBANIBACGGAQEA0gEAIYcBAQDSAQAhiAECANMBACGJAQIA0wEAIQIAAAAiACAXAADzAgAgAgAAAPECACAXAADyAgAgDnwAAPACADB9AADxAgAQfgAA8AIAMH8CANEBACGAAQEAzwEAIYEBAQDPAQAhggEBAM8BACGDAUAA0AEAIYQBAgDRAQAhhQEBANIBACGGAQEA0gEAIYcBAQDSAQAhiAECANMBACGJAQIA0wEAIQ58AADwAgAwfQAA8QIAEH4AAPACADB_AgDRAQAhgAEBAM8BACGBAQEAzwEAIYIBAQDPAQAhgwFAANABACGEAQIA0QEAIYUBAQDSAQAhhgEBANIBACGHAQEA0gEAIYgBAgDTAQAhiQECANMBACEKfwIA7wEAIYABAQDwAQAhgQEBAPABACGCAQEA8AEAIYMBQADxAQAhhQEBAPIBACGGAQEA8gEAIYcBAQDyAQAhiAECAPMBACGJAQIA8wEAIQ0JAAD0AQAgCgAA9QEAIAwAAPYBACB_AgDvAQAhgAEBAPABACGBAQEA8AEAIYIBAQDwAQAhgwFAAPEBACGFAQEA8gEAIYYBAQDyAQAhhwEBAPIBACGIAQIA8wEAIYkBAgDzAQAhDQkAAJ4CACAKAACfAgAgDAAAoAIAIH8CAAAAAYABAQAAAAGBAQEAAAABggEBAAAAAYMBQAAAAAGFAQEAAAABhgEBAAAAAYcBAQAAAAGIAQIAAAABiQECAAAAAQkEAADFAgAggAEBAAAAAYEBAQAAAAGCAQEAAAABgwFAAAAAAYcBAQAAAAGWAQIAAAABlwEBAAAAAZgBAQAAAAECAAAAHgAgHAAAgAMAIAMAAAAeACAcAACAAwAgHQAA_wIAIAEXAACdAwAwDgMAANcBACAEAADZAQAgfAAA2AEAMH0AABwAEH4AANgBADCAAQEAzwEAIYEBAQDPAQAhggEBAM8BACGDAUAA0AEAIYQBAgDRAQAhhwEBANIBACGWAQIAAAABlwEBANIBACGYAQEA0gEAIQIAAAAeACAXAAD_AgAgAgAAAP0CACAXAAD-AgAgDHwAAPwCADB9AAD9AgAQfgAA_AIAMIABAQDPAQAhgQEBAM8BACGCAQEAzwEAIYMBQADQAQAhhAECANEBACGHAQEA0gEAIZYBAgDRAQAhlwEBANIBACGYAQEA0gEAIQx8AAD8AgAwfQAA_QIAEH4AAPwCADCAAQEAzwEAIYEBAQDPAQAhggEBAM8BACGDAUAA0AEAIYQBAgDRAQAhhwEBANIBACGWAQIA0QEAIZcBAQDSAQAhmAEBANIBACEIgAEBAPABACGBAQEA8AEAIYIBAQDwAQAhgwFAAPEBACGHAQEA8gEAIZYBAgDvAQAhlwEBAPIBACGYAQEA8gEAIQkEAACnAgAggAEBAPABACGBAQEA8AEAIYIBAQDwAQAhgwFAAPEBACGHAQEA8gEAIZYBAgDvAQAhlwEBAPIBACGYAQEA8gEAIQkEAADFAgAggAEBAAAAAYEBAQAAAAGCAQEAAAABgwFAAAAAAYcBAQAAAAGWAQIAAAABlwEBAAAAAZgBAQAAAAEJBgAA4AIAIA4AAMQCACAQAgAAAAEXQAAAAAGbAQIAAAABnAECAAAAAZ0BAQAAAAGeAQEAAAABnwECAAAAAQIAAAAFACAcAACJAwAgAwAAAAUAIBwAAIkDACAdAACIAwAgARcAAJwDADACAAAABQAgFwAAiAMAIAIAAACxAgAgFwAAhwMAIAcQAgDvAQAhF0AAswIAIZsBAgDvAQAhnAECAO8BACGdAQEA8gEAIZ4BAQDyAQAhnwECAPMBACEJBgAA3wIAIA4AALYCACAQAgDvAQAhF0AAswIAIZsBAgDvAQAhnAECAO8BACGdAQEA8gEAIZ4BAQDyAQAhnwECAPMBACEJBgAA4AIAIA4AAMQCACAQAgAAAAEXQAAAAAGbAQIAAAABnAECAAAAAZ0BAQAAAAGeAQEAAAABnwECAAAAAQQcAACBAwAwrwEAAIIDADCxAQAAhAMAILUBAACtAgAwBBwAAPUCADCvAQAA9gIAMLEBAAD4AgAgtQEAAPkCADAEHAAA6QIAMK8BAADqAgAwsQEAAOwCACC1AQAA7QIAMAAAAAGVAQEAAAABAAAABg8AAI0DACAQAACOAwAgEQAAjwMAIKUBAADpAQAgpgEAAOkBACC4AQAAkAMAIAGVAQEAAAABAZUBAQAAAAEKAwAAlAMAIAkAAJEDACAKAACSAwAgDAAAkwMAIIUBAADpAQAghgEAAOkBACCHAQAA6QEAIIgBAADpAQAgiQEAAOkBACC4AQAAlQMAIAGVAQEAAAABCQMAAJQDACAGAACaAwAgDgAAkgMAIBcAAOkBACCEAQAA6QEAIJ0BAADpAQAgngEAAOkBACCfAQAA6QEAILgBAACbAwAgBgMAAJQDACAEAACNAwAghwEAAOkBACCXAQAA6QEAIJgBAADpAQAguAEAAJYDACABlQEBAAAAAQcQAgAAAAEXQAAAAAGbAQIAAAABnAECAAAAAZ0BAQAAAAGeAQEAAAABnwECAAAAAQiAAQEAAAABgQEBAAAAAYIBAQAAAAGDAUAAAAABhwEBAAAAAZYBAgAAAAGXAQEAAAABmAEBAAAAAQp_AgAAAAGAAQEAAAABgQEBAAAAAYIBAQAAAAGDAUAAAAABhQEBAAAAAYYBAQAAAAGHAQEAAAABiAECAAAAAYkBAgAAAAEKAwAAxgIAIIABAQAAAAGBAQEAAAABggEBAAAAAYMBQAAAAAGEAQIAAAABhwEBAAAAAZYBAgAAAAGXAQEAAAABmAEBAAAAAQIAAAAeACAcAACfAwAgAwAAABwAIBwAAJ8DACAdAACjAwAgDAAAABwAIAMAAKgCACAXAACjAwAggAEBAPABACGBAQEA8AEAIYIBAQDwAQAhgwFAAPEBACGEAQIA7wEAIYcBAQDyAQAhlgECAO8BACGXAQEA8gEAIZgBAQDyAQAhCgMAAKgCACCAAQEA8AEAIYEBAQDwAQAhggEBAPABACGDAUAA8QEAIYQBAgDvAQAhhwEBAPIBACGWAQIA7wEAIZcBAQDyAQAhmAEBAPIBACEOAwAAoQIAIAoAAJ8CACAMAACgAgAgfwIAAAABgAEBAAAAAYEBAQAAAAGCAQEAAAABgwFAAAAAAYQBAgAAAAGFAQEAAAABhgEBAAAAAYcBAQAAAAGIAQIAAAABiQECAAAAAQIAAAAiACAcAACkAwAgAwAAACAAIBwAAKQDACAdAACoAwAgEAAAACAAIAMAAPcBACAKAAD1AQAgDAAA9gEAIBcAAKgDACB_AgDvAQAhgAEBAPABACGBAQEA8AEAIYIBAQDwAQAhgwFAAPEBACGEAQIA7wEAIYUBAQDyAQAhhgEBAPIBACGHAQEA8gEAIYgBAgDzAQAhiQECAPMBACEOAwAA9wEAIAoAAPUBACAMAAD2AQAgfwIA7wEAIYABAQDwAQAhgQEBAPABACGCAQEA8AEAIYMBQADxAQAhhAECAO8BACGFAQEA8gEAIYYBAQDyAQAhhwEBAPIBACGIAQIA8wEAIYkBAgDzAQAhDgMAAKECACAJAACeAgAgCgAAnwIAIH8CAAAAAYABAQAAAAGBAQEAAAABggEBAAAAAYMBQAAAAAGEAQIAAAABhQEBAAAAAYYBAQAAAAGHAQEAAAABiAECAAAAAYkBAgAAAAECAAAAIgAgHAAAqQMAIAMAAAAgACAcAACpAwAgHQAArQMAIBAAAAAgACADAAD3AQAgCQAA9AEAIAoAAPUBACAXAACtAwAgfwIA7wEAIYABAQDwAQAhgQEBAPABACGCAQEA8AEAIYMBQADxAQAhhAECAO8BACGFAQEA8gEAIYYBAQDyAQAhhwEBAPIBACGIAQIA8wEAIYkBAgDzAQAhDgMAAPcBACAJAAD0AQAgCgAA9QEAIH8CAO8BACGAAQEA8AEAIYEBAQDwAQAhggEBAPABACGDAUAA8QEAIYQBAgDvAQAhhQEBAPIBACGGAQEA8gEAIYcBAQDyAQAhiAECAPMBACGJAQIA8wEAIQkPAACKAwAgEQAAjAMAIKABAgAAAAGhAQEAAAABogEBAAAAAaMBAgAAAAGkAQEAAAABpQEBAAAAAaYBAQAAAAECAAAAAQAgHAAArgMAIAkQAACLAwAgEQAAjAMAIKABAgAAAAGhAQEAAAABogEBAAAAAaMBAgAAAAGkAQEAAAABpQEBAAAAAaYBAQAAAAECAAAAAQAgHAAAsAMAIA4DAAChAgAgCQAAngIAIAwAAKACACB_AgAAAAGAAQEAAAABgQEBAAAAAYIBAQAAAAGDAUAAAAABhAECAAAAAYUBAQAAAAGGAQEAAAABhwEBAAAAAYgBAgAAAAGJAQIAAAABAgAAACIAIBwAALIDACADAAAAIAAgHAAAsgMAIB0AALYDACAQAAAAIAAgAwAA9wEAIAkAAPQBACAMAAD2AQAgFwAAtgMAIH8CAO8BACGAAQEA8AEAIYEBAQDwAQAhggEBAPABACGDAUAA8QEAIYQBAgDvAQAhhQEBAPIBACGGAQEA8gEAIYcBAQDyAQAhiAECAPMBACGJAQIA8wEAIQ4DAAD3AQAgCQAA9AEAIAwAAPYBACB_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"
+};
+async function decodeBase64AsWasm(wasmBase64) {
+    const { Buffer } = await __turbopack_context__.A("[externals]/node:buffer [external] (node:buffer, cjs, async loader)");
+    const wasmArray = Buffer.from(wasmBase64, 'base64');
+    return new WebAssembly.Module(wasmArray);
+}
+config.compilerWasm = {
+    getRuntime: async ()=>await __turbopack_context__.A("[externals]/@prisma/client/runtime/query_compiler_fast_bg.mysql.mjs [external] (@prisma/client/runtime/query_compiler_fast_bg.mysql.mjs, esm_import, [project]/ajudaPrudente/ajudaprudente/node_modules/@prisma/client, async loader)"),
+    getQueryCompilerWasmModule: async ()=>{
+        const { wasm } = await __turbopack_context__.A("[externals]/@prisma/client/runtime/query_compiler_fast_bg.mysql.wasm-base64.mjs [external] (@prisma/client/runtime/query_compiler_fast_bg.mysql.wasm-base64.mjs, esm_import, [project]/ajudaPrudente/ajudaprudente/node_modules/@prisma/client, async loader)");
+        return await decodeBase64AsWasm(wasm);
+    },
+    importName: "./query_compiler_fast_bg.js"
+};
+function getPrismaClientClass() {
+    return __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["getPrismaClient"](config);
+}
+}),
+"[project]/ajudaPrudente/ajudaprudente/generated/prisma/internal/prismaNamespace.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "AnyNull",
+    ()=>AnyNull,
+    "DbNull",
+    ()=>DbNull,
+    "Decimal",
+    ()=>Decimal,
+    "Endere_oScalarFieldEnum",
+    ()=>Endere_oScalarFieldEnum,
+    "EventoScalarFieldEnum",
+    ()=>EventoScalarFieldEnum,
+    "HabilidadeScalarFieldEnum",
+    ()=>HabilidadeScalarFieldEnum,
+    "InscricaoScalarFieldEnum",
+    ()=>InscricaoScalarFieldEnum,
+    "InteresseScalarFieldEnum",
+    ()=>InteresseScalarFieldEnum,
+    "JsonNull",
+    ()=>JsonNull,
+    "ModelName",
+    ()=>ModelName,
+    "NullTypes",
+    ()=>NullTypes,
+    "NullsOrder",
+    ()=>NullsOrder,
+    "OrganizadorScalarFieldEnum",
+    ()=>OrganizadorScalarFieldEnum,
+    "PrismaClientInitializationError",
+    ()=>PrismaClientInitializationError,
+    "PrismaClientKnownRequestError",
+    ()=>PrismaClientKnownRequestError,
+    "PrismaClientRustPanicError",
+    ()=>PrismaClientRustPanicError,
+    "PrismaClientUnknownRequestError",
+    ()=>PrismaClientUnknownRequestError,
+    "PrismaClientValidationError",
+    ()=>PrismaClientValidationError,
+    "SortOrder",
+    ()=>SortOrder,
+    "Sql",
+    ()=>Sql,
+    "TransactionIsolationLevel",
+    ()=>TransactionIsolationLevel,
+    "VoluntarioScalarFieldEnum",
+    ()=>VoluntarioScalarFieldEnum,
+    "defineExtension",
+    ()=>defineExtension,
+    "empty",
+    ()=>empty,
+    "endere_oOrderByRelevanceFieldEnum",
+    ()=>endere_oOrderByRelevanceFieldEnum,
+    "eventoOrderByRelevanceFieldEnum",
+    ()=>eventoOrderByRelevanceFieldEnum,
+    "getExtensionContext",
+    ()=>getExtensionContext,
+    "habilidadeOrderByRelevanceFieldEnum",
+    ()=>habilidadeOrderByRelevanceFieldEnum,
+    "join",
+    ()=>join,
+    "organizadorOrderByRelevanceFieldEnum",
+    ()=>organizadorOrderByRelevanceFieldEnum,
+    "prismaVersion",
+    ()=>prismaVersion,
+    "raw",
+    ()=>raw,
+    "sql",
+    ()=>sql,
+    "voluntarioOrderByRelevanceFieldEnum",
+    ()=>voluntarioOrderByRelevanceFieldEnum
+]);
+/* !!! This is code generated by Prisma. Do not edit directly. !!! */ /* eslint-disable */ // biome-ignore-all lint: generated file
+// @ts-nocheck 
+/*
+ * WARNING: This is an internal file that is subject to change!
+ *
+ * 🛑 Under no circumstances should you import this file directly! 🛑
+ *
+ * All exports from this file are wrapped under a `Prisma` namespace object in the client.ts file.
+ * While this enables partial backward compatibility, it is not part of the stable public API.
+ *
+ * If you are looking for your Models, Enums, and Input Types, please import them from the respective
+ * model files in the `model` directory!
+ */ var __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__ = __turbopack_context__.i("[externals]/@prisma/client/runtime/client [external] (@prisma/client/runtime/client, cjs, [project]/ajudaPrudente/ajudaprudente/node_modules/@prisma/client)");
+;
+const PrismaClientKnownRequestError = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["PrismaClientKnownRequestError"];
+const PrismaClientUnknownRequestError = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["PrismaClientUnknownRequestError"];
+const PrismaClientRustPanicError = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["PrismaClientRustPanicError"];
+const PrismaClientInitializationError = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["PrismaClientInitializationError"];
+const PrismaClientValidationError = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["PrismaClientValidationError"];
+const sql = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["sqltag"];
+const empty = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["empty"];
+const join = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["join"];
+const raw = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["raw"];
+const Sql = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["Sql"];
+const Decimal = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["Decimal"];
+const getExtensionContext = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["Extensions"].getExtensionContext;
+const prismaVersion = {
+    client: "7.8.0",
+    engine: "3c6e192761c0362d496ed980de936e2f3cebcd3a"
+};
+const NullTypes = {
+    DbNull: __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["NullTypes"].DbNull,
+    JsonNull: __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["NullTypes"].JsonNull,
+    AnyNull: __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["NullTypes"].AnyNull
+};
+const DbNull = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["DbNull"];
+const JsonNull = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["JsonNull"];
+const AnyNull = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["AnyNull"];
+const ModelName = {
+    endere_o: 'endere_o',
+    evento: 'evento',
+    habilidade: 'habilidade',
+    inscricao: 'inscricao',
+    interesse: 'interesse',
+    organizador: 'organizador',
+    voluntario: 'voluntario'
+};
+const TransactionIsolationLevel = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["makeStrictEnum"]({
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
+    Serializable: 'Serializable'
+});
+const Endere_oScalarFieldEnum = {
+    idendere_o: 'idendere_o',
+    cidade: 'cidade',
+    bairro: 'bairro',
+    rua: 'rua',
+    cep: 'cep',
+    apartamento: 'apartamento',
+    numero: 'numero'
+};
+const EventoScalarFieldEnum = {
+    idevento: 'idevento',
+    data: 'data',
+    endereco: 'endereco',
+    organizador: 'organizador',
+    publicado: 'publicado',
+    descricao: 'descricao',
+    status: 'status',
+    vagas: 'vagas'
+};
+const HabilidadeScalarFieldEnum = {
+    idhabilidade: 'idhabilidade',
+    nome: 'nome',
+    voluntario: 'voluntario'
+};
+const InscricaoScalarFieldEnum = {
+    voluntario: 'voluntario',
+    evento: 'evento',
+    data: 'data'
+};
+const InteresseScalarFieldEnum = {
+    idinteresse: 'idinteresse',
+    nome: 'nome',
+    voluntario: 'voluntario'
+};
+const OrganizadorScalarFieldEnum = {
+    idorganizador: 'idorganizador',
+    nome: 'nome',
+    senha: 'senha',
+    email: 'email',
+    criado: 'criado',
+    endereco: 'endereco',
+    cnpj: 'cnpj',
+    telefone: 'telefone',
+    empresa: 'empresa'
+};
+const VoluntarioScalarFieldEnum = {
+    idusuarios: 'idusuarios',
+    nome: 'nome',
+    senha: 'senha',
+    email: 'email',
+    criado: 'criado',
+    endereco: 'endereco',
+    rg: 'rg',
+    cpf: 'cpf',
+    telefone: 'telefone',
+    notificacao: 'notificacao',
+    darkmode: 'darkmode'
+};
+const SortOrder = {
+    asc: 'asc',
+    desc: 'desc'
+};
+const NullsOrder = {
+    first: 'first',
+    last: 'last'
+};
+const endere_oOrderByRelevanceFieldEnum = {
+    cidade: 'cidade',
+    bairro: 'bairro',
+    cep: 'cep',
+    apartamento: 'apartamento',
+    numero: 'numero'
+};
+const eventoOrderByRelevanceFieldEnum = {
+    descricao: 'descricao',
+    status: 'status'
+};
+const habilidadeOrderByRelevanceFieldEnum = {
+    nome: 'nome'
+};
+const organizadorOrderByRelevanceFieldEnum = {
+    nome: 'nome',
+    senha: 'senha',
+    email: 'email',
+    cnpj: 'cnpj',
+    telefone: 'telefone',
+    empresa: 'empresa'
+};
+const voluntarioOrderByRelevanceFieldEnum = {
+    nome: 'nome',
+    senha: 'senha',
+    email: 'email',
+    rg: 'rg',
+    cpf: 'cpf',
+    telefone: 'telefone'
+};
+const defineExtension = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$client$29$__["Extensions"].defineExtension;
+}),
+"[project]/ajudaPrudente/ajudaprudente/generated/prisma/client.ts [app-route] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+/* !!! This is code generated by Prisma. Do not edit directly. !!! */ /* eslint-disable */ // biome-ignore-all lint: generated file
+// @ts-nocheck 
+/*
+ * This file should be your main import to use Prisma. Through it you get access to all the models, enums, and input types.
+ * If you're looking for something you can import in the client-side of your application, please refer to the `browser.ts` file instead.
+ *
+ * 🟢 You can import this file directly.
+ */ __turbopack_context__.s([
+    "PrismaClient",
+    ()=>PrismaClient
+]);
+var __TURBOPACK__imported__module__$5b$externals$5d2f$node$3a$path__$5b$external$5d$__$28$node$3a$path$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/node:path [external] (node:path, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$node$3a$url__$5b$external$5d$__$28$node$3a$url$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/node:url [external] (node:url, cjs)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$generated$2f$prisma$2f$internal$2f$class$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ajudaPrudente/ajudaprudente/generated/prisma/internal/class.ts [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$generated$2f$prisma$2f$internal$2f$prismaNamespace$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ajudaPrudente/ajudaprudente/generated/prisma/internal/prismaNamespace.ts [app-route] (ecmascript)");
+const __TURBOPACK__import$2e$meta__ = {
+    get url () {
+        return `file://${__turbopack_context__.P("ajudaPrudente/ajudaprudente/generated/prisma/client.ts")}`;
+    },
+    get turbopackHot () {
+        return __turbopack_context__.m.hot;
+    }
+};
+;
+;
+globalThis['__dirname'] = __TURBOPACK__imported__module__$5b$externals$5d2f$node$3a$path__$5b$external$5d$__$28$node$3a$path$2c$__cjs$29$__["dirname"]((0, __TURBOPACK__imported__module__$5b$externals$5d2f$node$3a$url__$5b$external$5d$__$28$node$3a$url$2c$__cjs$29$__["fileURLToPath"])(__TURBOPACK__import$2e$meta__.url));
+;
+;
+;
+;
+const PrismaClient = __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$generated$2f$prisma$2f$internal$2f$class$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["getPrismaClientClass"]();
+;
+}),
+"[project]/ajudaPrudente/ajudaprudente/lib/prisma.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "prisma",
+    ()=>prisma
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f$dotenv$2f$config$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ajudaPrudente/ajudaprudente/node_modules/dotenv/config.js [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$adapter$2d$mariadb$2f$dist$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ajudaPrudente/ajudaprudente/node_modules/@prisma/adapter-mariadb/dist/index.mjs [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$generated$2f$prisma$2f$client$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/ajudaPrudente/ajudaprudente/generated/prisma/client.ts [app-route] (ecmascript) <locals>");
+;
+;
+;
+const adapter = new __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$node_modules$2f40$prisma$2f$adapter$2d$mariadb$2f$dist$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["PrismaMariaDb"]({
+    host: process.env.DATABASE_HOST,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
+    connectionLimit: 5
+});
+const prisma = new __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$generated$2f$prisma$2f$client$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__["PrismaClient"]({
+    adapter
+});
+;
+}),
+"[project]/ajudaPrudente/ajudaprudente/app/lib/Usuario.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Usuario",
+    ()=>Usuario
+]);
+class Usuario {
+    constructor(idUsuario, nome, email, senha, telefone, tipoUsuario){}
+}
+}),
+"[project]/ajudaPrudente/ajudaprudente/app/lib/Organizador.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Organizador",
+    ()=>Organizador
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ajudaPrudente/ajudaprudente/lib/prisma.ts [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$app$2f$lib$2f$Usuario$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ajudaPrudente/ajudaprudente/app/lib/Usuario.ts [app-route] (ecmascript)");
+;
+;
+class Organizador extends __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$app$2f$lib$2f$Usuario$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Usuario"] {
+    idorganizador;
+    nome;
+    email;
+    senha;
+    telefone;
+    CNPJ;
+    constructor(nome, email, senha, telefone, tipoUsuario, CNPJ){
+        super(undefined, nome, email, senha, telefone, tipoUsuario);
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.telefone = telefone;
+        this.CNPJ = CNPJ;
+    }
+    async storeOnDb(endereco) {
+        if (this.idorganizador === undefined) {
+            const lastOrganizador = await __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].organizador.findFirst({
+                select: {
+                    idorganizador: true
+                },
+                orderBy: {
+                    idorganizador: "desc"
+                }
+            });
+            this.idorganizador = (lastOrganizador?.idorganizador ?? 0) + 1;
+        }
+        const created = await __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].organizador.create({
+            data: {
+                idorganizador: this.idorganizador,
+                nome: this.nome,
+                senha: this.senha,
+                email: this.email,
+                criado: new Date(),
+                endereco,
+                cnpj: String(this.CNPJ),
+                telefone: String(this.telefone)
+            }
+        });
+        this.idorganizador = created.idorganizador;
+        return created;
+    }
+}
+}),
+"[project]/ajudaPrudente/ajudaprudente/app/lib/TipoUsuario.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "TipoUsuario",
+    ()=>TipoUsuario
+]);
+var TipoUsuario = /*#__PURE__*/ function(TipoUsuario) {
+    TipoUsuario[TipoUsuario["Organizador"] = 0] = "Organizador";
+    TipoUsuario[TipoUsuario["Voluntario"] = 1] = "Voluntario";
+    return TipoUsuario;
+}({});
+}),
+"[project]/ajudaPrudente/ajudaprudente/app/api/organizador/route.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "POST",
+    ()=>POST
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$app$2f$lib$2f$Organizador$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ajudaPrudente/ajudaprudente/app/lib/Organizador.ts [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$app$2f$lib$2f$TipoUsuario$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ajudaPrudente/ajudaprudente/app/lib/TipoUsuario.ts [app-route] (ecmascript)");
+;
+;
+function isValidPayload(payload) {
+    if (typeof payload !== "object" || payload === null) return false;
+    const body = payload;
+    return typeof body.nome === "string" && body.nome.trim().length > 0 && typeof body.email === "string" && body.email.trim().length > 0 && typeof body.senha === "string" && body.senha.trim().length > 0 && typeof body.telefone === "number" && Number.isFinite(body.telefone) && typeof body.cnpj === "number" && Number.isFinite(body.cnpj) && typeof body.endereco === "number" && Number.isInteger(body.endereco);
+}
+async function POST(request) {
+    let payload;
+    try {
+        payload = await request.json();
+    } catch (error) {
+        if (error instanceof SyntaxError) {
+            return Response.json({
+                error: "Malformed JSON body.",
+                details: error.message
+            }, {
+                status: 400
+            });
+        }
+        throw error;
+    }
+    if (!isValidPayload(payload)) {
+        return Response.json({
+            error: "Invalid request body for organizador creation."
+        }, {
+            status: 400
+        });
+    }
+    const organizador = new __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$app$2f$lib$2f$Organizador$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Organizador"](payload.nome, payload.email, payload.senha, payload.telefone, __TURBOPACK__imported__module__$5b$project$5d2f$ajudaPrudente$2f$ajudaprudente$2f$app$2f$lib$2f$TipoUsuario$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["TipoUsuario"].Organizador, payload.cnpj);
+    const created = await organizador.storeOnDb(payload.endereco);
+    return Response.json(created, {
+        status: 201
+    });
+}
+}),
+];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__0gr40ee._.js.map

@@ -1,0 +1,4 @@
+{
+  "/api/organizador/route": "app/api/organizador/route.js",
+  "/api/voluntario/route": "app/api/voluntario/route.js"
+}
