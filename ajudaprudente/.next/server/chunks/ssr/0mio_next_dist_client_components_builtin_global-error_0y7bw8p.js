@@ -1,3 +1,0 @@
-module.exports=[95740,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(73662);a.n(d("[project]/ajudaPrudente/ajudaprudente/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},44383,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(73662);a.n(d("[project]/ajudaPrudente/ajudaprudente/node_modules/next/dist/client/components/builtin/global-error.js"))},62343,a=>{"use strict";a.i(95740);var b=a.i(44383);a.n(b)},65907,a=>{a.n(a.i(62343))}];
-
-//# sourceMappingURL=0mio_next_dist_client_components_builtin_global-error_0y7bw8p.js.map

@@ -1,8 +1,0 @@
-{
-  "/_global-error/page": "/_global-error",
-  "/_not-found/page": "/_not-found",
-  "/api/organizador/route": "/api/organizador",
-  "/api/voluntario/route": "/api/voluntario",
-  "/favicon.ico/route": "/favicon.ico",
-  "/page": "/"
-}
