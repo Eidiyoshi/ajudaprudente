@@ -5,7 +5,7 @@ import { Voluntario } from "@/app/lib/Voluntario";
 type EnderecoPayload = {
   cidade: string;
   bairro: string;
-  rua: number;
+  rua: string;
   cep: string;
   apartamento?: string;
   numero?: string;
@@ -46,8 +46,8 @@ function isValidPayload(payload: unknown): payload is VoluntarioPayload {
     endereco.cidade.trim().length > 0 &&
     typeof endereco.bairro === "string" &&
     endereco.bairro.trim().length > 0 &&
-    typeof endereco.rua === "number" &&
-    Number.isInteger(endereco.rua) &&
+    typeof endereco.rua === "string" &&
+    endereco.rua.trim().length > 0 &&
     typeof endereco.cep === "string" &&
     endereco.cep.trim().length > 0 &&
     (endereco.apartamento === undefined ||

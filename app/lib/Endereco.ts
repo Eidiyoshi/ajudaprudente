@@ -4,7 +4,7 @@ export class Endereco {
   public idEndereco?: number;
   private readonly cidade: string;
   private readonly bairro: string;
-  private readonly rua: number;
+  private readonly rua: string;
   private readonly cep: string;
   private readonly apartamento?: string;
   private readonly numero?: string;
@@ -12,7 +12,7 @@ export class Endereco {
   constructor(
     cidade: string,
     bairro: string,
-    rua: number,
+    rua: string,
     cep: string,
     apartamento?: string,
     numero?: string

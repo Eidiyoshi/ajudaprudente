@@ -5,7 +5,7 @@ import { TipoUsuario } from "@/app/lib/TipoUsuario";
 type EnderecoPayload = {
   cidade: string;
   bairro: string;
-  rua: number;
+  rua: string;
   cep: string;
   apartamento?: string;
   numero?: string;
@@ -16,7 +16,9 @@ type OrganizadorPayload = {
   email: string;
   senha: string;
   telefone: number;
-  cnpj: number;
+  isEmpresa: boolean;
+  cnpj?: string;
+  empresa?: string;
   endereco: EnderecoPayload;
 };
 
@@ -25,6 +27,12 @@ function isValidPayload(payload: unknown): payload is OrganizadorPayload {
 
   const body = payload as Record<string, unknown>;
   const endereco = body.endereco as Record<string, unknown> | undefined;
+  const isEmpresa = body.isEmpresa;
+  const empresaValida =
+    typeof body.empresa === "string" && body.empresa.trim().length > 0;
+  const cnpjValido = typeof body.cnpj === "string" && body.cnpj.trim().length > 0;
+  const dadosEmpresaValidos =
+    isEmpresa === true ? empresaValida && cnpjValido : true;
 
   return (
     typeof body.nome === "string" &&
@@ -35,16 +43,16 @@ function isValidPayload(payload: unknown): payload is OrganizadorPayload {
     body.senha.trim().length > 0 &&
     typeof body.telefone === "number" &&
     Number.isFinite(body.telefone) &&
-    typeof body.cnpj === "number" &&
-    Number.isFinite(body.cnpj) &&
+    typeof isEmpresa === "boolean" &&
+    dadosEmpresaValidos &&
     typeof endereco === "object" &&
     endereco !== null &&
     typeof endereco.cidade === "string" &&
     endereco.cidade.trim().length > 0 &&
     typeof endereco.bairro === "string" &&
     endereco.bairro.trim().length > 0 &&
-    typeof endereco.rua === "number" &&
-    Number.isInteger(endereco.rua) &&
+    typeof endereco.rua === "string" &&
+    endereco.rua.trim().length > 0 &&
     typeof endereco.cep === "string" &&
     endereco.cep.trim().length > 0 &&
     (endereco.apartamento === undefined ||
@@ -80,7 +88,8 @@ export async function POST(request: Request) {
     payload.senha,
     payload.telefone,
     TipoUsuario.Organizador,
-    payload.cnpj
+    payload.isEmpresa ? payload.cnpj : undefined,
+    payload.isEmpresa ? payload.empresa : undefined
   );
 
   const endereco = new Endereco(

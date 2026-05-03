@@ -8,15 +8,25 @@ export class Organizador extends Usuario {
     private readonly email: string;
     private readonly senha: string;
     private readonly telefone: number;
-    private readonly CNPJ: number;
+    private readonly cnpj?: string;
+    private readonly empresa?: string;
 
-    constructor(nome: string, email: string, senha: string, telefone: number, tipoUsuario: TipoUsuario, CNPJ: number) {     
+    constructor(
+        nome: string,
+        email: string,
+        senha: string,
+        telefone: number,
+        tipoUsuario: TipoUsuario,
+        cnpj?: string,
+        empresa?: string
+    ) {     
         super(undefined, nome, email, senha, telefone, tipoUsuario);
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.telefone = telefone;
-        this.CNPJ = CNPJ;
+        this.cnpj = cnpj;
+        this.empresa = empresa;
     }
 
     public async storeOnDb(endereco: number) {
@@ -36,8 +46,9 @@ export class Organizador extends Usuario {
                 email: this.email,
                 criado: new Date(),
                 endereco,
-                cnpj: String(this.CNPJ),
+                cnpj: this.cnpj,
                 telefone: String(this.telefone),
+                empresa: this.empresa,
             },
         });
 
