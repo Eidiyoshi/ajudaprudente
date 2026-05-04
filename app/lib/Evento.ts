@@ -4,7 +4,7 @@ import { Status } from '@/app/lib/Status'
 export class Evento {
     public idEvento?: number;
     private readonly nome : string;
-    private readonly descricao?: string;
+    private readonly descricao: string;
     private readonly data : string;
     private readonly horarioInicio : string;
     private readonly horarioFim : string;
@@ -15,12 +15,12 @@ export class Evento {
     constructor(
         nome : string,
         data : string,
+        descricao: string,
         horarioInicio : string,
         horarioFim : string, 
         local : string,
         vagasDisponiveis : number,
-        status : Status,
-        descricao?: string
+        status : Status
     ) {
         this.nome = nome;
         this.descricao = descricao;
