@@ -1,7 +1,7 @@
 "use client";
 
 import { divLayout } from './layout';
-import { useEventoForm } from './eventCreationLogic';
+import { useEventoForm } from './logic';
 
 export default function CriarEvento() {
     const { formData, errors, isSubmitting, handleInputChange, handleSubmit } = useEventoForm();
