@@ -12,7 +12,7 @@ export class Evento {
     private vagasDisponiveis : number;
     private status : Status;
 
-    constructor(
+    private constructor(
         nome : string,
         data : string,
         descricao: string,
@@ -30,6 +30,23 @@ export class Evento {
         this.local = local;
         this.vagasDisponiveis = vagasDisponiveis;
         this.status = status;
+    }
+
+    static create(
+        nome : string,
+        data : string,
+        descricao: string,
+        horarioInicio : string,
+        horarioFim : string, 
+        local : string,
+        vagasDisponiveis : number,
+        status : Status
+    ): Evento {
+        return new Evento(nome, data, descricao, horarioInicio, horarioFim, local, vagasDisponiveis, status);
+    }
+
+    static empty(): Evento {
+        return new Evento('', '', '', '', '', '', 0, Status.Rascunho);
     }
     
     public async storeOnDb() {
@@ -55,5 +72,36 @@ export class Evento {
 
         this.idEvento = created.evento;
         return created;
+    }
+
+    public getNome() {
+        return this.nome;
+    }
+
+    public getDescricao() {
+        return this.descricao;
+    }
+
+    public getData() {
+        return this.data;
+    }   
+    public getHorarioInicio() {
+        return this.horarioInicio;
+    }
+
+    public getHorarioFim() {
+        return this.horarioFim;
+    }
+
+    public getLocal() {
+        return this.local;
+    }
+
+    public getVagasDisponiveis() {
+        return this.vagasDisponiveis;
+    }
+
+    public getStatus() {
+        return this.status;
     }
 }
