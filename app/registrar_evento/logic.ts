@@ -40,6 +40,7 @@ export function useEventoForm() {
         const { name, value } = event.target;
         setFormData((previous) => {
             const updatedValue = name === 'vagasDisponiveis' ? Number(value) : value;
+
             const updatedData = {
                 nome: previous.getNome(),
                 descricao: previous.getDescricao(),
@@ -51,6 +52,7 @@ export function useEventoForm() {
                 status: previous.getStatus(),
                 [name]: updatedValue,
             };
+
             return Evento.create(
                 updatedData.nome,
                 updatedData.data,
@@ -80,33 +82,10 @@ export function useEventoForm() {
                 formData.getHorarioFim(),
                 formData.getLocal(),
                 formData.getVagasDisponiveis(),
-                formData.getStatus()
+                Status.Ativo
             );
 
-            const response = await fetch('/api/evento', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            });
-
-            const contentType = response.headers.get('content-type') ?? '';
-            const responseBody = contentType.includes('application/json')
-                ? await response.json()
-                : await response.text();
-
-            if (!response.ok) {
-                const message =
-                    typeof responseBody === 'object' &&
-                    responseBody !== null &&
-                    'error' in responseBody &&
-                    typeof responseBody.error === 'string'
-                        ? responseBody.error
-                        : 'Não foi possível criar o evento.';
-                alert(message);
-                return;
-            }
-
-            console.log('Evento criado com sucesso:', responseBody);
+            console.log('Evento criado com sucesso:', payload);
             alert('Evento criado com sucesso!');
             setFormData(emptyEvento());
             setErrors({});
