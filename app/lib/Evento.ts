@@ -52,10 +52,10 @@ export class Evento {
     public async storeOnDb() {
         if (this.idEvento === undefined) {
             const lastEvento = await prisma.evento.findFirst({
-                select: { evento: true },
-                orderBy: { evento: "desc" },
+                select: { idevento: true },
+                orderBy: { idevento: "desc" },
             });
-            this.idEvento = (lastEvento?.evento ?? 0) + 1;
+            this.idEvento = (lastEvento?.idevento ?? 0) + 1;
         }
         const created = await prisma.evento.create({
             data: {
@@ -70,7 +70,7 @@ export class Evento {
             },
         });
 
-        this.idEvento = created.evento;
+        this.idEvento = created.idevento;
         return created;
     }
 
