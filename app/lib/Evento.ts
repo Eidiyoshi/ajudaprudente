@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import type { Status } from "@/generated/prisma/enums";
 
 export class Evento {
     public idevento?: number;
@@ -7,16 +8,16 @@ export class Evento {
     private readonly organizador: number;
     private readonly publicado: number;
     private readonly descricao?: string;
-    private readonly status?: string;
+    private readonly status: Status;
     private readonly vagas?: number;
 
     constructor(
         organizador: number,
         publicado: number,
+        status: Status,
         data?: Date,
         endereco?: number,
         descricao?: string,
-        status?: string,
         vagas?: number
     ) {
         this.data = data;

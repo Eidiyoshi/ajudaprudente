@@ -1,4 +1,5 @@
 import { Evento } from "@/app/lib/Evento";
+import { Status } from "@/generated/prisma/enums";
 
 type RegistrarEventoPayload = {
   nome: string;
@@ -8,9 +9,16 @@ type RegistrarEventoPayload = {
   horarioFim: string;
   local: string;
   vagasDisponiveis: number;
-  status: string;
+  status: Status;
   organizador: number;
 };
+
+function isStatus(value: unknown): value is Status {
+  return (
+    typeof value === "string" &&
+    Object.values(Status).includes(value as Status)
+  );
+}
 
 function isValidPayload(payload: unknown): payload is RegistrarEventoPayload {
   if (typeof payload !== "object" || payload === null) return false;
@@ -33,8 +41,7 @@ function isValidPayload(payload: unknown): payload is RegistrarEventoPayload {
     typeof body.vagasDisponiveis === "number" &&
     Number.isFinite(body.vagasDisponiveis) &&
     body.vagasDisponiveis >= 0 &&
-    typeof body.status === "string" &&
-    body.status.trim().length > 0 &&
+    isStatus(body.status) &&
     typeof body.organizador === "number" &&
     Number.isInteger(body.organizador) &&
     body.organizador > 0
@@ -47,8 +54,8 @@ function toDateTime(data: string, horarioInicio: string): Date | null {
   return dateTime;
 }
 
-function statusToPublicado(status: string): number {
-  return status === "Ativo" || status === "Publicado" ? 1 : 0;
+function statusToPublicado(status: Status): number {
+  return status === Status.Rascunho ? 0 : 1;
 }
 
 export async function POST(request: Request) {
@@ -83,10 +90,10 @@ export async function POST(request: Request) {
   const evento = new Evento(
     payload.organizador,
     statusToPublicado(payload.status),
+    payload.status,
     dataHoraInicio,
     undefined,
     payload.descricao,
-    payload.status,
     payload.vagasDisponiveis
   );
 
