@@ -1,3 +1,9 @@
+ enum Status {
+  Ativo
+  Cancelado
+  Encerrado
+  Rascunho
+}
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -29,7 +35,7 @@ model evento {
   organizador                                 Int
   publicado                                   Int         @db.TinyInt
   descricao                                   String?     @db.LongText
-  status                                      String?     @db.VarChar(45)
+  status                                      Status      @default(Rascunho)
   vagas                                       Int?
   endere_o                                    endere_o?   @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: "evento_endereco_fkey")
   organizador_evento_organizadorToorganizador organizador @relation("evento_organizadorToorganizador", fields: [organizador], references: [idorganizador], onDelete: NoAction, onUpdate: NoAction, map: "organizador")
