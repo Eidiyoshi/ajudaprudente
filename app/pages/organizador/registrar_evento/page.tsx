@@ -53,14 +53,28 @@ export default function EventForm() {
         setErrors((prev) => ({ ...prev, [name]: undefined }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!validate()) {
             return;
         }
+        
+        const response = await fetch('/api/registrar_evento', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                ...formData,
+                organizador: 1,
+            }),
+        });
 
-        console.log('Novo evento:', formData);
-        // TODO: sendToDataBase
+        if (!response.ok) {
+            const errorBody = (await response.json()) as { error?: string };
+            throw new Error(errorBody.error ?? 'Falha ao registrar evento.');
+        }
+
+        const created = await response.json();
+        console.log('Evento criado:', created);
     };
 
     const inputClass = "w-full mt-1 px-3 py-2 rounded-md border border-zinc-600 bg-zinc-800 text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition";
