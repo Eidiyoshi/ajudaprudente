@@ -9,6 +9,8 @@ export type UserProfile = {
     bio: string;
     telefone: string;
     cidade: string;
+    eventsCreated: number;
+    eventsAttended: number;
 };
 
 type Errors = Partial<Record<keyof UserProfile, string>>;
@@ -33,7 +35,9 @@ export function useUserProfileForm() {
         email: "ana.souza@email.com",
         bio: "Organizador de eventos apaixonado por tecnologia e inovação.",
         telefone: "(11) 98765-4321",
-        cidade: "São Paulo, SP"
+        cidade: "São Paulo, SP",
+        eventsCreated: 12,
+        eventsAttended: 34
     });
 
     const [draft, setDraft] = useState<UserProfile>(profile);
