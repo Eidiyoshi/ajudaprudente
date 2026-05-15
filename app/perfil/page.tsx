@@ -6,38 +6,33 @@ export default function CriarEvento() {
     const { initials, isEditing, isSaving, saved, profile, draft, errors, handleChange, handleEdit, handleCancel, handleSave } = useUserProfileForm();
     
     return (
-    <div className="min-h-screen bg-zinc-900 flex items-center justify-center p-6">
-      <div className="w-full max-w-lg flex flex-col gap-5">
- 
-        {/* Header card */}
-        <HeaderCard
-            initials={initials}
-            name={profile.nome}
-            email={profile.email}
-            city={profile.cidade}
-            bio={profile.bio}
-        /> 
-        {/* Edit / View card */}
-        <div className="bg-zinc-800 border border-zinc-700 rounded-xl shadow-xl p-8">
-            {!isEditing ? (
-                <ProfileData
-                    profile={profile}
-                    saved={saved}
-                    handleEdit={handleEdit}
-                />
-            ) : (
-                /* Edit form */
-                <EditForm
-                    draft={draft}
-                    isSaving={isSaving}
-                    errors={errors}
-                    handleSave={handleSave}
-                    handleChange={handleChange}
-                    handleCancel={handleCancel}
-                />
-            )}
+        <div className="min-h-screen bg-zinc-900 flex items-center justify-center p-6">
+            <div className="w-full max-w-lg flex flex-col gap-5">
+                <div className="bg-zinc-800 border border-zinc-700 rounded-xl shadow-xl p-6 flex flex-col items-center gap-4">
+                    <HeaderCard
+                        initials={initials}
+                        profile={profile}
+                    />
+                </div>
+                <div className="bg-zinc-800 border border-zinc-700 rounded-xl shadow-xl p-8">
+                    {!isEditing ? (
+                        <ProfileData
+                            profile={profile}
+                            saved={saved}
+                            handleEdit={handleEdit}
+                        />
+                    ) : (
+                        <EditForm
+                            draft={draft}
+                            isSaving={isSaving}
+                            errors={errors}
+                            handleSave={handleSave}
+                            handleChange={handleChange}
+                            handleCancel={handleCancel}
+                        />
+                    )}
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
-);
+    );
 }
