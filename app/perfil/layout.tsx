@@ -23,8 +23,8 @@ export function Avatar({ initials }: {initials: string }) {
 export function StatCard({ label, value }: {label: string; value: string | number }) {
     return (
        <div className="flex flex-col items-center gap-0.5 bg-zinc-900 rounded-lg px-3 border-zinc-700">
-        <span className="text-lg font-bold text-zinc-100">{label}</span>
-        <span className="text-xs text-zinc-400">{value}</span>
+        <span className="text-lg font-bold text-zinc-100">{value}</span>
+        <span className="text-xs text-zinc-400">{label}</span>
        </div>
     )
 }
@@ -79,43 +79,42 @@ export function Field({
 
 export function HeaderCard({
     initials,
-    name,
-    email,
-    city,
-    bio
+    profile
 }: {
     initials: string;
-    name: string;
-    email: string;
-    city: string;
-    bio: string;
+    profile: UserProfile;
 }) {
     return (
-        <div className="bg-zinc-800 border border-zinc-700 rounded-xl   shadow-xl p-6 flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4">
             <Avatar initials={initials} />
             <div className="text-center">
-                <h1 className="text-xl font-semibold text-zinc-100">{name}</h1>
-                <p className="text-sm text-zinc-400 mt-0.5">{email}</p>
-                {city && (
-                <p className="text-xs text-zinc-500 mt-0.5">📍 {city}</p>
+                <h1 className="text-xl font-semibold text-zinc-100">{profile.nome}</h1>
+                <p className="text-sm text-zinc-400 mt-0.5">{profile.email}</p>
+                {profile.cidade && (
+                <p className="text-xs text-zinc-500 mt-0.5">📍 {profile.cidade}</p>
                 )}
             </div>
-            {bio && (
+            {profile.bio && (
                 <p className="text-sm text-zinc-300 text-center max-w-xs leading-relaxed">
-                {bio}
+                {profile.bio}
                 </p>
             )}
-            <Stats/>
+            <Stats eventsCreated={profile.eventsCreated} eventsAttended={profile.eventsAttended} />
         </div>
     )
 }
 
-export function Stats() {
+export function Stats({
+    eventsCreated,
+    eventsAttended
+}: {
+    eventsCreated: number;
+    eventsAttended: number;
+}) {
     return (
         <div className="flex gap-3 mt-1">
-            <StatCard label="Eventos" value={12} />
-            <StatCard label="Inscrições" value={34} />
-            <StatCard label="Avaliação" value="4.9★" />
+            <StatCard label="Eventos" value={eventsCreated} />
+            <StatCard label="Inscrições" value={eventsAttended} />
         </div>
     )
 }
