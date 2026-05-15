@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+
 import { Status } from '@/app/lib/Status'
 
 export class Evento {
@@ -47,31 +47,6 @@ export class Evento {
 
     static empty(): Evento {
         return new Evento('', '', '', '', '', '', 0, Status.Rascunho);
-    }
-    
-    public async storeOnDb() {
-        if (this.idEvento === undefined) {
-            const lastEvento = await prisma.evento.findFirst({
-                select: { idevento: true },
-                orderBy: { idevento: "desc" },
-            });
-            this.idEvento = (lastEvento?.idevento ?? 0) + 1;
-        }
-        const created = await prisma.evento.create({
-            data: {
-                nome: this.nome,
-                descricao: this.descricao,
-                data: this.data,
-                horarioInicio: this.horarioInicio,
-                horarioFim: this.horarioFim,
-                local: this.local,
-                vagasDisponiveis: this.vagasDisponiveis,
-                status: this.status
-            },
-        });
-
-        this.idEvento = created.idevento;
-        return created;
     }
 
     public getNome() {
