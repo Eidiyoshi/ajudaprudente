@@ -49,6 +49,7 @@ export async function POST(request: Request) {
   }
 
   const email = payload.email.trim();
+  const senha = payload.senha;
 
   if (payload.tipoUsuario === "voluntario") {
     const voluntario = await prisma.voluntario.findFirst({
@@ -56,7 +57,11 @@ export async function POST(request: Request) {
       select: { idusuarios: true, nome: true, email: true, senha: true },
     });
 
-    if (!voluntario || voluntario.senha !== payload.senha) {
+    if (!voluntario) {
+      return Response.json({ error: "Credenciais inválidas." }, { status: 401 });
+    }
+
+    if (voluntario.senha !== senha) {
       return Response.json({ error: "Credenciais inválidas." }, { status: 401 });
     }
 
@@ -81,7 +86,11 @@ export async function POST(request: Request) {
     select: { idorganizador: true, nome: true, email: true, senha: true },
   });
 
-  if (!organizador || organizador.senha !== payload.senha) {
+  if (!organizador) {
+    return Response.json({ error: "Credenciais inválidas." }, { status: 401 });
+  }
+
+  if (organizador.senha !== senha) {
     return Response.json({ error: "Credenciais inválidas." }, { status: 401 });
   }
 

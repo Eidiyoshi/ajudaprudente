@@ -37,10 +37,15 @@ export function isSessionSecretConfigured() {
 }
 
 async function encrypt(payload: SessionTokenPayload) {
+  const expirationDate = new Date(payload.expiresAt);
+  if (Number.isNaN(expirationDate.getTime())) {
+    throw new TypeError("Invalid session expiration date.");
+  }
+
   return new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime(payload.expiresAt)
+    .setExpirationTime(expirationDate)
     .sign(getEncodedSecret());
 }
 
