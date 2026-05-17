@@ -16,6 +16,8 @@ type OrganizadorPayload = {
   email: string;
   senha: string;
   telefone: number;
+  rg: string;
+  cpf: string;
   isEmpresa: boolean;
   cnpj?: string;
   empresa?: string;
@@ -43,6 +45,10 @@ function isValidPayload(payload: unknown): payload is OrganizadorPayload {
     body.senha.trim().length > 0 &&
     typeof body.telefone === "number" &&
     Number.isFinite(body.telefone) &&
+    typeof body.rg === "string" &&
+    body.rg.trim().length > 0 &&
+    typeof body.cpf === "string" &&
+    body.cpf.trim().length > 0 &&
     typeof isEmpresa === "boolean" &&
     dadosEmpresaValidos &&
     typeof endereco === "object" &&

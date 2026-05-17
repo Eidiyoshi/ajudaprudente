@@ -9,6 +9,7 @@ type RegistroFormData = {
   nome: string;
   email: string;
   senha: string;
+  confirmarSenha: string;
   telefone: string;
   rg: string;
   cpf: string;
@@ -26,6 +27,7 @@ const initialFormData: RegistroFormData = {
   nome: '',
   email: '',
   senha: '',
+  confirmarSenha: '',
   telefone: '',
   rg: '',
   cpf: '',
@@ -86,6 +88,14 @@ export default function Registrar() {
       return;
     }
 
+    if (formData.senha !== formData.confirmarSenha) {
+      setFeedback({
+        type: 'error',
+        message: 'Senha e confirmação de senha não coincidem.',
+      });
+      return;
+    }
+
     const telefone = parseNumber(formData.telefone);
     const cnpjNormalizado =
       tipoRegistro === 'organizador' && isEmpresaOrganizador
@@ -135,6 +145,8 @@ export default function Registrar() {
             email: formData.email,
             senha: formData.senha,
             telefone,
+            rg: formData.rg,
+            cpf: formData.cpf,
             isEmpresa: isEmpresaOrganizador,
             empresa: isEmpresaOrganizador ? formData.empresa.trim() : undefined,
             cnpj: isEmpresaOrganizador ? cnpjNormalizado : undefined,
@@ -269,25 +281,50 @@ export default function Registrar() {
 
             <form className="mt-4 space-y-2.5" onSubmit={handleRegistro}>
               {tipoRegistro === 'organizador' && (
-                <label className="flex items-center gap-2 rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-200">
-                  <input
-                    type="checkbox"
-                    checked={isEmpresaOrganizador}
-                    onChange={(event) => {
-                      const checked = event.target.checked;
-                      setIsEmpresaOrganizador(checked);
-                      if (!checked) {
-                        setFormData((previous) => ({
-                          ...previous,
-                          empresa: '',
-                          cnpj: '',
-                        }));
-                      }
-                    }}
-                    className="h-4 w-4"
-                  />
-                  Organizador é empresa
-                </label>
+                <>
+                  <label className="flex items-center gap-2 rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-200">
+                    <input
+                      type="checkbox"
+                      checked={isEmpresaOrganizador}
+                      onChange={(event) => {
+                        const checked = event.target.checked;
+                        setIsEmpresaOrganizador(checked);
+                        if (!checked) {
+                          setFormData((previous) => ({
+                            ...previous,
+                            empresa: '',
+                            cnpj: '',
+                          }));
+                        }
+                      }}
+                      className="h-4 w-4"
+                    />
+                    Organizador é empresa
+                  </label>
+
+                  {isEmpresaOrganizador && (
+                    <>
+                      <input
+                        type="text"
+                        name="empresa"
+                        value={formData.empresa}
+                        onChange={handleInputChange}
+                        placeholder="Nome da empresa"
+                        required
+                        className="w-full rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+                      />
+                      <input
+                        type="tel"
+                        name="cnpj"
+                        value={formData.cnpj}
+                        onChange={handleInputChange}
+                        placeholder="CNPJ"
+                        required
+                        className="w-full rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+                      />
+                    </>
+                  )}
+                </>
               )}
 
               <input
@@ -309,6 +346,24 @@ export default function Registrar() {
                 className="w-full rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
               />
               <input
+                type="password"
+                name="senha"
+                value={formData.senha}
+                onChange={handleInputChange}
+                placeholder="Senha"
+                required
+                className="w-full rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+              />
+              <input
+                type="password"
+                name="confirmarSenha"
+                value={formData.confirmarSenha}
+                onChange={handleInputChange}
+                placeholder="Confirmar senha"
+                required
+                className="w-full rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+              />
+              <input
                 type="tel"
                 name="telefone"
                 value={formData.telefone}
@@ -318,60 +373,23 @@ export default function Registrar() {
                 className="w-full rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
               />
               <input
-                type="password"
-                name="senha"
-                value={formData.senha}
+                type="text"
+                name="rg"
+                value={formData.rg}
                 onChange={handleInputChange}
-                placeholder="Senha"
+                placeholder="RG"
                 required
                 className="w-full rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
               />
-
-              {tipoRegistro === 'voluntario' ? (
-                <>
-                  <input
-                    type="text"
-                    name="rg"
-                    value={formData.rg}
-                    onChange={handleInputChange}
-                    placeholder="RG"
-                    required
-                    className="w-full rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
-                  />
-                  <input
-                    type="text"
-                    name="cpf"
-                    value={formData.cpf}
-                    onChange={handleInputChange}
-                    placeholder="CPF"
-                    required
-                    className="w-full rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
-                  />
-                </>
-              ) : (
-                isEmpresaOrganizador && (
-                  <>
-                    <input
-                      type="text"
-                      name="empresa"
-                      value={formData.empresa}
-                      onChange={handleInputChange}
-                      placeholder="Nome da empresa"
-                      required
-                      className="w-full rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
-                    />
-                    <input
-                      type="tel"
-                      name="cnpj"
-                      value={formData.cnpj}
-                      onChange={handleInputChange}
-                      placeholder="CNPJ"
-                      required
-                      className="w-full rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
-                    />
-                  </>
-                )
-              )}
+              <input
+                type="text"
+                name="cpf"
+                value={formData.cpf}
+                onChange={handleInputChange}
+                placeholder="CPF"
+                required
+                className="w-full rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+              />
 
               <input
                 type="text"
