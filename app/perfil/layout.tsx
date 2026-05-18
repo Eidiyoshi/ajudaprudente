@@ -14,9 +14,9 @@ export function Avatar({ initials }: {initials: string }) {
             <div className="w-20 h-20 rounded-full bg-indigo-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg ring-4 ring-zinc-700">
                 {initials}
             </div>
-        <button
+        {/* <button
             type="button"
-            className="text-xs text-indigo-400 hover:text-indigo-300 transition underline underline-offset-2">Alterar foto</button>
+            className="text-xs text-indigo-400 hover:text-indigo-300 transition underline underline-offset-2">Alterar foto</button> */}
         </div>
     )
 }

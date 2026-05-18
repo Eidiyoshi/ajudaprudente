@@ -31,13 +31,13 @@ export function useUserProfileForm() {
     const [saved, setSaved] = useState(false);
 
     const [profile, setProfile] = useState<UserProfile>({
-        nome: "João Silva",
-        email: "ana.souza@email.com",
-        bio: "Organizador de eventos apaixonado por tecnologia e inovação.",
-        telefone: "(11) 98765-4321",
-        cidade: "São Paulo, SP",
-        eventsCreated: 12,
-        eventsAttended: 34
+        nome: "Nome",
+        email: "email@dominio.com",
+        bio: "Bio.",
+        telefone: "(00) 00000-0000",
+        cidade: "Cidade, Estado",
+        eventsCreated: 0,
+        eventsAttended: 0
     });
 
     const [draft, setDraft] = useState<UserProfile>(profile);
