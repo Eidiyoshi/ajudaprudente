@@ -1,0 +1,113 @@
+ enum Status {
+  Ativo
+  Cancelado
+  Encerrado
+  Rascunho
+}
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model endere_o {
+  idendere_o  Int           @id @map("idendereço")
+  cidade      String        @db.VarChar(255)
+  bairro      String        @db.VarChar(255)
+  rua         String        @db.VarChar(255)
+  cep         String        @db.VarChar(10)
+  apartamento String?       @db.VarChar(45)
+  numero      String?       @db.VarChar(45)
+  evento      evento[]
+  organizador organizador[]
+  voluntario  voluntario[]
+
+  @@map("endereço")
+}
+
+model evento {
+  idevento                                    Int         @id
+  data                                        DateTime?   @db.DateTime(0)
+  endereco                                    Int?
+  organizador                                 Int
+  publicado                                   Int         @db.TinyInt
+  descricao                                   String?     @db.LongText
+  status                                      Status      @default(Rascunho)
+  vagas                                       Int?
+  endere_o                                    endere_o?   @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: "evento_endereco_fkey")
+  organizador_evento_organizadorToorganizador organizador @relation("evento_organizadorToorganizador", fields: [organizador], references: [idorganizador], onDelete: NoAction, onUpdate: NoAction, map: "organizador")
+  inscricao_inscricao_eventoToevento          inscricao[] @relation("inscricao_eventoToevento")
+
+  @@index([endereco], map: "local_idx")
+  @@index([organizador], map: "organizador_idx")
+}
+
+model habilidade {
+  idhabilidade                                                       Int
+  nome                                                               String?    @db.VarChar(45)
+  voluntario                                                         Int
+  voluntario_habilidade_voluntario_voluntario_voluntarioTovoluntario voluntario @relation("habilidade_voluntario_voluntario_voluntarioTovoluntario", fields: [voluntario], references: [idusuarios], onDelete: NoAction, onUpdate: NoAction, map: "habilidade_voluntario_fkey")
+
+  @@id([idhabilidade, voluntario])
+  @@index([voluntario], map: "voluntario_idx")
+}
+
+model inscricao {
+  voluntario                                                        Int
+  evento                                                            Int
+  data                                                              DateTime   @db.DateTime(0)
+  evento_inscricao_eventoToevento                                   evento     @relation("inscricao_eventoToevento", fields: [evento], references: [idevento], onDelete: NoAction, onUpdate: NoAction, map: "evento")
+  voluntario_inscricao_voluntario_voluntario_voluntarioTovoluntario voluntario @relation("inscricao_voluntario_voluntario_voluntarioTovoluntario", fields: [voluntario], references: [idusuarios], onDelete: NoAction, onUpdate: NoAction, map: "inscricao_voluntario_fkey")
+
+  @@id([voluntario, evento])
+  @@index([evento], map: "evento_idx")
+}
+
+model interesse {
+  idinteresse                                                       Int
+  nome                                                              Int
+  voluntario                                                        Int
+  voluntario_interesse_voluntario_voluntario_voluntarioTovoluntario voluntario @relation("interesse_voluntario_voluntario_voluntarioTovoluntario", fields: [voluntario], references: [idusuarios], onDelete: NoAction, onUpdate: NoAction, map: "interesse_voluntario_fkey")
+
+  @@id([idinteresse, voluntario])
+  @@index([voluntario], map: "voluntario_idx")
+}
+
+model organizador {
+  idorganizador                          Int      @id
+  nome                                   String   @db.VarChar(255)
+  senha                                  String   @db.VarChar(255)
+  email                                  String   @db.VarChar(45)
+  criado                                 DateTime @db.DateTime(0)
+  endereco                               Int
+  cnpj                                   String?  @db.VarChar(14)
+  telefone                               String?  @db.VarChar(45)
+  empresa                                String?  @db.VarChar(255)
+  evento_evento_organizadorToorganizador evento[] @relation("evento_organizadorToorganizador")
+  endere_o                               endere_o @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: "organizador_endereco_fkey")
+
+  @@index([endereco], map: "endereco_idx")
+}
+
+model voluntario {
+  idusuarios                                                         Int          @id
+  nome                                                               String       @db.VarChar(45)
+  senha                                                              String       @db.VarChar(255)
+  email                                                              String       @db.VarChar(255)
+  criado                                                             DateTime     @db.DateTime(0)
+  endereco                                                           Int
+  rg                                                                 String?      @db.VarChar(11)
+  cpf                                                                String?      @db.VarChar(11)
+  telefone                                                           String?      @db.VarChar(45)
+  notificacao                                                        Int?         @db.TinyInt
+  darkmode                                                           Int?         @db.TinyInt
+  habilidade_habilidade_voluntario_voluntario_voluntarioTovoluntario habilidade[] @relation("habilidade_voluntario_voluntario_voluntarioTovoluntario")
+  inscricao_inscricao_voluntario_voluntario_voluntarioTovoluntario   inscricao[]  @relation("inscricao_voluntario_voluntario_voluntarioTovoluntario")
+  interesse_interesse_voluntario_voluntario_voluntarioTovoluntario   interesse[]  @relation("interesse_voluntario_voluntario_voluntarioTovoluntario")
+  endere_o                                                           endere_o     @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: "voluntario_endereco_fkey")
+
+  @@index([endereco], map: "endereco_idx")
+}
