@@ -12,6 +12,9 @@ export default function Login() {
                 {divLayout('email', 'Email', 'email', formData.email, handleChange, errors.email)}
                 {divLayout('senha', 'Senha', 'password', formData.senha, handleChange, errors.senha)}
                 <button type="submit" className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition">Entrar</button>
+                <a href='/registrar' className="text-indigo-400 hover:text-indigo-300 transition">
+                Não tem uma conta? Registre-se
+                </a>
             </form>
         </div>
     );
