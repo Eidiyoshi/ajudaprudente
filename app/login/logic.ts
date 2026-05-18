@@ -9,7 +9,7 @@ type loginData = {
 
 type formErrors = Partial<Record<keyof loginData, string>>;
 
-export default function EventForm() {
+export default function useLoginForm() {
     const [formData, setFormData] = useState<loginData>({
         email: '',
         senha: '',
@@ -43,6 +43,6 @@ export default function EventForm() {
     };
 
     return (
-       {formData, errors, handleChange, handleSubmit} 
+       { formData, errors, handleChange, handleSubmit } 
     );
 }
