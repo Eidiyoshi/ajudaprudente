@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 
 type TipoRegistro = 'voluntario' | 'organizador' | null;
 type Feedback = { type: 'success' | 'error'; message: string } | null;
@@ -40,6 +41,7 @@ const initialFormData: RegistroFormData = {
 };
 
 export default function Registrar() {
+  const router = useRouter();
   const [showTipoModal, setShowTipoModal] = useState(false);
   const [tipoRegistro, setTipoRegistro] = useState<TipoRegistro>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -205,6 +207,7 @@ export default function Registrar() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <button
             type="button"
+            onClick={() => router.push('/login')}
             className="rounded-lg border border-zinc-300 px-6 py-3 font-medium text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-600 dark:text-zinc-100 dark:hover:bg-zinc-800"
           >
             Logar
