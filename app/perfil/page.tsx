@@ -3,7 +3,7 @@
 import { EditForm, ProfileData, HeaderCard } from './layout';
 import { useUserProfileForm } from './logic';
 export default function CriarEvento() {
-    const { initials, isEditing, isSaving, saved, profile, draft, errors, handleChange, handleEdit, handleCancel, handleSave } = useUserProfileForm();
+    const { initials, isEditing, isSaving, saved, isLoading, error, profile, draft, errors, handleChange, handleEdit, handleCancel, handleSave } = useUserProfileForm();
     
     return (
         <div className="min-h-screen bg-zinc-900 flex items-center justify-center p-6">
@@ -13,6 +13,14 @@ export default function CriarEvento() {
                         initials={initials}
                         profile={profile}
                     />
+                    {isLoading && (
+                        <p className="text-xs text-zinc-400">Carregando...</p>
+                    )}
+                    {error && (
+                        <p className="text-xs text-red-400" role="alert">
+                            {error}
+                        </p>
+                    )}
                 </div>
                 <div className="bg-zinc-800 border border-zinc-700 rounded-xl shadow-xl p-8">
                     {!isEditing ? (
