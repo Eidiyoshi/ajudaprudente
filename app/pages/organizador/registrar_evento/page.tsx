@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { divLayout } from './layout';
+import { NavBar } from '@/app/components/navBar';
 
 type Event = {
     nome: string;
@@ -82,25 +83,28 @@ export default function EventForm() {
     const errorClass = "text-red-400 text-xs mt-1";
 
     return (
-        <div className="min-h-screen bg-zinc-900 flex items-center justify-center p-6">
-        <form onSubmit={handleSubmit} noValidate className="w-full max-w-lg bg-zinc-800 border border-zinc-700 rounded-xl shadow-xl p-8 flex flex-col gap-5">
-            {divLayout('nome', labelClass, 'Nome do Evento', 'text', formData.nome, handleChange, inputClass, errorClass, errors.nome)}
-            {divLayout('descricao', labelClass, 'Descrição do Evento', 'textarea', formData.descricao, handleChange, inputClass, errorClass, errors.descricao)}
+        <div>
+            <NavBar />
+            <div className="min-h-screen bg-zinc-900 flex items-center justify-center p-6">
+                <form onSubmit={handleSubmit} noValidate className="w-full max-w-lg bg-zinc-800 border border-zinc-700 rounded-xl shadow-xl p-8 flex flex-col gap-5">
+                    {divLayout('nome', labelClass, 'Nome do Evento', 'text', formData.nome, handleChange, inputClass, errorClass, errors.nome)}
+                    {divLayout('descricao', labelClass, 'Descrição do Evento', 'textarea', formData.descricao, handleChange, inputClass, errorClass, errors.descricao)}
 
-            {divLayout('data', labelClass, 'Data do Evento', 'date', formData.data, handleChange, inputClass, errorClass, errors.data)}
+                {divLayout('data', labelClass, 'Data do Evento', 'date', formData.data, handleChange, inputClass, errorClass, errors.data)}
 
-            {divLayout('horarioInicio', labelClass, 'Horário de Início', 'time', formData.horarioInicio, handleChange, inputClass, errorClass, errors.horarioInicio)}
+                {divLayout('horarioInicio', labelClass, 'Horário de Início', 'time', formData.horarioInicio, handleChange, inputClass, errorClass, errors.horarioInicio)}
 
-            {divLayout('horarioFim', labelClass, 'Horário do Fim', 'time', formData.horarioFim, handleChange, inputClass, errorClass, errors.horarioFim)}
+                {divLayout('horarioFim', labelClass, 'Horário do Fim', 'time', formData.horarioFim, handleChange, inputClass, errorClass, errors.horarioFim)}
 
-            {divLayout('local', labelClass, 'Local do Evento', 'text', formData.local, handleChange, inputClass, errorClass, errors.local)}
+                {divLayout('local', labelClass, 'Local do Evento', 'text', formData.local, handleChange, inputClass, errorClass, errors.local)}
 
-            {divLayout('vagasDisponiveis', labelClass, 'Vagas Disponíveis', 'number', formData.vagasDisponiveis.toString(), handleChange, inputClass, errorClass, errors.vagasDisponiveis)}
+                {divLayout('vagasDisponiveis', labelClass, 'Vagas Disponíveis', 'number', formData.vagasDisponiveis.toString(), handleChange, inputClass, errorClass, errors.vagasDisponiveis)}
 
-            {divLayout('status', labelClass, 'Status', 'select', formData.status, handleChange, inputClass, errorClass, errors.status, STATUS_OPTIONS)}
+                {divLayout('status', labelClass, 'Status', 'select', formData.status, handleChange, inputClass, errorClass, errors.status, STATUS_OPTIONS)}
 
-            <button type="submit" className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-md transition">Criar Evento</button>
-        </form>
+                <button type="submit" className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-md transition">Criar Evento</button>
+            </form>
+            </div>
         </div>
     );
 }
