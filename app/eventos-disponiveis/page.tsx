@@ -1,4 +1,4 @@
-import { EventCard, EventCardEdit } from "./layout";
+import { EventCard } from "./layout";
 import type { Endereco, Event } from "./logic";
 import { prisma } from "@/lib/prisma";
 import { connection } from "next/server";
@@ -61,18 +61,6 @@ export default async function VisualizarEventos() {
             <div className="max-w-6xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {events.filter((event) => event.status === "Ativo").map((event) => (
-                        <EventCard key={event.id} event={event} />
-                    ))}
-
-                    {events.filter((event) => event.status === "Rascunho").map((event) => (
-                        <EventCardEdit key={event.id} event={event} />
-                    ))}
-
-                    {events.filter((event) => event.status === "Encerrado").map((event) => (
-                        <EventCard key={event.id} event={event} />
-                    ))}
-
-                    {events.filter((event) => event.status === "Cancelado").map((event) => (
                         <EventCard key={event.id} event={event} />
                     ))}
                 </div>
