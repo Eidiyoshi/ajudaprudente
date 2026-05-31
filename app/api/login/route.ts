@@ -1,5 +1,6 @@
 import { createSession, isSessionSecretConfigured } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
+import { parseJsonBody } from "@/app/api/lib/request";
 
 type TipoUsuario = "voluntario" | "organizador";
 
@@ -24,18 +25,9 @@ function isValidPayload(payload: unknown): payload is LoginPayload {
 }
 
 export async function POST(request: Request) {
-  let payload: unknown;
-  try {
-    payload = await request.json();
-  } catch (error) {
-    if (error instanceof SyntaxError) {
-      return Response.json(
-        { error: "Malformed JSON body.", details: error.message },
-        { status: 400 }
-      );
-    }
-    throw error;
-  }
+  const parsed = await parseJsonBody(request);
+  if ("error" in parsed) return parsed.error;
+  const payload = parsed.payload;
 
   if (!isValidPayload(payload)) {
     return Response.json({ error: "Invalid login payload." }, { status: 400 });

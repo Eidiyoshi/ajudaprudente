@@ -1,15 +1,8 @@
 import { Endereco } from "@/app/lib/Endereco";
 import { Organizador } from "@/app/lib/Organizador";
 import { TipoUsuario } from "@/app/lib/TipoUsuario";
-
-type EnderecoPayload = {
-  cidade: string;
-  bairro: string;
-  rua: string;
-  cep: string;
-  apartamento?: string;
-  numero?: string;
-};
+import { parseJsonBody } from "@/app/api/lib/request";
+import { EnderecoPayload, isEnderecoPayload } from "@/app/api/lib/validation";
 
 type OrganizadorPayload = {
   nome: string;
@@ -28,7 +21,6 @@ function isValidPayload(payload: unknown): payload is OrganizadorPayload {
   if (typeof payload !== "object" || payload === null) return false;
 
   const body = payload as Record<string, unknown>;
-  const endereco = body.endereco as Record<string, unknown> | undefined;
   const isEmpresa = body.isEmpresa;
   const empresaValida =
     typeof body.empresa === "string" && body.empresa.trim().length > 0;
@@ -51,35 +43,14 @@ function isValidPayload(payload: unknown): payload is OrganizadorPayload {
     body.cpf.trim().length > 0 &&
     typeof isEmpresa === "boolean" &&
     dadosEmpresaValidos &&
-    typeof endereco === "object" &&
-    endereco !== null &&
-    typeof endereco.cidade === "string" &&
-    endereco.cidade.trim().length > 0 &&
-    typeof endereco.bairro === "string" &&
-    endereco.bairro.trim().length > 0 &&
-    typeof endereco.rua === "string" &&
-    endereco.rua.trim().length > 0 &&
-    typeof endereco.cep === "string" &&
-    endereco.cep.trim().length > 0 &&
-    (endereco.apartamento === undefined ||
-      typeof endereco.apartamento === "string") &&
-    (endereco.numero === undefined || typeof endereco.numero === "string")
+    isEnderecoPayload(body.endereco)
   );
 }
 
 export async function POST(request: Request) {
-  let payload: unknown;
-  try {
-    payload = await request.json();
-  } catch (error) {
-    if (error instanceof SyntaxError) {
-      return Response.json(
-        { error: "Malformed JSON body.", details: error.message },
-        { status: 400 }
-      );
-    }
-    throw error;
-  }
+  const parsed = await parseJsonBody(request);
+  if ("error" in parsed) return parsed.error;
+  const payload = parsed.payload;
 
   if (!isValidPayload(payload)) {
     return Response.json(
