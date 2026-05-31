@@ -1,6 +1,7 @@
 import { Endereco } from "@/app/lib/Endereco";
 import { Evento } from "@/app/lib/Evento";
 import { Status } from "@/generated/prisma/enums";
+import { parseJsonBody } from "@/app/api/lib/request";
 
 type EnderecoPayload = {
   cidade: string;
@@ -81,18 +82,9 @@ function statusToPublicado(status: Status): number {
 }
 
 export async function POST(request: Request) {
-  let payload: unknown;
-  try {
-    payload = await request.json();
-  } catch (error) {
-    if (error instanceof SyntaxError) {
-      return Response.json(
-        { error: "Malformed JSON body.", details: error.message },
-        { status: 400 }
-      );
-    }
-    throw error;
-  }
+  const parsed = await parseJsonBody(request);
+  if ("error" in parsed) return parsed.error;
+  const payload = parsed.payload;
 
   if (!isValidPayload(payload)) {
     return Response.json(
