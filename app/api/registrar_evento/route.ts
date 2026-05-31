@@ -1,5 +1,15 @@
+import { Endereco } from "@/app/lib/Endereco";
 import { Evento } from "@/app/lib/Evento";
 import { Status } from "@/generated/prisma/enums";
+
+type EnderecoPayload = {
+  cidade: string;
+  bairro: string;
+  rua: string;
+  cep: string;
+  apartamento?: string;
+  numero?: string;
+};
 
 type RegistrarEventoPayload = {
   nome: string;
@@ -7,7 +17,7 @@ type RegistrarEventoPayload = {
   data: string;
   horarioInicio: string;
   horarioFim: string;
-  local: string;
+  endereco: EnderecoPayload;
   vagasDisponiveis: number;
   status: Status;
   organizador: number;
@@ -24,6 +34,7 @@ function isValidPayload(payload: unknown): payload is RegistrarEventoPayload {
   if (typeof payload !== "object" || payload === null) return false;
 
   const body = payload as Record<string, unknown>;
+  const endereco = body.endereco as Record<string, unknown> | undefined;
 
   return (
     typeof body.nome === "string" &&
@@ -36,8 +47,19 @@ function isValidPayload(payload: unknown): payload is RegistrarEventoPayload {
     body.horarioInicio.trim().length > 0 &&
     typeof body.horarioFim === "string" &&
     body.horarioFim.trim().length > 0 &&
-    typeof body.local === "string" &&
-    body.local.trim().length > 0 &&
+    typeof endereco === "object" &&
+    endereco !== null &&
+    typeof endereco.cidade === "string" &&
+    endereco.cidade.trim().length > 0 &&
+    typeof endereco.bairro === "string" &&
+    endereco.bairro.trim().length > 0 &&
+    typeof endereco.rua === "string" &&
+    endereco.rua.trim().length > 0 &&
+    typeof endereco.cep === "string" &&
+    endereco.cep.trim().length > 0 &&
+    (endereco.apartamento === undefined ||
+      typeof endereco.apartamento === "string") &&
+    (endereco.numero === undefined || typeof endereco.numero === "string") &&
     typeof body.vagasDisponiveis === "number" &&
     Number.isFinite(body.vagasDisponiveis) &&
     body.vagasDisponiveis >= 0 &&
@@ -87,6 +109,16 @@ export async function POST(request: Request) {
     );
   }
 
+  const endereco = new Endereco(
+    payload.endereco.cidade,
+    payload.endereco.bairro,
+    payload.endereco.rua,
+    payload.endereco.cep,
+    payload.endereco.apartamento,
+    payload.endereco.numero
+  );
+  const createdEndereco = await endereco.storeOnDb();
+
   const evento = new Evento(
     payload.organizador,
     statusToPublicado(payload.status),
@@ -95,7 +127,7 @@ export async function POST(request: Request) {
     payload.horarioInicio,
     payload.horarioFim,
     dataHoraInicio,
-    undefined,
+    createdEndereco.idendere_o,
     payload.descricao,
     payload.vagasDisponiveis
   );
