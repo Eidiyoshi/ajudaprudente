@@ -1,3 +1,12 @@
+export type Endereco = {
+    cidade: string;
+    bairro: string;
+    rua: string;
+    cep: string;
+    apartamento: string;
+    numero: string;
+};
+
 export type Event = {
     id: number;
     nome: string;
@@ -5,7 +14,7 @@ export type Event = {
     data: string;
     horarioInicio: string;
     horarioFim: string;
-    local: string;
+    endereco: Endereco | null;
     vagasDisponiveis: number;
     status: string;
 };
@@ -18,7 +27,14 @@ export const mockEvents: Event[] = [
         data: "2026-05-20",
         horarioInicio: "18:00",
         horarioFim: "21:00",
-        local: "Meu coração",
+        endereco: {
+            rua: "Rua das Flores",
+            numero: "123",
+            apartamento: "12",
+            bairro: "Centro",
+            cidade: "Presidente Prudente",
+            cep: "19010-000",
+        },
         vagasDisponiveis: 30,
         status: "Ativo",
     },
@@ -29,7 +45,14 @@ export const mockEvents: Event[] = [
         data: "2026-05-25",
         horarioInicio: "07:00",
         horarioFim: "17:00",
-        local: "ante ao mal",
+        endereco: {
+            rua: "Avenida Brasil",
+            numero: "450",
+            apartamento: "Sem apartamento",
+            bairro: "Vila Nova",
+            cidade: "Presidente Prudente",
+            cep: "19015-040",
+        },
         vagasDisponiveis: 120,
         status: "Rascunho",
     },
@@ -40,7 +63,14 @@ export const mockEvents: Event[] = [
         data: "2026-06-01",
         horarioInicio: "19:30",
         horarioFim: "22:00",
-        local: "Sala 67 20+20+20+7",
+        endereco: {
+            rua: "Rua das Acacias",
+            numero: "67",
+            apartamento: "Sem apartamento",
+            bairro: "Jardim Bela Vista",
+            cidade: "Presidente Prudente",
+            cep: "19020-150",
+        },
         vagasDisponiveis: 0,
         status: "Encerrado",
     },

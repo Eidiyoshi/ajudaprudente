@@ -58,11 +58,27 @@ function EventTime({horarioInicio, horarioFim}: {horarioInicio: string, horarioF
     );
 }
 
-function EventLocation({local}: {local: string}) {
+function EventLocation({endereco}: {endereco: Event["endereco"]}) {
+    if (!endereco) {
+        return (
+            <div className="bg-zinc-900/60 rounded-lg p-3 border border-zinc-700 col-span-2">
+                <p className="text-zinc-400">Local</p>
+                <p className="text-zinc-100 font-medium mt-1">Sem local</p>
+            </div>
+        );
+    }
+
     return (
         <div className="bg-zinc-900/60 rounded-lg p-3 border border-zinc-700 col-span-2">
             <p className="text-zinc-400">Local</p>
-            <p className="text-zinc-100 font-medium mt-1">{local}</p>
+            <div className="text-zinc-100 font-medium mt-1 space-y-1">
+                <p>Rua: {endereco.rua}</p>
+                <p>Numero: {endereco.numero}</p>
+                <p>Apartamento: {endereco.apartamento}</p>
+                <p>Bairro: {endereco.bairro}</p>
+                <p>Cidade: {endereco.cidade}</p>
+                <p>CEP: {endereco.cep}</p>
+            </div>
         </div>
     );
 }
@@ -86,14 +102,14 @@ function EventHeader({name, description, status}: {name: string, description: st
     );
 }
 
-function EventBody({data, horarioInicio, horarioFim, local, vagasDisponiveis}: {data: string, horarioInicio: string, horarioFim: string, local: string, vagasDisponiveis: number}) {
+function EventBody({data, horarioInicio, horarioFim, endereco, vagasDisponiveis}: {data: string, horarioInicio: string, horarioFim: string, endereco: Event["endereco"], vagasDisponiveis: number}) {
     return (
         <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
             <EventDate date={data} />
 
             <EventTime horarioInicio={horarioInicio} horarioFim={horarioFim} />
 
-            <EventLocation local={local} />
+            <EventLocation endereco={endereco} />
 
             <EventSpots vagasDisponiveis={vagasDisponiveis} />
         </div>
@@ -105,7 +121,7 @@ export function EventCard({ event }: { event: Event }) {
         <div key={event.id} className="bg-zinc-800 border border-zinc-700 rounded-xl p-6 shadow-lg hover:border-indigo-500/40 transition">
             <EventHeader name={event.nome} description={event.descricao} status={event.status} />
 
-            <EventBody data={event.data} horarioInicio={event.horarioInicio} horarioFim={event.horarioFim} local={event.local} vagasDisponiveis={event.vagasDisponiveis} />
+            <EventBody data={event.data} horarioInicio={event.horarioInicio} horarioFim={event.horarioFim} endereco={event.endereco} vagasDisponiveis={event.vagasDisponiveis} />
             <div className="mt-4 flex gap-3">
                 <VisualizeButton id={event.id} />
                 {event.status === "Ativo" ? <SubscribeButton /> : <UnsubscribeButton />}
@@ -119,7 +135,7 @@ export function EventCardEdit({ event }: { event: Event }) {
         <div key={event.id} className="bg-zinc-800 border border-zinc-700 rounded-xl p-6 shadow-lg hover:border-indigo-500/40 transition">
             <EventHeader name={event.nome} description={event.descricao} status={event.status} />
 
-            <EventBody data={event.data} horarioInicio={event.horarioInicio} horarioFim={event.horarioFim} local={event.local} vagasDisponiveis={event.vagasDisponiveis} />
+            <EventBody data={event.data} horarioInicio={event.horarioInicio} horarioFim={event.horarioFim} endereco={event.endereco} vagasDisponiveis={event.vagasDisponiveis} />
             <div className="mt-4 flex gap-3">
                 <VisualizeButton id={event.id} />
                 <EditButton />

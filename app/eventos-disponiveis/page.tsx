@@ -1,5 +1,5 @@
 import { EventCard, EventCardEdit } from "./layout";
-import type { Event } from "./logic";
+import type { Endereco, Event } from "./logic";
 import { prisma } from "@/lib/prisma";
 import { connection } from "next/server";
 
@@ -11,12 +11,29 @@ function formatDate(date: Date | null) {
     return date.toISOString().split("T")[0];
 }
 
-function formatLocal(endereco: { cidade: string; bairro: string } | null) {
+function formatEndereco(endereco: {
+    cidade: string;
+    bairro: string;
+    rua: string;
+    cep: string;
+    apartamento?: string | null;
+    numero?: string | null;
+} | null): Endereco | null {
     if (!endereco) {
-        return "Sem local";
+        return null;
     }
 
-    return `${endereco.cidade} - ${endereco.bairro}`;
+    const numero = endereco.numero?.trim();
+    const apartamento = endereco.apartamento?.trim();
+
+    return {
+        rua: endereco.rua.trim() || "Sem rua",
+        numero: numero && numero.length > 0 ? numero : "Sem numero",
+        apartamento: apartamento && apartamento.length > 0 ? apartamento : "Sem apartamento",
+        bairro: endereco.bairro.trim() || "Sem bairro",
+        cidade: endereco.cidade.trim() || "Sem cidade",
+        cep: endereco.cep.trim() || "Sem cep",
+    };
 }
 
 export default async function VisualizarEventos() {
@@ -34,7 +51,7 @@ export default async function VisualizarEventos() {
         data: formatDate(evento.data),
         horarioInicio: evento.horarioInicio ?? "Sem horario",
         horarioFim: evento.horarioFim ?? "Sem horario",
-        local: formatLocal(evento.endere_o),
+        endereco: formatEndereco(evento.endere_o),
         vagasDisponiveis: evento.vagas ?? 0,
         status: evento.status,
     }));
