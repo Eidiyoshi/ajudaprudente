@@ -81,12 +81,7 @@ export default function VisualizarEventos() {
         <div className="flex gap-3 mt-4">
            
 
-            <Link
-                href="/Eventos/meusEventos"
-                className="px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white"
-            >
-                Meus Eventos
-            </Link>
+           
         </div>
     </div>
 </div>
@@ -157,14 +152,14 @@ export default function VisualizarEventos() {
                             
                             <div className="flex gap-3 mt-6">
                                <Link
-    href={`/Eventos/${event.id}`}
+    href={`/Event/${event.id}`}
     className="flex-1 py-2 px-4 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition text-center"
 >
     Ver Detalhes
 </Link>
 
                                 <button className="flex-1 py-2 px-4 rounded-md bg-zinc-700 hover:bg-zinc-600 text-zinc-100 font-medium transition">
-                                    Escreva-se
+                                    Editar
                                 </button>
                             </div>
                         </div>
