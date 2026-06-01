@@ -9,12 +9,7 @@ type Event = {
     data: string;
     horarioInicio: string;
     horarioFim: string;
-    cidade: string;
-    bairro: string;
-    rua: string;
-    cep: string;
-    numero: string;
-    apartamento: string;
+    local: string;
     vagasDisponiveis: number;
     status: string;
 };
@@ -29,12 +24,7 @@ export default function EventForm() {
         data: '',
         horarioInicio: '',
         horarioFim: '',
-        cidade: '',
-        bairro: '',
-        rua: '',
-        cep: '',
-        numero: '',
-        apartamento: '',
+        local: '',
         vagasDisponiveis: 0,
         status: 'Rascunho',
     });
@@ -49,10 +39,7 @@ export default function EventForm() {
         if (!formData.data) newErrors.data = 'A data do evento é obrigatória.';
         if (!formData.horarioInicio) newErrors.horarioInicio = 'O horário de início é obrigatório.';
         if (!formData.horarioFim) newErrors.horarioFim = 'O horário de fim é obrigatório.';
-        if (!formData.cidade.trim()) newErrors.cidade = 'A cidade é obrigatória.';
-        if (!formData.bairro.trim()) newErrors.bairro = 'O bairro é obrigatório.';
-        if (!formData.rua.trim()) newErrors.rua = 'A rua é obrigatória.';
-        if (!formData.cep.trim()) newErrors.cep = 'O CEP é obrigatório.';
+        if (!formData.local.trim()) newErrors.local = 'O local do evento é obrigatório.';
         if (formData.vagasDisponiveis < 0) newErrors.vagasDisponiveis = 'As vagas disponíveis não podem ser negativas.';
         if (!STATUS_OPTIONS.includes(formData.status)) newErrors.status = 'Status inválido.';
 
@@ -76,21 +63,7 @@ export default function EventForm() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                nome: formData.nome,
-                descricao: formData.descricao,
-                data: formData.data,
-                horarioInicio: formData.horarioInicio,
-                horarioFim: formData.horarioFim,
-                vagasDisponiveis: formData.vagasDisponiveis,
-                status: formData.status,
-                endereco: {
-                    cidade: formData.cidade,
-                    bairro: formData.bairro,
-                    rua: formData.rua,
-                    cep: formData.cep,
-                    numero: formData.numero.trim().length > 0 ? formData.numero : undefined,
-                    apartamento: formData.apartamento.trim().length > 0 ? formData.apartamento : undefined,
-                },
+                ...formData,
                 organizador: 1,
             }),
         });
@@ -120,17 +93,7 @@ export default function EventForm() {
 
             {divLayout('horarioFim', labelClass, 'Horário do Fim', 'time', formData.horarioFim, handleChange, inputClass, errorClass, errors.horarioFim)}
 
-            {divLayout('rua', labelClass, 'Rua', 'text', formData.rua, handleChange, inputClass, errorClass, errors.rua)}
-
-            {divLayout('numero', labelClass, 'Número (opcional)', 'text', formData.numero, handleChange, inputClass, errorClass, errors.numero)}
-
-            {divLayout('apartamento', labelClass, 'Apartamento (opcional)', 'text', formData.apartamento, handleChange, inputClass, errorClass, errors.apartamento)}
-
-            {divLayout('bairro', labelClass, 'Bairro', 'text', formData.bairro, handleChange, inputClass, errorClass, errors.bairro)}
-
-            {divLayout('cidade', labelClass, 'Cidade', 'text', formData.cidade, handleChange, inputClass, errorClass, errors.cidade)}
-
-            {divLayout('cep', labelClass, 'CEP', 'text', formData.cep, handleChange, inputClass, errorClass, errors.cep)}
+            {divLayout('local', labelClass, 'Local do Evento', 'text', formData.local, handleChange, inputClass, errorClass, errors.local)}
 
             {divLayout('vagasDisponiveis', labelClass, 'Vagas Disponíveis', 'number', formData.vagasDisponiveis.toString(), handleChange, inputClass, errorClass, errors.vagasDisponiveis)}
 

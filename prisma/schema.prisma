@@ -35,9 +35,6 @@ model evento {
   organizador                                 Int
   publicado                                   Int         @db.TinyInt
   descricao                                   String?     @db.LongText
-  nome                                        String?     @db.VarChar(255)
-  horarioInicio                               String?     @db.VarChar(5)
-  horarioFim                                  String?     @db.VarChar(5)
   status                                      Status      @default(Rascunho)
   vagas                                       Int?
   endere_o                                    endere_o?   @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: "evento_endereco_fkey")
