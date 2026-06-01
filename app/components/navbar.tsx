@@ -6,8 +6,8 @@ export function NavBar() {
     const pathname = usePathname();
     const navLinks = [
         { href: "/eventos-disponiveis", label: "Eventos Disponíveis" },
-        { href: "/Eventos", label: "Meus Eventos" },
-        { href: "/pages/organizador/registrar_evento", label: "Criar Evento" },
+        { href: "/eventos", label: "Meus Eventos" },
+        { href: "/registrar_evento", label: "Criar Evento" },
         { href: "/perfil", label: "Perfil" },
     ]
 
