@@ -3,9 +3,6 @@ import type { Status } from "@/generated/prisma/enums";
 
 export class Evento {
     public idevento?: number;
-    private readonly nome: string;
-    private readonly horarioInicio: string;
-    private readonly horarioFim: string;
     private readonly data?: Date;
     private readonly endereco?: number;
     private readonly organizador: number;
@@ -18,17 +15,11 @@ export class Evento {
         organizador: number,
         publicado: number,
         status: Status,
-        nome: string,
-        horarioInicio: string,
-        horarioFim: string,
         data?: Date,
         endereco?: number,
         descricao?: string,
         vagas?: number
     ) {
-        this.nome = nome;
-        this.horarioInicio = horarioInicio;
-        this.horarioFim = horarioFim;
         this.data = data;
         this.endereco = endereco;
         this.organizador = organizador;
@@ -55,9 +46,6 @@ export class Evento {
                 organizador: this.organizador,
                 publicado: this.publicado,
                 descricao: this.descricao,
-                nome: this.nome,
-                horarioInicio: this.horarioInicio,
-                horarioFim: this.horarioFim,
                 status: this.status,
                 vagas: this.vagas,
             },

@@ -149,7 +149,7 @@ export default function VisualizarEventos() {
                             
                             <div className="flex gap-3 mt-6">
                                <Link
-    href={`/eventos/${event.id}`}
+    href={`/Eventos/${event.id}`}
     className="flex-1 py-2 px-4 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition text-center"
 >
     Ver Detalhes
