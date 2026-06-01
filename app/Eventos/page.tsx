@@ -68,20 +68,28 @@ export default function VisualizarEventos() {
         <div className="min-h-screen bg-zinc-900 p-6">
             <div className="max-w-6xl mx-auto">
                 
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-                    <div>
-                        <h1 className="text-3xl font-bold text-zinc-100">
-                            Eventos
-                        </h1>
-                        <p className="text-zinc-400 mt-1">
-                            Visualize e gerencie os eventos cadastrados.
-                        </p>
-                        
-                   </div>
+               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+    <div>
+        <h1 className="text-3xl font-bold text-zinc-100">
+            Eventos
+        </h1>
 
-                   
-                </div>
+        <p className="text-zinc-400 mt-1">
+            Visualize e gerencie os eventos cadastrados.
+        </p>
+
+        <div className="flex gap-3 mt-4">
+           
+
+            <Link
+                href="/Eventos/meusEventos"
+                className="px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white"
+            >
+                Meus Eventos
+            </Link>
+        </div>
+    </div>
+</div>
                 
 
                 
@@ -156,7 +164,7 @@ export default function VisualizarEventos() {
 </Link>
 
                                 <button className="flex-1 py-2 px-4 rounded-md bg-zinc-700 hover:bg-zinc-600 text-zinc-100 font-medium transition">
-                                    Editar
+                                    Escreva-se
                                 </button>
                             </div>
                         </div>
