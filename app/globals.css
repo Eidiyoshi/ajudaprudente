@@ -221,7 +221,77 @@ nav {
     padding-top: 8px;
 }
 
-@media (max-width: 767px) {
+footer {
+    background: var(--color-dark);
+    padding: 36px 7%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.footer-brand {
+    max-width: 260px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.footer-logo-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--color-yellow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-logo-icon svg {
+    width: 26px;
+    height: 26px;
+}
+
+.footer-brand p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+.footer-social h3 {
+    color: var(--color-white);
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-link {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    transition: background 0.2s;
+    cursor: pointer;
+}
+.social-link:hover {
+    background: var(--color-purple-light);
+}
+
+@media (max-width: 768px) {
     .nav-links {
         display: none;
     }
@@ -239,5 +309,9 @@ nav {
     .mobile-menu,
     .mobile-menu.open {
         display: none;
+    }
+
+    footer {
+        flex-direction: column;
     }
 }

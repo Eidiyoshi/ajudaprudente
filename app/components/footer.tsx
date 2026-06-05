@@ -3,9 +3,9 @@ import Image from "next/image";
 
 export default function Footer() {
     return (
-        <footer className="flex flex-col justify-between gap-8 bg-black px-[7%] py-9 font-['Nunito',sans-serif] md:flex-row md:items-start">
-            <div className="max-w-65">
-                <div className="mb-3 flex items-center gap-2.5">
+        <footer>
+            <div className="footer-brand">
+                <div className="footer-logo">
                     <Image
                         src={"/logo_2.png"}
                         alt="Ajuda Prudente"
@@ -14,22 +14,20 @@ export default function Footer() {
                         style={{ height: "52px", width: "auto" }}
                     />
                 </div>
-                <p className="text-[0.8rem] leading-1.6 text-white/60">
+                <p>
                     Conectando pessoas a causas que transformam e construindo
                     uma comunidade mais solidária
                 </p>
             </div>
 
-            <div className="flex flex-col items-start md:items-end">
-                <h3 className="mb-3.5 text-base font-bold text-white">
-                    Siga-nos
-                </h3>
-                <div className="flex gap-3">
+            <div className="footer-social">
+                <h3>Siga-nos</h3>
+                <div className="social-links">
                     <Link
                         href="https://facebook.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-200 hover:bg-[#7C3AED]"
+                        className="social-link"
                         aria-label="Facebook"
                     >
                         <svg
@@ -45,7 +43,7 @@ export default function Footer() {
                         href="https://instagram.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-200 hover:bg-[#7C3AED]"
+                        className="social-link"
                         aria-label="Instagram"
                     >
                         <svg
