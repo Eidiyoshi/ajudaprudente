@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
-import { Status } from "@/generated/prisma/enums"
+
 
 export async function GET() {
   try {
