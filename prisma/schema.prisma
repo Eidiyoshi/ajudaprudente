@@ -30,7 +30,10 @@ model endere_o {
 
 model evento {
   idevento                                    Int         @id
+  nome                                        String?     @db.VarChar(255)
   data                                        DateTime?   @db.DateTime(0)
+  horarioInicio                               String?     @db.VarChar(5)
+  horarioFim                                  String?     @db.VarChar(5)
   endereco                                    Int?
   organizador                                 Int
   publicado                                   Int         @db.TinyInt
