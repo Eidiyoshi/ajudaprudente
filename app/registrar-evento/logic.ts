@@ -40,7 +40,7 @@ export function useEventoForm() {
         if (!formData.horarioInicio) newErrors.horarioInicio = 'O horário de início é obrigatório.';
         if (!formData.horarioFim) newErrors.horarioFim = 'O horário de fim é obrigatório.';
         if (!formData.local.trim()) newErrors.local = 'O local do evento é obrigatório.';
-        if (formData.vagasDisponiveis < 0) newErrors.vagasDisponiveis = 'As vagas disponíveis não podem ser negativas.';
+        if (formData.vagasDisponiveis <= 0) newErrors.vagasDisponiveis = 'As vagas disponíveis não podem ser negativas.';
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
