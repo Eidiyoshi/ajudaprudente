@@ -118,7 +118,12 @@ nav {
 
 .nav-actions {
     display: flex;
-    gap: 10px;
+    gap: 16px;
+    align-items: center;
+}
+
+.nav-actions a {
+    display: inline-flex;
     align-items: center;
 }
 
@@ -142,7 +147,7 @@ nav {
 }
 
 .btn-cadastro {
-    padding: 7px 18px;
+    padding: 7px 20px;
     background: var(--color-yellow);
     color: var(--color-dark);
     border: none;
@@ -151,7 +156,6 @@ nav {
     font-size: 0.88rem;
     font-weight: 700;
     cursor: pointer;
-    display: flex;
     align-items: center;
     gap: 6px;
     transition: background 0.2s;
@@ -169,7 +173,6 @@ nav {
     font-size: 0.88rem;
     font-weight: 700;
     cursor: pointer;
-    display: flex;
     align-items: center;
     background: transparent;
     transition:
@@ -179,6 +182,15 @@ nav {
 
 .btn-logout:hover {
     background: var(--color-purple);
+}
+
+.btn-login,
+.btn-cadastro,
+.btn-logout {
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Hamburguer */
@@ -869,7 +881,7 @@ footer {
     }
 
     .embla__slide.card {
-        flex: 0 0 100%;
+        flex: 0 0 50%;
     }
 
     .how-steps {

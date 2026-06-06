@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { getUserSession, logoutUser, UserApiSession } from "../lib/session";
 
 const PersonIcon = () => (
     <svg
@@ -21,63 +22,31 @@ const PersonIcon = () => (
     </svg>
 );
 
-const handleLogout = () => {
-    console.log("Logging out...");
-    // For my dear backend devs... fix this please
-};
-
-interface UserApiSession {
-    user: {
-        id: string;
-        nome: string;
-        email: string;
-        userKind: string;
-    };
-    expires: string;
-}
-
 export default function NavBar() {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
-
     const [session, setSession] = useState<UserApiSession | null>(null);
     const [, setIsLoading] = useState(true);
 
     useEffect(() => {
         let isMounted = true;
-
-        async function carregarSessao() {
-            setIsLoading(true);
-            try {
-                const res = await fetch("/api/usuario", { method: "GET" });
-                const data = await res.json();
-
-                if (!res.ok || !isMounted) {
-                    setSession(null);
-                    return;
-                }
-                setSession({
-                    user: {
-                        id: data.id ?? "",
-                        nome: data.nome,
-                        email: data.email,
-                        userKind: data.userKind ?? "visitante",
-                    },
-                    expires: "",
-                });
-            } catch (err) {
-                console.error("Erro ao carregar sessão no Navbar:", err);
-            } finally {
+        getUserSession()
+            .then((data) => {
+                if (isMounted) setSession(data);
+            })
+            .finally(() => {
                 if (isMounted) setIsLoading(false);
-            }
-        }
-
-        void carregarSessao();
+            });
 
         return () => {
             isMounted = false;
         };
     }, []);
+
+    const handleLogout = async () => {
+        await logoutUser();
+        setSession(null);
+    };
 
     const user = session?.user;
     const isLoggedIn = !!user;
@@ -143,21 +112,20 @@ export default function NavBar() {
 
                 <div className="nav-actions">
                     {!isLoggedIn && (
-                        <>
-                            <Link href={"/login"}>
-                                <button className="btn-login">Login</button>
-                            </Link>
-                            <Link href={"/registrar"}>
-                                <button className="btn-cadastro">
-                                    <PersonIcon />
-                                    Cadastro
-                                </button>
-                            </Link>
-                        </>
+                        <Link href={"/login"}>
+                            <button className="btn-login">Login</button>
+                        </Link>
+                    )}
+                    {!isLoggedIn && (
+                        <Link href={"/registrar"}>
+                            <button className="btn-cadastro">
+                                <PersonIcon />
+                                Cadastro
+                            </button>
+                        </Link>
                     )}
                     {isLoggedIn && (
                         <>
-                            <PersonIcon />
                             <button
                                 onClick={handleLogout}
                                 className="btn-logout"
@@ -196,23 +164,21 @@ export default function NavBar() {
                 })}
                 <div className="mob-actions">
                     {!isLoggedIn && (
-                        <>
-                            <Link href={"/login"}>
-                                <button className="btn-login">Login</button>
-                            </Link>
-                            <Link href={"/registrar"}>
-                                <button className="btn-cadastro">
-                                    <PersonIcon />
-                                    Cadastro
-                                </button>
-                            </Link>
-                        </>
+                        <Link href={"/login"}>
+                            <button className="btn-login">Login</button>
+                        </Link>
+                    )}
+                    {!isLoggedIn && (
+                        <Link href={"/registrar"}>
+                            <button className="btn-cadastro">
+                                <PersonIcon />
+                                Cadastro
+                            </button>
+                        </Link>
                     )}
                     {isLoggedIn && (
                         <>
-                            <div className="mobile-profile-wrapper">
-                                <PersonIcon />
-                            </div>
+                            <div className="mobile-profile-wrapper"></div>
                             <button
                                 onClick={() => {
                                     handleLogout();
