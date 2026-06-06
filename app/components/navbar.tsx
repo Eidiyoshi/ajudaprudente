@@ -41,7 +41,7 @@ export default function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
 
     const [session, setSession] = useState<UserApiSession | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [, setIsLoading] = useState(true);
 
     useEffect(() => {
         let isMounted = true;
