@@ -160,6 +160,27 @@ nav {
     background: var(--color-yellow-dark);
 }
 
+.btn-logout {
+    padding: 7px 20px;
+    border: 1.5px solid var(--color-purple-light);
+    color: var(--color-white);
+    border-radius: 6px;
+    font-family: var(--font-nunito);
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    transition:
+        background 0.2s,
+        color 0.2s;
+}
+
+.btn-logout:hover {
+    background: var(--color-purple);
+}
+
 /* Hamburguer */
 .hamburger {
     display: none;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -21,18 +21,93 @@ const PersonIcon = () => (
     </svg>
 );
 
+const handleLogout = () => {
+    console.log("Logging out...");
+    // For my dear backend devs... fix this please
+};
+
+interface UserApiSession {
+    user: {
+        id: string;
+        nome: string;
+        email: string;
+        userKind: string;
+    };
+    expires: string;
+}
+
 export default function NavBar() {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+
+    const [session, setSession] = useState<UserApiSession | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        async function carregarSessao() {
+            setIsLoading(true);
+            try {
+                const res = await fetch("/api/usuario", { method: "GET" });
+                const data = await res.json();
+
+                if (!res.ok || !isMounted) {
+                    setSession(null);
+                    return;
+                }
+                setSession({
+                    user: {
+                        id: data.id ?? "",
+                        nome: data.nome,
+                        email: data.email,
+                        userKind: data.userKind ?? "visitante",
+                    },
+                    expires: "",
+                });
+            } catch (err) {
+                console.error("Erro ao carregar sessão no Navbar:", err);
+            } finally {
+                if (isMounted) setIsLoading(false);
+            }
+        }
+
+        void carregarSessao();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
+    const user = session?.user;
+    const isLoggedIn = !!user;
+    const currentUserKind = user?.userKind || "visitante";
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
     const navLinks = [
-        { name: "Registrar Eventos", href: "/registrar-evento" },
-        { name: "Eventos", href: "/Eventos" },
+        {
+            name: isLoggedIn
+                ? user?.userKind === "organizador"
+                    ? "Meus Eventos"
+                    : "Minhas Inscrições"
+                : "Todos os Eventos",
+            href: "/Eventos",
+        },
+        {
+            name: "Registrar Eventos",
+            href: "/registrar-evento",
+            allowedRoles: ["organizador"],
+        },
     ];
+
+    const visibleLinks = navLinks.filter((link) => {
+        if (!link.allowedRoles) return true;
+        if (!isLoggedIn) return false;
+        return link.allowedRoles.includes(currentUserKind);
+    });
 
     return (
         <>
@@ -51,7 +126,7 @@ export default function NavBar() {
                 </div>
 
                 <ul className="nav-links">
-                    {navLinks.map((link) => {
+                    {visibleLinks.map((link) => {
                         const isActive = pathname === link.href;
                         return (
                             <li key={link.href}>
@@ -67,11 +142,30 @@ export default function NavBar() {
                 </ul>
 
                 <div className="nav-actions">
-                    <button className="btn-login">Login</button>
-                    <button className="btn-cadastro">
-                        <PersonIcon />
-                        Cadastro
-                    </button>
+                    {!isLoggedIn && (
+                        <>
+                            <Link href={"/login"}>
+                                <button className="btn-login">Login</button>
+                            </Link>
+                            <Link href={"/registrar"}>
+                                <button className="btn-cadastro">
+                                    <PersonIcon />
+                                    Cadastro
+                                </button>
+                            </Link>
+                        </>
+                    )}
+                    {isLoggedIn && (
+                        <>
+                            <PersonIcon />
+                            <button
+                                onClick={handleLogout}
+                                className="btn-logout"
+                            >
+                                Logout
+                            </button>
+                        </>
+                    )}
                 </div>
 
                 <button
@@ -87,7 +181,7 @@ export default function NavBar() {
 
             {/* MOBILE MENU */}
             <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
-                {navLinks.map((link) => {
+                {visibleLinks.map((link) => {
                     const isActive = pathname === link.href;
                     return (
                         <Link
@@ -101,8 +195,35 @@ export default function NavBar() {
                     );
                 })}
                 <div className="mob-actions">
-                    <button className="btn-login">Login</button>
-                    <button className="btn-cadastro">Cadastro</button>
+                    {!isLoggedIn && (
+                        <>
+                            <Link href={"/login"}>
+                                <button className="btn-login">Login</button>
+                            </Link>
+                            <Link href={"/registrar"}>
+                                <button className="btn-cadastro">
+                                    <PersonIcon />
+                                    Cadastro
+                                </button>
+                            </Link>
+                        </>
+                    )}
+                    {isLoggedIn && (
+                        <>
+                            <div className="mobile-profile-wrapper">
+                                <PersonIcon />
+                            </div>
+                            <button
+                                onClick={() => {
+                                    handleLogout();
+                                    setIsOpen(false);
+                                }}
+                                className="btn-logout"
+                            >
+                                Logout
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
         </>
