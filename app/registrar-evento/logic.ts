@@ -67,10 +67,17 @@ export function useEventoForm() {
             const response = await fetch('/api/eventos', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({...formData, status: Status.Ativo }),
+                body: JSON.stringify({
+                    ...formData,
+                    status: Status.Ativo,
+                    organizador: 1, // todo: organizador logado
+                 }),
             });
 
-            if (!response.ok) throw new Error('Erro na requisição');
+            if (!response.ok){
+                const data = await response.json();
+                throw new Error(data.error || 'Erro na requisição');
+            }
             
             alert('Evento criado com sucesso!');
             setFormData(emptyForm());
