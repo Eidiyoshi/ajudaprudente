@@ -1,5 +1,10 @@
-import Link from "next/link";
+"use client";
 
+import Link from "next/link";
+import React from "react";
+import useEmblaCarousel from "embla-carousel-react";
+
+// todo: make it not hard-coded!
 const mockEvents = [
     {
         id: 1,
@@ -30,6 +35,15 @@ const mockEvents = [
     },
     {
         id: 4,
+        emoji: "🌿",
+        tag: "Meio Ambiente",
+        title: "Preservação de Nascentes",
+        date: "20 de Jun, 2026 · 07:30",
+        local: "Área Rural, Prudente – SP",
+        vagas: 3,
+    },
+    {
+        id: 5,
         emoji: "🌿",
         tag: "Meio Ambiente",
         title: "Preservação de Nascentes",
@@ -74,6 +88,14 @@ const LocIcon = () => (
 );
 
 export default function EventsGrid() {
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+    const scrollPrev = React.useCallback(() => {
+        if (emblaApi) emblaApi.scrollPrev();
+    }, [emblaApi]);
+    const scrollNext = React.useCallback(() => {
+        if (emblaApi) emblaApi.scrollNext();
+    }, [emblaApi]);
+
     return (
         <section className="section-events">
             <div className="section-header">
@@ -85,38 +107,47 @@ export default function EventsGrid() {
                 </Link>
             </div>
             <div className="cards-wrapper">
-                <div className="cards-grid">
-                    {mockEvents.map((event) => (
-                        <div key={event.id} className="card">
-                            <div className="card-img">
-                                <div className="card-img-inner">
-                                    {event.emoji}
-                                </div>
-                            </div>
-                            <div className="card-body">
-                                <span className="tag">{event.tag}</span>
-                                <h3 className="card-title">{event.title}</h3>
-                                <div className="card-info">
-                                    <div className="card-info-item">
-                                        <CalendarIcon />
-                                        {event.date}
-                                    </div>
-                                    <div className="card-info-item">
-                                        <LocIcon />
-                                        <span>{event.local}</span>
+                <div className="embla__viewport" ref={emblaRef}>
+                    <div className="embla__container">
+                        {mockEvents.map((event) => (
+                            <div key={event.id} className="embla__slide card">
+                                <div className="card-img">
+                                    <div className="card-img-inner">
+                                        {event.emoji}
                                     </div>
                                 </div>
-                                <p className="vagas">
-                                    {event.vagas} vagas disponíveis
-                                </p>
-                                <button className="btn-detalhes">
-                                    Ver detalhes
-                                </button>
+                                <div className="card-body">
+                                    <span className="tag">{event.tag}</span>
+                                    <h3 className="card-title">
+                                        {event.title}
+                                    </h3>
+                                    <div className="card-info">
+                                        <div className="card-info-item">
+                                            <CalendarIcon />
+                                            {event.date}
+                                        </div>
+                                        <div className="card-info-item">
+                                            <LocIcon />
+                                            <span>{event.local}</span>
+                                        </div>
+                                    </div>
+                                    <p className="vagas">
+                                        {event.vagas} vagas disponíveis
+                                    </p>
+                                    <button className="btn-detalhes">
+                                        Ver detalhes
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-                <div className="arrow-btn">›</div>
+                <div className="arrow-btn arrow-left" onClick={scrollPrev}>
+                    ‹
+                </div>
+                <div className="arrow-btn arrow-right" onClick={scrollNext}>
+                    ›
+                </div>
             </div>
         </section>
     );

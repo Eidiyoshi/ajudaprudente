@@ -371,7 +371,7 @@ footer {
     flex: 1;
     border: none;
     outline: none;
-    font-family: var(--color-font);
+    font-family: var(--font-nunito);
     font-size: 0.9rem;
     color: var(--color-text-main);
     background: transparent;
@@ -515,24 +515,31 @@ footer {
     position: relative;
 }
 
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+.embla__viewport {
+    overflow: hidden;
+    width: 100%;
 }
 
-.card {
+.embla__container {
+    display: flex;
+    backface-visibility: hidden;
+    touch-action: pan-y;
+}
+
+.embla__slide.card {
+    flex: 0 0 25%;
+    margin-right: 20px;
     border: 1.5px solid var(--color-card-border);
     border-radius: 12px;
     overflow: hidden;
     background: var(--color-white);
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s;
 }
 .card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 28px rgba(107, 33, 168, 0.12);
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
 }
 
 .card-img {
@@ -629,7 +636,6 @@ footer {
 
 .arrow-btn {
     position: absolute;
-    right: -18px;
     top: 50%;
     transform: translateY(-50%);
     width: 36px;
@@ -648,6 +654,13 @@ footer {
 .arrow-btn:hover {
     background: var(--color-purple);
     color: var(--color-white);
+}
+
+.arrow-left {
+    left: -20px;
+}
+.arrow-right {
+    right: -20px;
 }
 
 /* Guidance */
@@ -803,16 +816,10 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .embla__slide.card {
+        flex: 0 0 33.33%;
     }
-    .cards-grid .card:nth-child(3),
-    .cards-grid .card:nth-child(4) {
-        display: none;
-    }
-    .arrow-btn {
-        display: flex;
-    }
+
     .how-steps {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -861,16 +868,8 @@ footer {
         padding: 48px 5% 52px;
     }
 
-    .cards-grid {
-        grid-template-columns: 1fr;
-    }
-    .cards-grid .card:nth-child(3),
-    .cards-grid .card:nth-child(4) {
-        display: none;
-    }
-
-    .arrow-btn {
-        display: none;
+    .embla__slide.card {
+        flex: 0 0 100%;
     }
 
     .how-steps {
