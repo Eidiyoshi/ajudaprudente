@@ -1,35 +1,33 @@
 import { prisma } from "@/lib/prisma"
-
-type InscricaoPayload = {
-    voluntario: number;
-};
-
-function isValidPayload(payload: unknown): payload is InscricaoPayload {
-    if (typeof payload !== "object" || payload == null) return false;
-
-    const body = payload as Record<string, unknown>;
-    return (
-        typeof body.voluntario === "number" &&
-        Number.isInteger(body.voluntario) &&
-        body.voluntario > 0
-    );
-}
+import { getUsuarioLogado } from "@/lib/usuario";
 
 export async function POST(
     request: Request,
     { params }: { params: { id: string } }
 ) {
+    const result = await getUsuarioLogado();
+    if (!result.ok) {
+        return Response.json(
+            { error: result.error},
+            { status: result.status }
+        );
+    }
+
+    if (result.usuario.tipoUsuario !== "voluntario") {
+        return Response.json(
+            { error: "Apenas voluntários podem se inscrever em eventos." },
+            { status: 403 }
+        );
+    }
+
+    const voluntarioId = result.usuario.idusuarios;
+
     const eventoId = Number(params.id);
     if (!Number.isInteger(eventoId) || eventoId <= 0) {
         return Response.json(
             { error: "Invalid evento ID." },
-            { status: 400 });
-    }
-    const body = await request.json().catch(() => null);
-    if (!isValidPayload(body)) {
-        return Response.json(
-            { error: "Invalid request body." },
-            { status: 400 });
+            { status: 404 }
+        );
     }
 
     const evento = await prisma.evento.findUnique({ where: { idevento: eventoId },});
@@ -50,7 +48,7 @@ export async function POST(
     const alreadyExists = await prisma.inscricao.findUnique({
         where: {
             voluntario_evento: {
-                voluntario: body.voluntario,
+                voluntario: voluntarioId,
                 evento: eventoId,
             },
         },
@@ -78,7 +76,7 @@ export async function POST(
 
     const inscricao = await prisma.inscricao.create({
         data: {
-            voluntario: body.voluntario,
+            voluntario: voluntarioId,
             evento: eventoId,
             data: new Date(),
         },
