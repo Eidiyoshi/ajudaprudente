@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import EventModal from "./event-modal";
 
 // todo: make it not hard-coded!
 const mockEvents = [
@@ -14,6 +15,7 @@ const mockEvents = [
         date: "08 de Jun, 2026 · 08:00",
         local: "Parque do Povo, Presidente Prudente – SP",
         vagas: 8,
+        descricao: "",
     },
     {
         id: 2,
@@ -23,6 +25,7 @@ const mockEvents = [
         date: "12 de Jun, 2026 · 09:00",
         local: "Centro Cultural, Prudente – SP",
         vagas: 5,
+        descricao: "",
     },
     {
         id: 3,
@@ -32,6 +35,7 @@ const mockEvents = [
         date: "15 de Jun, 2026 · 14:00",
         local: "Praça Central, Prudente – SP",
         vagas: 12,
+        descricao: "",
     },
     {
         id: 4,
@@ -41,15 +45,17 @@ const mockEvents = [
         date: "20 de Jun, 2026 · 07:30",
         local: "Área Rural, Prudente – SP",
         vagas: 3,
+        descricao: "",
     },
     {
         id: 5,
-        emoji: "🌿",
-        tag: "Meio Ambiente",
-        title: "Preservação de Nascentes",
-        date: "20 de Jun, 2026 · 07:30",
-        local: "Área Rural, Prudente – SP",
-        vagas: 3,
+        emoji: "🤣",
+        tag: "LEGAL",
+        title: "OLHA",
+        date: "06 de Jun, 2026 · 19:00",
+        local: "QUEE? KKKKKKK",
+        vagas: 1,
+        descricao: "**Olha** que legal",
     },
 ];
 
@@ -95,6 +101,9 @@ export default function EventsGrid() {
     const scrollNext = React.useCallback(() => {
         if (emblaApi) emblaApi.scrollNext();
     }, [emblaApi]);
+    const [activeDescription, setActiveDescription] = React.useState<
+        string | null
+    >(null);
 
     return (
         <section className="section-events">
@@ -134,7 +143,14 @@ export default function EventsGrid() {
                                     <p className="vagas">
                                         {event.vagas} vagas disponíveis
                                     </p>
-                                    <button className="btn-detalhes">
+                                    <button
+                                        className="btn-detalhes"
+                                        onClick={() =>
+                                            setActiveDescription(
+                                                event.descricao || "",
+                                            )
+                                        }
+                                    >
                                         Ver detalhes
                                     </button>
                                 </div>
@@ -149,6 +165,12 @@ export default function EventsGrid() {
                     ›
                 </div>
             </div>
+            {activeDescription !== null && (
+                <EventModal
+                    descricao={activeDescription}
+                    onClose={() => setActiveDescription(null)}
+                />
+            )}
         </section>
     );
 }

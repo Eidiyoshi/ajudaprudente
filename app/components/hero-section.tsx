@@ -48,6 +48,7 @@ export default function HeroSection() {
                     width={1920}
                     height={1080}
                     className="h-full w-full object-cover object-top"
+                    loading="eager"
                 />
             </div>
         </section>
