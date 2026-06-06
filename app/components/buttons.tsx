@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export function EventSubscribeButton({ eventId, volunteerId }: { eventId: number, volunteerId: number}) {
+export function EventSubscribeButton({ eventId, }: { eventId: number }) {
     const [subscribed, setSubscribed] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -14,8 +14,6 @@ export function EventSubscribeButton({ eventId, volunteerId }: { eventId: number
         try {
             const response = await fetch(`/api/eventos/${eventId}/inscrever`, {
                 method: "POST",
-                headers: { "Content-Type": "appiclation/json" },
-                body: JSON.stringify({ volunteer: volunteerId }),
             });
 
             if (!response.ok) {
