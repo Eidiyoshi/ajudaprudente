@@ -86,7 +86,10 @@ export async function POST(request: Request) {
     dataHoraInicio,
     undefined,
     payload.descricao,
-    payload.vagasDisponiveis
+    payload.vagasDisponiveis,
+    payload.nome,
+    payload.horarioInicio,
+    payload.horarioFim
   );
 
   const created = await evento.storeOnDb();

@@ -3,7 +3,10 @@ import type { Status } from "@/generated/prisma/enums";
 
 export class Evento {
     public idevento?: number;
+    private readonly nome?: string;
     private readonly data?: Date;
+    private readonly horarioInicio?: string;
+    private readonly horarioFim?: string;
     private readonly endereco?: number;
     private readonly organizador: number;
     private readonly publicado: number;
@@ -18,9 +21,15 @@ export class Evento {
         data?: Date,
         endereco?: number,
         descricao?: string,
-        vagas?: number
+        vagas?: number,
+        nome?: string,
+        horarioInicio?: string,
+        horarioFim?: string
     ) {
+        this.nome = nome;
         this.data = data;
+        this.horarioInicio = horarioInicio;
+        this.horarioFim = horarioFim;
         this.endereco = endereco;
         this.organizador = organizador;
         this.publicado = publicado;
@@ -41,7 +50,10 @@ export class Evento {
         const created = await prisma.evento.create({
             data: {
                 idevento: this.idevento,
+                nome: this.nome,
                 data: this.data,
+                horarioInicio: this.horarioInicio,
+                horarioFim: this.horarioFim,
                 endereco: this.endereco,
                 organizador: this.organizador,
                 publicado: this.publicado,
