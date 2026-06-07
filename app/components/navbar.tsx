@@ -50,7 +50,6 @@ export default function NavBar() {
 
     const user = session?.user;
     const isLoggedIn = !!user;
-    const currentUserKind = user?.userKind || "visitante";
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -58,25 +57,29 @@ export default function NavBar() {
 
     const navLinks = [
         {
-            name: isLoggedIn
-                ? user?.userKind === "organizador"
-                    ? "Meus Eventos"
-                    : "Minhas Inscrições"
-                : "Todos os Eventos",
-            href: "/Eventos",
+            name: "Todos os Eventos",
+            href: "/eventos",
         },
-        {
-            name: "Registrar Eventos",
-            href: "/registrar-evento",
-            allowedRoles: ["organizador"],
-        },
+        ...(isLoggedIn && user?.userKind === "organizador"
+            ? [
+                  {
+                      name: "Dashboard",
+                      href: "/dashboard",
+                  },
+                  {
+                      name: "Meus Eventos",
+                      href: "/meus-eventos",
+                  },
+              ]
+            : isLoggedIn
+              ? [
+                    {
+                        name: "Minhas Inscrições",
+                        href: "/minhas-inscricoes",
+                    },
+                ]
+              : []),
     ];
-
-    const visibleLinks = navLinks.filter((link) => {
-        if (!link.allowedRoles) return true;
-        if (!isLoggedIn) return false;
-        return link.allowedRoles.includes(currentUserKind);
-    });
 
     return (
         <>
@@ -95,7 +98,7 @@ export default function NavBar() {
                 </div>
 
                 <ul className="nav-links">
-                    {visibleLinks.map((link) => {
+                    {navLinks.map((link) => {
                         const isActive = pathname === link.href;
                         return (
                             <li key={link.href}>
@@ -149,7 +152,7 @@ export default function NavBar() {
 
             {/* MOBILE MENU */}
             <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
-                {visibleLinks.map((link) => {
+                {navLinks.map((link) => {
                     const isActive = pathname === link.href;
                     return (
                         <Link
