@@ -1,43 +1,214 @@
 "use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import {
+    getUserSession,
+    logoutUser,
+    UserApiSession,
+} from "../lib/session.client";
 
-export function NavBar() {
+const PersonIcon = () => (
+    <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+    </svg>
+);
+
+export default function NavBar() {
     const pathname = usePathname();
+    const [isOpen, setIsOpen] = useState(false);
+    const [session, setSession] = useState<UserApiSession | null>(null);
+    const [, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        let isMounted = true;
+        getUserSession()
+            .then((data) => {
+                if (isMounted) setSession(data);
+            })
+            .finally(() => {
+                if (isMounted) setIsLoading(false);
+            });
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
+    const handleLogout = async () => {
+        await logoutUser();
+        setSession(null);
+    };
+
+    const user = session?.user;
+    const isLoggedIn = !!user;
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
     const navLinks = [
-        { href: "/eventos-disponiveis", label: "Eventos Disponíveis" },
-        { href: "/eventos", label: "Meus Eventos" },
-        { href: "/registrar_evento", label: "Criar Evento" },
-        { href: "/perfil", label: "Perfil" },
-    ]
+        {
+            name: "Todos os Eventos",
+            href: "/eventos",
+        },
+        ...(isLoggedIn && user?.userKind === "organizador"
+            ? [
+                  {
+                      name: "Dashboard",
+                      href: "/dashboard",
+                  },
+                  {
+                      name: "Meus Eventos",
+                      href: "/meus-eventos",
+                  },
+              ]
+            : isLoggedIn
+              ? [
+                    {
+                        name: "Minhas Inscrições",
+                        href: "/minhas-inscricoes",
+                    },
+                ]
+              : []),
+    ];
 
     return (
-        <nav className="w-full bg-zinc-900 border-b border-zinc-800 px-6 py-4">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <>
+            <nav>
+                <div className="logo">
+                    <Link href={"/"}>
+                        <Image
+                            src={"/logo.png"}
+                            alt="Ajuda Prudente"
+                            width={150}
+                            height={42}
+                            style={{ height: "42px", width: "auto" }}
+                            priority
+                        />
+                    </Link>
+                </div>
 
-        <Link href="/" className="text-zinc-100 font-bold text-xl tracking-tight">
-          ajudaprudente
-        </Link>
+                <ul className="nav-links">
+                    {navLinks.map((link) => {
+                        const isActive = pathname === link.href;
+                        return (
+                            <li key={link.href}>
+                                <Link
+                                    href={link.href}
+                                    className={isActive ? "active" : ""}
+                                >
+                                    {link.name}
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </ul>
 
-        <div className="flex items-center gap-1">
-          {navLinks.map(({ href, label }) => {
-            const isActive = pathname === href;
-            return (
-              <Link
-                key={href}
-                href={href}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition ${
-                  isActive
-                    ? "bg-indigo-600 text-zinc-100"
-                    : "text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800"
-                }`}
-              >
-                {label}
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-    </nav>
+                <div className="nav-actions">
+                    {!isLoggedIn && (
+                        <Link href={"/login"}>
+                            <button className="btn-login">Login</button>
+                        </Link>
+                    )}
+                    {!isLoggedIn && (
+                        <Link href={"/registrar"}>
+                            <button className="btn-cadastro">
+                                <PersonIcon />
+                                Cadastro
+                            </button>
+                        </Link>
+                    )}
+                    {isLoggedIn && (
+                        <>
+                            <button
+                                onClick={handleLogout}
+                                className="btn-logout"
+                            >
+                                Logout
+                            </button>
+                            <Link href="/perfil" aria-label="Meu Perfil">
+                                <button className="btn-perfil">
+                                    <PersonIcon />
+                                </button>
+                            </Link>
+                        </>
+                    )}
+                </div>
+
+                <button
+                    className={`hamburger ${isOpen ? "open" : ""}`}
+                    onClick={toggleMenu}
+                    aria-label="Menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+
+            {/* MOBILE MENU */}
+            <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
+                {navLinks.map((link) => {
+                    const isActive = pathname === link.href;
+                    return (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            onClick={() => setIsOpen(false)} // Fecha o menu ao clicar
+                            className={isActive ? "active" : ""}
+                        >
+                            {link.name}
+                        </Link>
+                    );
+                })}
+                <div className="mob-actions">
+                    {!isLoggedIn && (
+                        <Link href={"/login"}>
+                            <button className="btn-login">Login</button>
+                        </Link>
+                    )}
+                    {!isLoggedIn && (
+                        <Link href={"/registrar"}>
+                            <button className="btn-cadastro">
+                                <PersonIcon />
+                                Cadastro
+                            </button>
+                        </Link>
+                    )}
+                    {isLoggedIn && (
+                        <>
+                            <div className="mobile-profile-wrapper"></div>
+                            <button
+                                onClick={() => {
+                                    handleLogout();
+                                    setIsOpen(false);
+                                }}
+                                className="btn-logout"
+                            >
+                                Logout
+                            </button>
+                            <Link href="/perfil" aria-label="Meu Perfil">
+                                <button className="btn-perfil">
+                                    <PersonIcon />
+                                </button>
+                            </Link>
+                        </>
+                    )}
+                </div>
+            </div>
+        </>
     );
 }
