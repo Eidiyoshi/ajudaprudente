@@ -140,7 +140,7 @@ export default function NavBar() {
                                 Logout
                             </button>
                             <Link href="/perfil" aria-label="Meu Perfil">
-                                <button className="btn-perfil">
+                                <button className="w-8 h-8 rounded-full flex items-center justify-center bg-white">
                                     <PersonIcon />
                                 </button>
                             </Link>
@@ -201,7 +201,7 @@ export default function NavBar() {
                                 Logout
                             </button>
                             <Link href="/perfil" aria-label="Meu Perfil">
-                                <button className="btn-perfil">
+                                <button className="w-8 h-8 rounded-full flex items-center justify-center bg-white text-black">
                                     <PersonIcon />
                                 </button>
                             </Link>
