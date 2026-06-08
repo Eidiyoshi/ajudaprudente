@@ -50,6 +50,7 @@ export default function NavBar() {
     const handleLogout = async () => {
         await logoutUser();
         setSession(null);
+        window.location.href = "/login";
     };
 
     const user = session?.user;
@@ -140,7 +141,7 @@ export default function NavBar() {
                                 Logout
                             </button>
                             <Link href="/perfil" aria-label="Meu Perfil">
-                                <button className="btn-perfil">
+                                <button className="w-8 h-8 rounded-full flex items-center justify-center bg-white">
                                     <PersonIcon />
                                 </button>
                             </Link>
@@ -201,7 +202,7 @@ export default function NavBar() {
                                 Logout
                             </button>
                             <Link href="/perfil" aria-label="Meu Perfil">
-                                <button className="btn-perfil">
+                                <button className="w-8 h-8 rounded-full flex items-center justify-center bg-white text-black">
                                     <PersonIcon />
                                 </button>
                             </Link>
