@@ -40,6 +40,14 @@ function validateProfile(data: UserProfile): Errors {
     return errors;
 }
 
+function formatPhone(value: string): string {
+    const digits = value.replace(/\D/g, "").slice(0, 11);
+    if (digits.length <= 10) {
+        return digits.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+    }
+    return digits.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
+}
+
 export function useUserProfileForm() {
     const [isEditing, setIsEditing] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -66,7 +74,7 @@ export function useUserProfileForm() {
                 setProfile({
                     nome: data.nome,
                     email: data.email,
-                    telefone: data.telefone ?? "",
+                    telefone: formatPhone(data.telefone ?? ""),
                     cidade: data.endere_o?.cidade ?? "",
                     estado: "",
                     biografia: "",
@@ -102,7 +110,8 @@ export function useUserProfileForm() {
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) {
         const { name, value } = e.target;
-        setDraft((prev) => ({ ...prev, [name]: value }));
+        const formatted = name === "telefone" ? formatPhone(value) : value;
+        setDraft((prev) => ({ ...prev, [name]: formatted }));
         setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
 
@@ -136,8 +145,7 @@ export function useUserProfileForm() {
             const formData = new FormData();
             formData.append("nome", draft.nome);
             formData.append("email", draft.email);
-            formData.append("telefone", draft.telefone);
-            formData.append("cidade", draft.cidade);
+            formData.append("telefone", draft.telefone.replace(/\D/g, ""));
             formData.append("estado", draft.estado);
             formData.append("biografia", draft.biografia);
 

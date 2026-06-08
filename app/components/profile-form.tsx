@@ -148,7 +148,6 @@ export default function ProfileForm() {
                                 label="Nome completo"
                                 value={draft.nome}
                                 onChange={handleChange}
-                                disabled={false}
                                 error={errors.nome}
                                 placeholder="Seu nome"
                             />
@@ -158,7 +157,6 @@ export default function ProfileForm() {
                                     label="Cidade"
                                     value={draft.cidade}
                                     onChange={handleChange}
-                                    disabled={false}
                                     error={errors.cidade}
                                     placeholder="Cidade"
                                 />
@@ -167,7 +165,6 @@ export default function ProfileForm() {
                                     label="UF"
                                     value={draft.estado}
                                     onChange={handleChange}
-                                    disabled={false}
                                     error={errors.estado}
                                     placeholder="UF"
                                     maxLength={2}
@@ -179,7 +176,6 @@ export default function ProfileForm() {
                                 type="tel"
                                 value={draft.telefone}
                                 onChange={handleChange}
-                                disabled={false}
                                 error={errors.telefone}
                                 placeholder="(00) 00000-0000"
                             />
@@ -189,7 +185,6 @@ export default function ProfileForm() {
                                 type="textarea"
                                 value={draft.biografia}
                                 onChange={handleChange}
-                                disabled={false}
                                 error={errors.biografia}
                                 placeholder="Conte um pouco sobre você..."
                             />
@@ -224,7 +219,6 @@ function Field({
     type = "text",
     value,
     onChange,
-    disabled,
     error,
     placeholder,
     maxLength,
@@ -236,7 +230,6 @@ function Field({
     onChange: (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => void;
-    disabled: boolean;
     error?: string;
     placeholder?: string;
     maxLength?: number;
@@ -255,7 +248,6 @@ function Field({
                     name={id}
                     value={value}
                     onChange={onChange}
-                    disabled={disabled}
                     rows={3}
                     maxLength={maxLength}
                     placeholder={placeholder}
@@ -268,7 +260,6 @@ function Field({
                     type={type}
                     value={value}
                     onChange={onChange}
-                    disabled={disabled}
                     placeholder={placeholder}
                     maxLength={maxLength}
                     className="px-3 py-2 rounded-lg border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6b21a8] focus:border-transparent transition text-sm"
