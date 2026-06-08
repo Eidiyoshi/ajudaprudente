@@ -1,161 +1,171 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect, useTransition } from "react";
+import { updateProfile } from "../lib/data-processing";
 
 export type UserProfile = {
-  nome: string;
-  email: string;
-  bio: string;
-  telefone: string;
-  cidade: string;
-  eventsCreated: number;
-  eventsAttended: number;
+    nome: string;
+    email: string;
+    biografia: string;
+    telefone: string;
+    cidade: string;
+    estado: string;
+    imagem?: string;
 };
 
-type UsuarioApiResponse = {
-  tipoUsuario: "voluntario" | "organizador";
-  nome: string;
-  email: string;
-  telefone?: string | null;
-  endere_o?: {
-    cidade?: string | null;
-  } | null;
+const emptyProfile: UserProfile = {
+    nome: "",
+    email: "",
+    telefone: "",
+    cidade: "",
+    estado: "",
+    biografia: "",
 };
 
 type Errors = Partial<Record<keyof UserProfile, string>>;
 
-const initialProfile: UserProfile = {
-  nome: "Nome",
-  email: "email@dominio.com",
-  bio: "Bio.",
-  telefone: "(00) 00000-0000",
-  cidade: "Cidade, Estado",
-  eventsCreated: 0,
-  eventsAttended: 0,
-};
-
 function validateProfile(data: UserProfile): Errors {
-  const errors: Errors = {};
-  if (!data.nome.trim()) errors.nome = "Nome é obrigatório.";
-  if (!data.email.trim()) errors.email = "E-mail é obrigatório.";
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
-    errors.email = "E-mail inválido.";
-  if (data.bio.length > 200) errors.bio = "Bio deve ter no máximo 200 caracteres.";
+    const errors: Errors = {};
+    if (!data.nome.trim()) errors.nome = "O campo Nome é obrigatório.";
+    else if (data.nome.trim().length < 2)
+        errors.nome = "O nome deve ter pelo menos dois caracteres.";
 
-  return errors;
+    if (!data.email.trim()) errors.email = "E-mail é obrigatório.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
+        errors.email = "E-mail inválido.";
+
+    if (data.biografia && data.biografia.length > 200)
+        errors.biografia = "A biografia deve ter no máximo 200 caracteres.";
+
+    return errors;
 }
 
 export function useUserProfileForm() {
-  const [isEditing, setIsEditing] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+    const [isEditing, setIsEditing] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [saved, setSaved] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [errors, setErrors] = useState<Errors>({});
 
-  const [profile, setProfile] = useState<UserProfile>(initialProfile);
-  const [draft, setDraft] = useState<UserProfile>(initialProfile);
-  const [errors, setErrors] = useState<Errors>({});
+    const [isPending, startTransition] = useTransition();
 
-  const initials = profile.nome
-    .split(" ")
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join("")
-    .toUpperCase();
+    // Estado persistido e Estado de rascunho (para permitir cancelamento)
+    const [profile, setProfile] = useState<UserProfile>(emptyProfile);
+    const [draft, setDraft] = useState<UserProfile>(emptyProfile);
 
-  useEffect(() => {
-    let isMounted = true;
+    useEffect(() => {
+        async function carregarPerfil() {
+            setIsLoading(true);
+            try {
+                const res = await fetch("/api/usuario");
+                const data = await res.json();
+                if (!res.ok) {
+                    setError(data?.error ?? "Erro ao carregar o perfil.");
+                    return;
+                }
+                setProfile({
+                    nome: data.nome,
+                    email: data.email,
+                    telefone: data.telefone ?? "",
+                    cidade: data.endere_o?.cidade ?? "",
+                    estado: "",
+                    biografia: "",
+                });
+                setDraft({
+                    nome: data.nome,
+                    email: data.email,
+                    telefone: data.telefone ?? "",
+                    cidade: data.endere_o?.cidade ?? "",
+                    estado: "",
+                    biografia: "",
+                });
+            } catch (err) {
+                setError(
+                    err instanceof Error ? err.message : "Erro inesperado.",
+                );
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        void carregarPerfil();
+    }, []);
 
-    async function carregarPerfil() {
-      setIsLoading(true);
-      setError(null);
+    const initials = profile.nome
+        .split(" ")
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((w) => w[0])
+        .join("")
+        .toUpperCase();
 
-      try {
-        const res = await fetch("/api/usuario", { method: "GET" });
-        const data = (await res.json()) as UsuarioApiResponse & { error?: string };
+    function handleChange(
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) {
+        const { name, value } = e.target;
+        setDraft((prev) => ({ ...prev, [name]: value }));
+        setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
 
-        if (!res.ok) {
-          if (!isMounted) return;
-          setError(data?.error ?? "Erro ao carregar o perfil.");
-          return;
+    function handleEdit() {
+        setDraft(profile);
+        setErrors({});
+        setError(null);
+        setIsEditing(true);
+        setSaved(false);
+    }
+
+    function handleCancel() {
+        setDraft(profile); // Restaura o rascunho para o estado original
+        setErrors({});
+        setError(null);
+        setIsEditing(false);
+    }
+
+    function handleSave(e: React.FormEvent) {
+        e.preventDefault();
+
+        const errs = validateProfile(draft);
+        if (Object.keys(errs).length > 0) {
+            setErrors(errs);
+            return;
         }
 
-        if (!isMounted) return;
+        startTransition(async () => {
+            setError(null);
 
-        const nextProfile: UserProfile = {
-          ...initialProfile,
-          nome: data.nome,
-          email: data.email,
-          telefone: data.telefone ?? initialProfile.telefone,
-          cidade: data.endere_o?.cidade ?? initialProfile.cidade,
-        };
+            const formData = new FormData();
+            formData.append("nome", draft.nome);
+            formData.append("email", draft.email);
+            formData.append("telefone", draft.telefone);
+            formData.append("cidade", draft.cidade);
+            formData.append("estado", draft.estado);
+            formData.append("biografia", draft.biografia);
 
-        setProfile(nextProfile);
-        setDraft(nextProfile);
-      } catch (err) {
-        if (!isMounted) return;
-        setError(err instanceof Error ? err.message : "Erro inesperado.");
-      } finally {
-        if (!isMounted) return;
-        setIsLoading(false);
-      }
+            const result = await updateProfile(formData);
+
+            if (result?.error) {
+                setError(result.error);
+            } else {
+                setProfile(draft); // Efetiva as alterações
+                setIsEditing(false);
+                setSaved(true);
+            }
+        });
     }
 
-    void carregarPerfil();
-
-    return () => {
-      isMounted = false;
+    return {
+        initials,
+        isEditing,
+        isLoading,
+        isSaving: isPending,
+        saved,
+        error,
+        errors,
+        profile,
+        draft,
+        handleChange,
+        handleEdit,
+        handleCancel,
+        handleSave,
     };
-  }, []);
-
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    const { name, value } = e.target;
-    setDraft((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: undefined }));
-  }
-
-  function handleEdit() {
-    setDraft(profile);
-    setErrors({});
-    setIsEditing(true);
-    setSaved(false);
-  }
-
-  function handleCancel() {
-    setIsEditing(false);
-    setErrors({});
-  }
-
-  async function handleSave(e: React.FormEvent) {
-    e.preventDefault();
-    const errs = validateProfile(draft);
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs);
-      return;
-    }
-    setIsSaving(true);
-    await new Promise((r) => setTimeout(r, 900));
-    setProfile(draft);
-    setIsSaving(false);
-    setIsEditing(false);
-    setSaved(true);
-  }
-
-  return {
-    initials,
-    isEditing,
-    isSaving,
-    saved,
-    isLoading,
-    error,
-    profile,
-    draft,
-    errors,
-    handleChange,
-    handleEdit,
-    handleCancel,
-    handleSave,
-  };
 }
