@@ -1,4 +1,8 @@
+"use client"
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useRef } from "react";
 
 const SearchIcon = () => (
     <svg
@@ -17,6 +21,19 @@ const SearchIcon = () => (
 );
 
 export default function HeroSection() {
+    const router = useRouter();
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const handleSearch = () => {
+        const query = inputRef.current?.value.trim();
+        if (!query) return;
+        router.push(`/eventos?q=${encodeURIComponent(query)}`);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter") handleSearch();
+    };
+
     return (
         <section className="hero">
             {/* Hero Left */}
@@ -33,10 +50,14 @@ export default function HeroSection() {
                 <div className="search-bar">
                     <SearchIcon />
                     <input
+                        ref={inputRef}
                         type="text"
                         placeholder="Buscar eventos, causas ou instituições"
+                        onKeyDown={handleKeyDown}
                     />
-                    <button className="btn-buscar">Buscar</button>
+                    <button className="btn-buscar" onClick={handleSearch}>
+                        Buscar
+                    </button>
                 </div>
             </div>
 
