@@ -22,9 +22,10 @@ export async function updateProfile(formData: FormData) {
         return { error: "A bio deve ter no máximo 200 caracteres." };
     }
 
-    if (telefone && !/^\(\d{2}\)\s\d{4,5}-\d{4}$/.test(telefone)) {
-        return { error: "O telefone deve estar no formato (00) 00000-0000." };
+    if (telefone && !/^\d{10,11}$/.test(telefone)) {
+        return { error: "Telefone inválido." };
     }
+
     if (cidade && cidade.trim().length < 2) {
         return { error: "A cidade deve ter pelo menos dois caracteres." };
     }

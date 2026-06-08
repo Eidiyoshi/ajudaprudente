@@ -37,6 +37,7 @@ export default function ProfileForm() {
         handleEdit,
         handleCancel,
         handleSave,
+        saved,
     } = useUserProfileForm();
 
     const avatarColor = useMemo(
@@ -135,6 +136,11 @@ export default function ProfileForm() {
                     {error && (
                         <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm font-semibold">
                             {error}
+                        </div>
+                    )}
+                    {saved && !isEditing && (
+                        <div className="mb-4 p-3 bg-green-50 border border-green-200 text-green-600 rounded-lg text-sm font-semibold">
+                            Perfil atualizado com sucesso!
                         </div>
                     )}
 

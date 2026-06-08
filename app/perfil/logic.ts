@@ -98,6 +98,12 @@ export function useUserProfileForm() {
         void carregarPerfil();
     }, []);
 
+    useEffect(() => {
+        if (!saved) return;
+        const timer = setTimeout(() => setSaved(false), 3000);
+        return () => clearTimeout(timer);
+    }, [saved]);
+
     const initials = profile.nome
         .split(" ")
         .filter(Boolean)
