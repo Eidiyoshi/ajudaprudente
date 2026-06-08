@@ -4,7 +4,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { getUserSession, logoutUser, UserApiSession } from "../lib/session";
+import {
+    getUserSession,
+    logoutUser,
+    UserApiSession,
+} from "../lib/session.client";
 
 const PersonIcon = () => (
     <svg
@@ -135,6 +139,11 @@ export default function NavBar() {
                             >
                                 Logout
                             </button>
+                            <Link href="/perfil" aria-label="Meu Perfil">
+                                <button className="btn-perfil">
+                                    <PersonIcon />
+                                </button>
+                            </Link>
                         </>
                     )}
                 </div>
@@ -191,6 +200,11 @@ export default function NavBar() {
                             >
                                 Logout
                             </button>
+                            <Link href="/perfil" aria-label="Meu Perfil">
+                                <button className="btn-perfil">
+                                    <PersonIcon />
+                                </button>
+                            </Link>
                         </>
                     )}
                 </div>
