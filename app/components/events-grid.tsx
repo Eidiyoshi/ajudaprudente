@@ -4,6 +4,8 @@ import Link from "next/link";
 import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import EventModal from "./event-modal";
+import { Evento } from '@/app/lib/Evento'
+
 
 // todo: make it not hard-coded!
 const mockEvents = [
@@ -93,7 +95,7 @@ const LocIcon = () => (
     </svg>
 );
 
-export default function EventsGrid() {
+export default function EventsGrid({ events } : { events: Evento[] } ) {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
     const scrollPrev = React.useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev();
@@ -118,26 +120,26 @@ export default function EventsGrid() {
             <div className="cards-wrapper">
                 <div className="embla__viewport" ref={emblaRef}>
                     <div className="embla__container">
-                        {mockEvents.map((event) => (
-                            <div key={event.id} className="embla__slide card">
+                        {events.map((event) => (
+                            <div key={event.idevento} className="embla__slide card">
                                 <div className="card-img">
                                     <div className="card-img-inner">
-                                        {event.emoji}
+                                        ;-;
                                     </div>
                                 </div>
                                 <div className="card-body">
-                                    <span className="tag">{event.tag}</span>
+                                    {/* <span className="tag">{event.tag}</span> */}
                                     <h3 className="card-title">
-                                        {event.title}
+                                        {event}
                                     </h3>
                                     <div className="card-info">
                                         <div className="card-info-item">
                                             <CalendarIcon />
-                                            {event.date}
+                                            {event.date ? new Date(event.data).toLocaleDateString('pt-BR') : '-'}
                                         </div>
                                         <div className="card-info-item">
                                             <LocIcon />
-                                            <span>{event.local}</span>
+                                            <span>{event.endere_o?.logradouro ?? '-'}</span>
                                         </div>
                                     </div>
                                     <p className="vagas">
