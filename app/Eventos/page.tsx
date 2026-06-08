@@ -92,9 +92,9 @@ export default function VisualizarEventos() {
         </h1>
 
         <p className="text-zinc-400 mt-1">
-            Visualize e gerencie os eventos cadastrados.
+            Visualize e gerencie os eventos cadastrados. <br/>
             {query && <span className="ml-2 text-indigo-400">
-                Resultados para: `&quot`{query}`&quot`
+                {`Resultados para: "${query}"`}
                 </span>}
         </p>
 
@@ -118,7 +118,7 @@ export default function VisualizarEventos() {
                     <div className="bg-zinc-800 border border-zinc-700 rounded-xl p-10 text-center">
                         <h2 className="text-xl font-semibold text-zinc-100">Nenhum evento encontrado</h2>
                         <p className="text-zinc-400 mt-2">
-                            {query ? `Nenhum resultado para "{query}".` : "Crie um novo evento para começar."}
+                            {query ? `Nenhum resultado para "${query}".` : "Crie um novo evento para começar."}
                         </p>
                     </div>
 
