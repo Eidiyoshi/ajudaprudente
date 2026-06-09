@@ -9,6 +9,12 @@ type EventFormData = {
     horarioInicio: string;
     horarioFim: string;
     local: string;
+    cidade: string;
+    bairro: string;
+    rua: string;
+    cep: string;
+    apartamento: string;
+    numero: string;
     vagasDisponiveis: number;
     status: Status;
 }
@@ -22,6 +28,12 @@ const emptyForm = (): EventFormData => ({
     horarioInicio: '',
     horarioFim: '',
     local: '',
+    cidade: '',
+    bairro: '',
+    rua: '',
+    cep: '',
+    apartamento: '',
+    numero: '',
     vagasDisponiveis: 0,
     status: Status.Rascunho,
 });
@@ -40,6 +52,10 @@ export function useEventoForm() {
         if (!formData.horarioInicio) newErrors.horarioInicio = 'O horário de início é obrigatório.';
         if (!formData.horarioFim) newErrors.horarioFim = 'O horário de fim é obrigatório.';
         if (!formData.local.trim()) newErrors.local = 'O local do evento é obrigatório.';
+        if (!formData.cidade.trim()) newErrors.cidade = 'A cidade é obrigatória.';
+        if (!formData.bairro.trim()) newErrors.bairro = 'O bairro é obrigatório.';
+        if (!formData.rua.trim()) newErrors.rua = 'A rua é obrigatória.';
+        if (!formData.cep.trim()) newErrors.cep = 'O CEP é obrigatório.';
         if (formData.vagasDisponiveis <= 0) newErrors.vagasDisponiveis = 'As vagas disponíveis não podem ser negativas.';
 
         setErrors(newErrors);
@@ -64,11 +80,19 @@ export function useEventoForm() {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('/api/eventos', {
+            const response = await fetch('/api/registrar_evento', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     ...formData,
+                    endereco: {
+                        cidade: formData.cidade,
+                        bairro: formData.bairro,
+                        rua: formData.rua,
+                        cep: formData.cep,
+                        apartamento: formData.apartamento || undefined,
+                        numero: formData.numero || undefined,
+                    },
                     status: Status.Ativo,
                     organizador: 1, // todo: organizador logado
                  }),
