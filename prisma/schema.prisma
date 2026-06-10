@@ -71,7 +71,7 @@ model inscricao {
 }
 
 model avaliacao_evento {
-  idavaliacao                    Int       @id
+  idavaliacao                    Int       @id @default(autoincrement())
   evento                         Int
   voluntario                     Int
   organizacao                    Int       @db.TinyInt
