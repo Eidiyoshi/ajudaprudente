@@ -50,7 +50,7 @@ export default function NavBar() {
     const handleLogout = async () => {
         await logoutUser();
         setSession(null);
-        window.location.href = "/login";
+        window.location.href = "/";
     };
 
     const user = session?.user;

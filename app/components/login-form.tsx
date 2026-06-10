@@ -16,7 +16,7 @@ export default function LoginForm() {
 
     return (
         <div className="flex-1 bg-gray-bg flex items-center justify-center p-6">
-            <div className="items-center w-full max-w-md bg-white rounded-2xl border border-card-border shadow-sm px-8 py-10 flex flex-col gap-6">
+            <div className="items-center w-md bg-white rounded-2xl border border-card-border shadow-sm px-8 py-10 flex flex-col gap-6">
                 <div className="flex flex-col gap-1">
                     <h1 className="text-2xl font-black text-text-main">
                         Bem-vindo de volta
