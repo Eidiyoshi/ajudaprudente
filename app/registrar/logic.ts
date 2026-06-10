@@ -13,16 +13,6 @@ type SignupForm = {
     telefone: string;
     empresa: string;
     cnpj: string;
-    // optional vvvv
-    rg: string;
-    cpf: string;
-    estado: string;
-    cidade: string;
-    bairro: string;
-    rua: string;
-    numero: string;
-    cep: string;
-    apartamento: string;
 };
 
 type Errors = Partial<Record<keyof SignupForm, string>>;
@@ -37,16 +27,6 @@ const emptyForm: SignupForm = {
     telefone: "",
     empresa: "",
     cnpj: "",
-    // optional vvv,
-    rg: "",
-    cpf: "",
-    estado: "",
-    cidade: "",
-    bairro: "",
-    rua: "",
-    numero: "",
-    cep: "",
-    apartamento: "",
 };
 
 function normalizeDigits(value: string): string {
@@ -141,6 +121,7 @@ export function useSignupForm() {
                 form.tipoUsuario === "organizador" && form.isEmpresa
                     ? normalizeDigits(form.cnpj)
                     : undefined;
+
             const payload =
                 form.tipoUsuario === "voluntario"
                     ? {
