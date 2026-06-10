@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { EventReviewPopup } from "./popup";
 
 export function EventSubscribeButton({ eventId, }: { eventId: number }) {
     const [subscribed, setSubscribed] = useState(false);
@@ -38,6 +39,33 @@ export function EventSubscribeButton({ eventId, }: { eventId: number }) {
                 className="px-4 py-2 rounded-md text-sm font-medium bg-indigo-600 text-white disabled:opacity-50">
                 {subscribed ? "Inscrito ✓" : loading ? "Inscrevendo..." : "Inscrever-se"}
             </button>
+        </div>
+    );
+}
+
+export function EventReviewButton({ eventId, }: { eventId: number }) {
+    const [showPopup, setShowPopup] = useState(false);
+    const [reviewed, setReviewed] = useState(false);    
+
+    return (
+        <div>
+            <button
+                onClick={() => setShowPopup(true)}
+                disabled={reviewed}
+                className="px-4 py-2 rounded-md text-sm font-medium bg-indigo-600 text-white disabled:opacity-50">
+                {reviewed ? "Avaliado ✓" : "Avaliar evento"}
+            </button>
+
+            {showPopup && (
+                <EventReviewPopup
+                    eventId={eventId}
+                    onClose={() => setShowPopup(false)}
+                    onSuccess={() => {
+                        setReviewed(true);
+                        setShowPopup(false);
+                    }}
+                />
+            )}
         </div>
     );
 }

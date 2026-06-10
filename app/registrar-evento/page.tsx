@@ -20,6 +20,18 @@ export default function EventForm() {
 
                 {divLayout('local', 'Local do Evento', 'text', formData.local, handleInputChange, errors.local)}
 
+                {divLayout('cidade', 'Cidade', 'text', formData.cidade, handleInputChange, errors.cidade)}
+
+                {divLayout('bairro', 'Bairro', 'text', formData.bairro, handleInputChange, errors.bairro)}
+
+                {divLayout('rua', 'Rua', 'text', formData.rua, handleInputChange, errors.rua)}
+
+                {divLayout('cep', 'CEP', 'text', formData.cep, handleInputChange, errors.cep)}
+
+                {divLayout('apartamento', 'Apartamento', 'text', formData.apartamento, handleInputChange, errors.apartamento)}
+
+                {divLayout('numero', 'Número', 'text', formData.numero, handleInputChange, errors.numero)}
+
                 {divLayout('vagasDisponiveis', 'Vagas Disponíveis', 'number', formData.vagasDisponiveis.toString(), handleInputChange, errors.vagasDisponiveis)}
 
                 <button type="submit" disabled={isSubmitting} className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-md transition">
