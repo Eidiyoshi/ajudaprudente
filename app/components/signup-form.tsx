@@ -17,12 +17,12 @@ export default function SignUpForm() {
 
     return (
         <div className="bg-gray-bg flex flex-col items-center justify-center flex-1 p-6">
-            <div className="w-md max-h-screen overflow-y-auto space-y-3 items-center flex flex-col gap-2 bg-white rounded-2xl border border-card-border shadow-sm px-8 py-10">
+            <div className="w-md max-h-screen overflow-y-auto items-center flex flex-col gap-2 bg-white rounded-2xl border border-card-border shadow-sm px-8 py-10">
                 <div className="flex flex-col text-center gap-1">
                     <h1 className="text-2xl font-black text-text-main">
                         Criar conta
                     </h1>
-                    <p className="text-sm text-text-muted">
+                    <p className="text-sm text-text-muted mb-2">
                         Preencha seus dados para se registrar.
                     </p>
                 </div>
@@ -91,6 +91,14 @@ export default function SignUpForm() {
                         error={errors.email}
                     />
                     <FormField
+                        fieldName="telefone"
+                        placeholderText="Telefone"
+                        type="tel"
+                        value={form.telefone}
+                        onChange={handleChange}
+                        error={errors.telefone}
+                    />
+                    <FormField
                         fieldName="senha"
                         placeholderText="Senha"
                         type="password"
@@ -105,14 +113,6 @@ export default function SignUpForm() {
                         value={form.confirmarSenha}
                         onChange={handleChange}
                         error={errors.confirmarSenha}
-                    />
-                    <FormField
-                        fieldName="telefone"
-                        placeholderText="Telefone"
-                        type="tel"
-                        value={form.telefone}
-                        onChange={handleChange}
-                        error={errors.telefone}
                     />
 
                     {success && (
