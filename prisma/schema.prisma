@@ -43,6 +43,7 @@ model evento {
   endere_o                                    endere_o?   @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: "evento_endereco_fkey")
   organizador_evento_organizadorToorganizador organizador @relation("evento_organizadorToorganizador", fields: [organizador], references: [idorganizador], onDelete: NoAction, onUpdate: NoAction, map: "organizador")
   inscricao_inscricao_eventoToevento          inscricao[] @relation("inscricao_eventoToevento")
+  avaliacao_evento_avaliacao_eventoToevento   avaliacao_evento[]
 
   @@index([endereco], map: "local_idx")
   @@index([organizador], map: "organizador_idx")
@@ -62,11 +63,31 @@ model inscricao {
   voluntario                                                        Int
   evento                                                            Int
   data                                                              DateTime   @db.DateTime(0)
-  evento_inscricao_eventoToevento                                   evento     @relation("inscricao_eventoToevento", fields: [evento], references: [idevento], onDelete: NoAction, onUpdate: NoAction, map: "evento")
+  evento_inscricao_eventoToevento                                   evento     @relation("inscricao_eventoToevento", fields: [evento], references: [idevento], onDelete: NoAction, onUpdate: NoAction, map: "inscricao_evento_fkey")
   voluntario_inscricao_voluntario_voluntario_voluntarioTovoluntario voluntario @relation("inscricao_voluntario_voluntario_voluntarioTovoluntario", fields: [voluntario], references: [idusuarios], onDelete: NoAction, onUpdate: NoAction, map: "inscricao_voluntario_fkey")
 
   @@id([voluntario, evento])
   @@index([evento], map: "evento_idx")
+}
+
+model avaliacao_evento {
+  idavaliacao                    Int       @id
+  evento                         Int
+  voluntario                     Int
+  organizacao                    Int       @db.TinyInt
+  comunicacao                    Int       @db.TinyInt
+  clarezaAtividadesDesempenhadas Int       @db.TinyInt
+  apoioEquipe                    Int       @db.TinyInt
+  satisfacaoGeral                Int       @db.TinyInt
+  interesseVoluntariarNovamente  Int       @db.TinyInt
+  pontosPositivos                String?   @db.LongText
+  pontosNegativos                String?   @db.LongText
+  criado                         DateTime  @default(now()) @db.DateTime(0)
+  evento_avaliacao_eventoToevento evento    @relation(fields: [evento], references: [idevento], onDelete: NoAction, onUpdate: NoAction, map: "avaliacao_evento_fkey")
+  voluntario_avaliacao_eventoTovoluntario voluntario @relation(fields: [voluntario], references: [idusuarios], onDelete: NoAction, onUpdate: NoAction, map: "avaliacao_evento_voluntario_fkey")
+
+  @@unique([evento, voluntario], map: "avaliacao_evento_voluntario_unica")
+  @@index([evento], map: "avaliacao_evento_idx")
 }
 
 model interesse {
@@ -110,6 +131,7 @@ model voluntario {
   habilidade_habilidade_voluntario_voluntario_voluntarioTovoluntario habilidade[] @relation("habilidade_voluntario_voluntario_voluntarioTovoluntario")
   inscricao_inscricao_voluntario_voluntario_voluntarioTovoluntario   inscricao[]  @relation("inscricao_voluntario_voluntario_voluntarioTovoluntario")
   interesse_interesse_voluntario_voluntario_voluntarioTovoluntario   interesse[]  @relation("interesse_voluntario_voluntario_voluntarioTovoluntario")
+  avaliacao_evento_avaliacao_eventoTovoluntario                       avaliacao_evento[]
   endere_o                                                           endere_o     @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: "voluntario_endereco_fkey")
 
   @@index([endereco], map: "endereco_idx")
