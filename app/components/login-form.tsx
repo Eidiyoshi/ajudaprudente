@@ -7,6 +7,7 @@ export default function LoginForm() {
         form,
         error,
         errors,
+        success,
         isSaving,
         handleChange,
         handleUserKind,
@@ -57,6 +58,12 @@ export default function LoginForm() {
                         onChange={handleChange}
                         error={errors.senha}
                     />
+
+                    {success && (
+                        <div className="rounded-lg bg-green-50 border border-green-200 px-4 py-3">
+                            <p className="text-sm text-green-600">{success}</p>
+                        </div>
+                    )}
 
                     {error && (
                         <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3">

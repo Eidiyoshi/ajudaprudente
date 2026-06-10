@@ -35,6 +35,7 @@ export function useLoginForm() {
     const [error, setError] = useState<string | null>(null);
     const [errors, setErrors] = useState<Errors>({});
     const [isPending, startTransition] = useTransition();
+    const [success, setSuccess] = useState<string | null>(null);
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
@@ -80,7 +81,20 @@ export function useLoginForm() {
                     setError(message);
                     return;
                 }
-                window.location.href = "/";
+                const nome =
+                    typeof body === "object" && body !== null && "nome" in body
+                        ? String(body.nome)
+                        : null;
+
+                setSuccess(
+                    nome
+                        ? `Login realizado com sucesso. Bem-vindo(a), ${nome}.`
+                        : "Login realizado com sucesso.",
+                );
+
+                setTimeout(() => {
+                    window.location.href = "/";
+                }, 2000);
             } catch (err) {
                 setError(
                     err instanceof Error ? err.message : "Erro inesperado.",
@@ -93,6 +107,7 @@ export function useLoginForm() {
         form,
         error,
         errors,
+        success,
         isSaving: isPending,
         handleChange,
         handleUserKind,
