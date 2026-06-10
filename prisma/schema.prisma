@@ -85,7 +85,7 @@ model organizador {
   senha                                  String   @db.VarChar(255)
   email                                  String   @db.VarChar(45)
   criado                                 DateTime @db.DateTime(0)
-  endereco                               Int
+  endereco                               Int?
   cnpj                                   String?  @db.VarChar(14)
   telefone                               String?  @db.VarChar(45)
   empresa                                String?  @db.VarChar(255)
@@ -96,17 +96,17 @@ model organizador {
 }
 
 model voluntario {
-  idusuarios                                                         Int          @id
-  nome                                                               String       @db.VarChar(45)
-  senha                                                              String       @db.VarChar(255)
-  email                                                              String       @db.VarChar(255)
-  criado                                                             DateTime     @db.DateTime(0)
-  endereco                                                           Int
-  rg                                                                 String?      @db.VarChar(11)
-  cpf                                                                String?      @db.VarChar(11)
-  telefone                                                           String?      @db.VarChar(45)
-  notificacao                                                        Int?         @db.TinyInt
-  darkmode                                                           Int?         @db.TinyInt
+  idusuarios                            Int          @id
+  nome                                  String       @db.VarChar(45)
+  senha                                 String       @db.VarChar(255)
+  email                                 String       @db.VarChar(255)
+  criado                                DateTime     @db.DateTime(0)
+  endereco                              Int?
+  rg                                    String?      @db.VarChar(11)
+  cpf                                   String?      @db.VarChar(11)
+  telefone                              String?      @db.VarChar(45)
+  notificacao                           Int?         @db.TinyInt
+  darkmode                              Int?         @db.TinyInt
   habilidade_habilidade_voluntario_voluntario_voluntarioTovoluntario habilidade[] @relation("habilidade_voluntario_voluntario_voluntarioTovoluntario")
   inscricao_inscricao_voluntario_voluntario_voluntarioTovoluntario   inscricao[]  @relation("inscricao_voluntario_voluntario_voluntarioTovoluntario")
   interesse_interesse_voluntario_voluntario_voluntarioTovoluntario   interesse[]  @relation("interesse_voluntario_voluntario_voluntarioTovoluntario")
