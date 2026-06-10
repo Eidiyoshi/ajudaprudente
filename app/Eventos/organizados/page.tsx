@@ -36,7 +36,7 @@ export default function MeusEventos() {
                                 Ver todos os eventos
                             </Link>
                             <Link
-                                href="/Eventos/criar"
+                                href="/registrar-evento"
                                 className="px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white"
                             >
                                 Criar evento
