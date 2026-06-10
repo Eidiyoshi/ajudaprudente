@@ -28,11 +28,10 @@ export default function LoginForm() {
                 <form
                     onSubmit={handleSubmit}
                     noValidate
-                    className="flex flex-col gap-4"
+                    className="flex flex-col gap-2 w-full"
                 >
                     <Selector
                         fieldName="tipoUsuario"
-                        labelText="Tipo de Usuário"
                         value={form.tipoUsuario}
                         onChange={handleUserKind}
                         options={[
@@ -41,23 +40,25 @@ export default function LoginForm() {
                         ]}
                     />
 
-                    <FormField
-                        fieldName="email"
-                        labelText="E-mail"
-                        type="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        error={errors.email}
-                    />
+                    <div className="flex flex-col gap-2 mt-4">
+                        <FormField
+                            fieldName="email"
+                            placeholderText="E-mail"
+                            type="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            error={errors.email}
+                        />
 
-                    <FormField
-                        fieldName="senha"
-                        labelText="Senha"
-                        type="password"
-                        value={form.senha}
-                        onChange={handleChange}
-                        error={errors.senha}
-                    />
+                        <FormField
+                            fieldName="senha"
+                            placeholderText="Senha"
+                            type="password"
+                            value={form.senha}
+                            onChange={handleChange}
+                            error={errors.senha}
+                        />
+                    </div>
 
                     {success && (
                         <div className="rounded-lg bg-green-50 border border-green-200 px-4 py-3">
@@ -93,25 +94,17 @@ export default function LoginForm() {
 
 function Selector({
     fieldName,
-    labelText,
     value,
     onChange,
     options,
 }: {
     fieldName: string;
-    labelText: string;
     value: string;
     onChange: (value: string) => void;
     options: { value: string; label: string }[];
 }) {
     return (
         <div className="flex flex-col gap-1.5">
-            <label
-                htmlFor={fieldName}
-                className="text-sm font-medium text-text-main"
-            >
-                {labelText}
-            </label>
             <select
                 id={fieldName}
                 value={value}
@@ -130,14 +123,14 @@ function Selector({
 
 function FormField({
     fieldName,
-    labelText,
+    placeholderText,
     type,
     value,
     onChange,
     error,
 }: {
     fieldName: string;
-    labelText: string;
+    placeholderText: string;
     type: string;
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -145,18 +138,13 @@ function FormField({
 }) {
     return (
         <div className="flex flex-col gap-1.5">
-            <label
-                htmlFor={fieldName}
-                className="text-sm font-medium text-text-main"
-            >
-                {labelText}
-            </label>
             <input
                 id={fieldName}
                 name={fieldName}
                 type={type}
                 value={value}
                 onChange={onChange}
+                placeholder={placeholderText}
                 required
                 className="w-full px-3 py-2.5 rounded-xl border border-card-border bg-white text-text-main text-sm placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-purple focus:border-transparent transition"
             />
