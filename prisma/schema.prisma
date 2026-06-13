@@ -41,7 +41,7 @@ model evento {
   descricao                                   String?     @db.LongText
   status                                      Status      @default(Rascunho)
   vagas                                       Int?
-  endere_o                                    endere_o?   @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: "evento_endereco_fkey")
+  endere_o                                    endere_o?   @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction)
   organizador_evento_organizadorToorganizador organizador @relation("evento_organizadorToorganizador", fields: [organizador], references: [idorganizador], onDelete: NoAction, onUpdate: NoAction, map: "organizador")
   inscricao_inscricao_eventoToevento          inscricao[] @relation("inscricao_eventoToevento")
   avaliacao_evento_avaliacao_eventoToevento   avaliacao_evento[]
@@ -112,7 +112,7 @@ model organizador {
   telefone                               String?  @db.VarChar(45)
   empresa                                String?  @db.VarChar(255)
   evento_evento_organizadorToorganizador evento[] @relation("evento_organizadorToorganizador")
-  endere_o                               endere_o @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: "organizador_endereco_fkey")
+  endere_o                               endere_o? @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([endereco], map: "endereco_idx")
 }
@@ -133,7 +133,7 @@ model voluntario {
   inscricao_inscricao_voluntario_voluntario_voluntarioTovoluntario   inscricao[]  @relation("inscricao_voluntario_voluntario_voluntarioTovoluntario")
   interesse_interesse_voluntario_voluntario_voluntarioTovoluntario   interesse[]  @relation("interesse_voluntario_voluntario_voluntarioTovoluntario")
   avaliacao_evento_avaliacao_eventoTovoluntario                       avaliacao_evento[]
-  endere_o                                                           endere_o     @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction, map: "voluntario_endereco_fkey")
+  endere_o                                                           endere_o?     @relation(fields: [endereco], references: [idendere_o], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([endereco], map: "endereco_idx")
 }
