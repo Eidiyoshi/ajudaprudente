@@ -8,7 +8,7 @@ export function EventosHeader() {
                 <p className="text-zinc-400 mt-1">Visualize e gerencie os eventos cadastrados.</p>
                 <div className="flex gap-3 mt-4">
                     <Link
-                        href="/Eventos/meusEventos"
+                        href="/eventos/organizados"
                         className="px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white"
                     >
                         Meus Eventos
