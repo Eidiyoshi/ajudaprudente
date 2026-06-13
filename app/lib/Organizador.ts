@@ -29,7 +29,7 @@ export class Organizador extends Usuario {
         this.empresa = empresa;
     }
 
-    public async storeOnDb(endereco: number) {
+    public async storeOnDb() {
         if (this.idorganizador === undefined) {
             const lastOrganizador = await prisma.organizador.findFirst({
                 select: { idorganizador: true },
@@ -45,7 +45,6 @@ export class Organizador extends Usuario {
                 senha: this.senha,
                 email: this.email,
                 criado: new Date(),
-                endereco,
                 cnpj: this.cnpj,
                 telefone: String(this.telefone),
                 empresa: this.empresa,

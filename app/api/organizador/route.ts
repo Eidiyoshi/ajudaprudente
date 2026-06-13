@@ -9,12 +9,9 @@ type OrganizadorPayload = {
   email: string;
   senha: string;
   telefone: number;
-  rg: string;
-  cpf: string;
   isEmpresa: boolean;
   cnpj?: string;
   empresa?: string;
-  endereco: EnderecoPayload;
 };
 
 function isValidPayload(payload: unknown): payload is OrganizadorPayload {
@@ -37,13 +34,8 @@ function isValidPayload(payload: unknown): payload is OrganizadorPayload {
     body.senha.trim().length > 0 &&
     typeof body.telefone === "number" &&
     Number.isFinite(body.telefone) &&
-    typeof body.rg === "string" &&
-    body.rg.trim().length > 0 &&
-    typeof body.cpf === "string" &&
-    body.cpf.trim().length > 0 &&
     typeof isEmpresa === "boolean" &&
-    dadosEmpresaValidos &&
-    isEnderecoPayload(body.endereco)
+    dadosEmpresaValidos
   );
 }
 
@@ -69,16 +61,7 @@ export async function POST(request: Request) {
     payload.isEmpresa ? payload.empresa : undefined
   );
 
-  const endereco = new Endereco(
-    payload.endereco.cidade,
-    payload.endereco.bairro,
-    payload.endereco.rua,
-    payload.endereco.cep,
-    payload.endereco.apartamento,
-    payload.endereco.numero
-  );
-  const createdEndereco = await endereco.storeOnDb();
-  const created = await organizador.storeOnDb(createdEndereco.idendere_o);
+  const created = await organizador.storeOnDb();
 
   return Response.json(created, { status: 201 });
 }

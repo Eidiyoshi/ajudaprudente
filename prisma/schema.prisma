@@ -4,6 +4,7 @@
   Encerrado
   Rascunho
 }
+
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
