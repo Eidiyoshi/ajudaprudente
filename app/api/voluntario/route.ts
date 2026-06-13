@@ -9,9 +9,6 @@ type VoluntarioPayload = {
   email: string;
   senha: string;
   telefone: number;
-  rg: string;
-  cpf: string;
-  endereco: EnderecoPayload;
 };
 
 function isValidPayload(payload: unknown): payload is VoluntarioPayload {
@@ -27,12 +24,7 @@ function isValidPayload(payload: unknown): payload is VoluntarioPayload {
     typeof body.senha === "string" &&
     body.senha.trim().length > 0 &&
     typeof body.telefone === "number" &&
-    Number.isFinite(body.telefone) &&
-    typeof body.rg === "string" &&
-    body.rg.trim().length > 0 &&
-    typeof body.cpf === "string" &&
-    body.cpf.trim().length > 0 &&
-    isEnderecoPayload(body.endereco)
+    Number.isFinite(body.telefone)  
   );
 }
 
@@ -53,21 +45,10 @@ export async function POST(request: Request) {
     payload.email,
     payload.senha,
     payload.telefone,
-    TipoUsuario.Voluntario,
-    payload.rg,
-    payload.cpf
+    TipoUsuario.Voluntario
   );
 
-  const endereco = new Endereco(
-    payload.endereco.cidade,
-    payload.endereco.bairro,
-    payload.endereco.rua,
-    payload.endereco.cep,
-    payload.endereco.apartamento,
-    payload.endereco.numero
-  );
-  const createdEndereco = await endereco.storeOnDb();
-  const created = await voluntario.storeOnDb(createdEndereco.idendere_o);
+  const created = await voluntario.storeOnDb();
 
   return Response.json(created, { status: 201 });
 }

@@ -2,6 +2,8 @@ import { useState, ChangeEvent } from 'react';
 
 import { Status } from '@/generated/prisma/enums';
 
+import { getUserSession } from '@/app/lib/session.client';
+
 type EventFormData = {
     nome: string;
     descricao: string;
@@ -80,6 +82,7 @@ export function useEventoForm() {
         setIsSubmitting(true);
 
         try {
+            const userResponse = await getUserSession();
             const response = await fetch('/api/registrar_evento', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -94,7 +97,7 @@ export function useEventoForm() {
                         numero: formData.numero || undefined,
                     },
                     status: Status.Ativo,
-                    organizador: 1, // todo: organizador logado
+                    organizador: userResponse.user.id, 
                  }),
             });
 

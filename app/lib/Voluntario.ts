@@ -17,16 +17,12 @@ export class Voluntario extends Usuario {
         senha: string,
         telefone: number,
         tipoUsuario: TipoUsuario,
-        rg: string,
-        cpf: string
     ) {
         super(undefined, nome, email, senha, telefone, tipoUsuario);
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.telefone = telefone;
-        this.rg = rg;
-        this.cpf = cpf;
     }
 
     public async storeOnDb(endereco: number) {
@@ -45,9 +41,6 @@ export class Voluntario extends Usuario {
                 senha: this.senha,
                 email: this.email,
                 criado: new Date(),
-                endereco,
-                rg: this.rg,
-                cpf: this.cpf,
                 telefone: String(this.telefone),
             },
         });
