@@ -1,12 +1,5 @@
-/*
-
------------------------------------------------------ DEPRECIADO -------------------------------------------------------------------------
-usar app/meus-eventos para gerenciar os eventos como organizador
-
-*/
-
 "use client";
-
+ 
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { EventCard } from "@/app/components/cards";

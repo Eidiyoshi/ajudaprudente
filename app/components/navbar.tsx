@@ -73,14 +73,14 @@ export default function NavBar() {
                   },
                   {
                       name: "Meus Eventos",
-                      href: "/eventos/organizados",
+                      href: "/meus-eventos",
                   },
               ]
             : isLoggedIn
               ? [
                     {
                         name: "Minhas Inscrições",
-                        href: "/eventos/inscritos",
+                        href: "/minhas-inscricoes",
                     },
                 ]
               : []),

@@ -1,3 +1,10 @@
+/*
+
+----------------------------------------------------- DEPRECIADO -------------------------------------------------------------------------
+usar app/minhas-inscricoes para ver os eventos como voluntario
+
+*/
+
 "use client"
 
 import Link from "next/link";
