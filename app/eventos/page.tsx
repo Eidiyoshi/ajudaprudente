@@ -1,3 +1,5 @@
+"use client"
+
 import { EventosHeader } from "../components/headears";
 import { EventList } from "../components/eventList";
 

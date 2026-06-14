@@ -4,7 +4,7 @@ import { jwtVerify, SignJWT } from "jose";
 import { cookies } from "next/headers";
 
 type TipoUsuario = "voluntario" | "organizador";
-
+ 
 type SessionTokenPayload = {
   userId: number;
   tipoUsuario: TipoUsuario;

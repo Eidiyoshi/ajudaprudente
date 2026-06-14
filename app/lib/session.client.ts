@@ -5,7 +5,7 @@ export interface UserApiSession {
         email: string;
         userKind: string;
     };
-}
+} 
 
 export async function getUserSession(): Promise<UserApiSession | null> {
     try {

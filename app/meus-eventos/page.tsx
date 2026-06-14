@@ -1,5 +1,5 @@
 "use client";
-
+ 
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { EventCard } from "@/app/components/cards";
@@ -30,7 +30,7 @@ export default function MeusEventos() {
                         <p className="text-zinc-400 mt-1">Eventos que você está organizando.</p>
                         <div className="flex gap-3 mt-4">
                             <Link
-                                href="/Eventos"
+                                href="/eventos"
                                 className="px-4 py-2 rounded-md bg-zinc-700 hover:bg-zinc-600 text-white"
                             >
                                 Ver todos os eventos
@@ -62,7 +62,7 @@ export default function MeusEventos() {
                             Você ainda não criou nenhum evento.
                         </p>
                         <Link
-                            href="/Eventos/criar"
+                            href="/registrar-evento"
                             className="inline-block mt-4 px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white"
                         >
                             Criar primeiro evento
