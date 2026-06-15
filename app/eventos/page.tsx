@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import { EventosHeader } from "../components/headears";
-import { EventList } from "../components/eventList";
+import { EventList } from "../components/all-events-list";
 
 export type Event = {
     idevento: number;

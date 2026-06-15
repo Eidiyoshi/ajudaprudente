@@ -1,12 +1,16 @@
 import Link from "next/link";
-import { Event } from "@/app/Eventos/page"
+import { Event } from "@/app/eventos/page";
 
 const getStatusColor = (status: string) => {
     switch (status) {
-        case "Ativo":     return "bg-green-500/20 text-green-400 border-green-500/30";
-        case "Cancelado": return "bg-red-500/20 text-red-400 border-red-500/30";
-        case "Encerrado": return "bg-zinc-500/20 text-zinc-300 border-zinc-500/30";
-        default:          return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
+        case "Ativo":
+            return "bg-green-500/20 text-green-400 border-green-500/30";
+        case "Cancelado":
+            return "bg-red-500/20 text-red-400 border-red-500/30";
+        case "Encerrado":
+            return "bg-zinc-500/20 text-zinc-300 border-zinc-500/30";
+        default:
+            return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
     }
 };
 
@@ -17,7 +21,9 @@ const formatDate = (dateStr: string | null) => {
 
 const formatLocal = (endere_o: Event["endere_o"]) => {
     if (!endere_o) return "-";
-    return [endere_o.rua, endere_o.bairro, endere_o.cidade].filter(Boolean).join(", ");
+    return [endere_o.rua, endere_o.bairro, endere_o.cidade]
+        .filter(Boolean)
+        .join(", ");
 };
 
 export function EventCard({ event }: { event: Event }) {
@@ -32,7 +38,9 @@ export function EventCard({ event }: { event: Event }) {
                         {event.descricao ?? "Sem descrição"}
                     </p>
                 </div>
-                <span className={`px-3 py-1 rounded-full text-xs border font-medium ${getStatusColor(event.status)}`}>
+                <span
+                    className={`px-3 py-1 rounded-full text-xs border font-medium ${getStatusColor(event.status)}`}
+                >
                     {event.status}
                 </span>
             </div>
@@ -40,7 +48,9 @@ export function EventCard({ event }: { event: Event }) {
             <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
                 <div className="bg-zinc-900/60 rounded-lg p-3 border border-zinc-700">
                     <p className="text-zinc-400">Data</p>
-                    <p className="text-zinc-100 font-medium mt-1">{formatDate(event.data)}</p>
+                    <p className="text-zinc-100 font-medium mt-1">
+                        {formatDate(event.data)}
+                    </p>
                 </div>
 
                 <div className="bg-zinc-900/60 rounded-lg p-3 border border-zinc-700">
@@ -52,12 +62,16 @@ export function EventCard({ event }: { event: Event }) {
 
                 <div className="bg-zinc-900/60 rounded-lg p-3 border border-zinc-700 col-span-2">
                     <p className="text-zinc-400">Local</p>
-                    <p className="text-zinc-100 font-medium mt-1">{formatLocal(event.endere_o)}</p>
+                    <p className="text-zinc-100 font-medium mt-1">
+                        {formatLocal(event.endere_o)}
+                    </p>
                 </div>
 
                 <div className="bg-zinc-900/60 rounded-lg p-3 border border-zinc-700 col-span-2">
                     <p className="text-zinc-400">Vagas Disponíveis</p>
-                    <p className="text-zinc-100 font-medium mt-1">{event.vagas ?? "-"}</p>
+                    <p className="text-zinc-100 font-medium mt-1">
+                        {event.vagas ?? "-"}
+                    </p>
                 </div>
             </div>
 
