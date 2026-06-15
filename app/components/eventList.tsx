@@ -20,7 +20,7 @@ type Event = {
     } | null;
 }
 
-export function EventList() {
+export function EventList({ tipoUsuario }: { tipoUsuario: string | null }) {
     const [events, setEvents] = useState<Event[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -49,7 +49,16 @@ export function EventList() {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {events.map((event) => (
-                <EventCard key={event.idevento} event={event} from="eventos" button={<EventSubscribeButton eventId={event.idevento}/>} />
+                <EventCard
+                    key={event.idevento}
+                    event={event}
+                    from="eventos"
+                    button={
+                        tipoUsuario === "organizador"
+                            ? null
+                            : <EventSubscribeButton eventId={event.idevento} />
+                    }
+                />
             ))}
         </div>
     );
