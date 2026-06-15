@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { EventCard } from "./cards";
+import { EventSubscribeButton } from "./buttons"
 
 type Event = {
     idevento: number;
@@ -48,7 +49,7 @@ export function EventList() {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {events.map((event) => (
-                <EventCard key={event.idevento} event={event} from="eventos" />
+                <EventCard key={event.idevento} event={event} from="eventos" button={<EventSubscribeButton eventId={event.idevento}/>} />
             ))}
         </div>
     );
