@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { EventReviewPopup } from "./popup";
 
 export function EventSubscribeButton({ eventId, }: { eventId: number }) {
@@ -40,6 +41,57 @@ export function EventSubscribeButton({ eventId, }: { eventId: number }) {
                 {subscribed ? "Inscrito ✓" : loading ? "Inscrevendo..." : "Inscrever-se"}
             </button>
         </div>
+    );
+}
+
+export function EventUnsubscribeButton({ eventId, }: { eventId: number }) {
+    const [unsubscribed, setUnsubscribed] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    
+    const handleUnsubscribe = async () => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await fetch(`/api/eventos/${eventId}/inscrever`, {
+                method: "DELETE",
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.error || "Erro ao cancelar inscrição.");
+            }
+
+            setUnsubscribed(true);
+        } catch (e) {
+            setError(e instanceof Error ? e.message : "Erro desconhecido.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div>
+            {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+            <button
+                onClick={handleUnsubscribe}
+                disabled={unsubscribed || loading}
+                className="px-4 py-2 rounded-md text-sm font-medium bg-indigo-600 text-white disabled:opacity-50">
+                {unsubscribed ? "Cancelado " : loading ? "Cancelando..." : "Cancelar Inscrição"}
+            </button>
+        </div>
+    );
+}
+
+export function EventEditButton({ eventId, }: { eventId: number }) {
+    return (
+        <Link
+            href={`/eventos/${eventId}/editar`}
+            className="px-4 py-2 rounded-md text-sm font-medium bg-zinc-600 hover:bg-zinc-500 text-white transition"
+        >
+            Editar
+        </Link>
     );
 }
 
