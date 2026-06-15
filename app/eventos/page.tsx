@@ -1,7 +1,6 @@
-"use client"
-
 import { EventosHeader } from "../components/headears";
 import { EventList } from "../components/eventList";
+import { getUsuarioLogado } from "@/lib/usuario";
 
 export type Event = {
     idevento: number;
@@ -19,12 +18,15 @@ export type Event = {
     } | null;
 };
 
-export default function VisualizarEventos() {
+export default async function VisualizarEventos() {
+    const result = await getUsuarioLogado();
+    const tipoUsuario = result.ok ? result.usuario.tipoUsuario : null;
+
     return (
         <div className="min-h-screen bg-zinc-900 p-6">
             <div className="max-w-6xl mx-auto">
-                <EventosHeader />
-                <EventList />
+                <EventosHeader tipoUsuario={tipoUsuario}/>
+                <EventList tipoUsuario={tipoUsuario}/>
             </div>
         </div>
     );
