@@ -3,7 +3,23 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { EventCard } from "@/app/components/cards";
-import { Event } from "../page";
+import { EventEditButton } from "../components/buttons";
+
+type Event = {
+    idevento: number;
+    nome: string | null;
+    descricao: string | null;
+    data: string | null;
+    horarioInicio: string | null;
+    horarioFim: string | null;
+    status: string;
+    vagas: number | null;
+    endere_o: {
+        rua: string | null;
+        bairro: string | null;
+        cidade: string | null;
+    } | null;
+};
 
 export default function MeusEventos() {
     const [events, setEvents] = useState<Event[]>([]);
@@ -73,7 +89,12 @@ export default function MeusEventos() {
                 {!loading && !error && events.length > 0 && (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         {events.map((event) => (
-                            <EventCard key={event.idevento} event={event} />
+                            <EventCard
+                                key={event.idevento}
+                                event={event}
+                                from="meus-eventos"
+                                button={<EventEditButton eventId={event.idevento} />}
+                            />
                         ))}
                     </div>
                 )}
