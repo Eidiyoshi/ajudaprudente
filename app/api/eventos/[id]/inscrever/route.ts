@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma"
 import { getUsuarioLogado } from "@/lib/usuario";
-import { error } from "console";
 
 export async function POST(
     request: Request,
