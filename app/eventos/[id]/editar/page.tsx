@@ -151,9 +151,9 @@ export default function EditarEvento() {
                     <div>
                         <label className={labelClass}>Status</label>
                         <select className={inputClass} value={status} onChange={(e) => setStatus(e.target.value)}>
-                            <option value="ativo">Ativo</option>
-                            <option value="cancelado">Cancelado</option>
-                            <option value="encerrado">Encerrado</option>
+                            <option value="Ativo">Ativo</option>
+                            <option value="Cancelado">Cancelado</option>
+                            <option value="Encerrado">Encerrado</option>
                         </select>
                     </div>
                     <div>
