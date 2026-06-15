@@ -3,8 +3,9 @@ import { getUsuarioLogado } from "@/lib/usuario";
 
 export async function POST(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await params;
     const result = await getUsuarioLogado();
     if (!result.ok) {
         return Response.json(
@@ -22,7 +23,7 @@ export async function POST(
 
     const voluntarioId = result.usuario.idusuarios;
 
-    const eventoId = Number(params.id);
+    const eventoId = Number(id);
     if (!Number.isInteger(eventoId) || eventoId <= 0) {
         return Response.json(
             { error: "Invalid evento ID." },
@@ -83,4 +84,35 @@ export async function POST(
     });
 
     return Response.json(inscricao, { status: 201});
+}
+
+export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const result = await getUsuarioLogado();
+
+    if (!result.ok) {
+        return Response.json({ error: result.error }, { status: result.status });
+    }
+
+    if (result.usuario.tipoUsuario !== "voluntario") {
+        return Response.json({ error: "Apenas voluntários podem cancelar inscrições."}, { status: 403 });
+    }
+
+    const voluntarioId = result.usuario.idusuarios
+    const eventoId = Number(id);
+
+    try {
+        await prisma.inscricao.delete({
+            where: {
+                voluntario_evento: {
+                    voluntario: voluntarioId,
+                    evento: eventoId,
+                },
+            },
+        });
+        return Response.json({ sucess: true });
+    } catch (error) {
+        console.error(error);
+        return Response.json({ error: "Erro ao cancelar inscrição." }, { status: 500 });
+    }
 }

@@ -2,9 +2,25 @@
 
 import { useEffect, useState } from "react";
 import { EventCard } from "./cards";
-import { Event } from "@/app/Eventos/page"
+import { EventSubscribeButton } from "./buttons"
 
-export function EventList() {
+type Event = {
+    idevento: number;
+    nome: string | null;
+    descricao: string | null;
+    data: string | null;
+    horarioInicio: string | null;
+    horarioFim: string | null;
+    status: string;
+    vagas: number | null;
+    endere_o: {
+        rua: string | null;
+        bairro: string | null;
+        cidade: string | null;
+    } | null;
+}
+
+export function EventList({ tipoUsuario }: { tipoUsuario: string | null }) {
     const [events, setEvents] = useState<Event[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -33,7 +49,16 @@ export function EventList() {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {events.map((event) => (
-                <EventCard key={event.idevento} event={event} />
+                <EventCard
+                    key={event.idevento}
+                    event={event}
+                    from="eventos"
+                    button={
+                        tipoUsuario === "organizador"
+                            ? null
+                            : <EventSubscribeButton eventId={event.idevento} />
+                    }
+                />
             ))}
         </div>
     );

@@ -1,5 +1,20 @@
 import Link from "next/link";
-import { Event } from "@/app/Eventos/page"
+
+type Event = {
+    idevento: number;
+    nome: string | null;
+    descricao: string | null;
+    data: string | null;
+    horarioInicio: string | null;
+    horarioFim: string | null;
+    status: string;
+    vagas: number | null;
+    endere_o: {
+        rua: string | null;
+        bairro: string | null;
+        cidade: string | null;
+    } | null;
+}
 
 const getStatusColor = (status: string) => {
     switch (status) {
@@ -20,7 +35,11 @@ const formatLocal = (endere_o: Event["endere_o"]) => {
     return [endere_o.rua, endere_o.bairro, endere_o.cidade].filter(Boolean).join(", ");
 };
 
-export function EventCard({ event }: { event: Event }) {
+export function EventCard({ event, button, from = "eventos" }: {
+    event: Event;  
+    button?: React.ReactNode;
+    from?: string;
+ }) {
     return (
         <div className="bg-zinc-800 border border-zinc-700 rounded-xl p-6 shadow-lg hover:border-indigo-500/40 transition">
             <div className="flex items-start justify-between gap-4">
@@ -63,14 +82,12 @@ export function EventCard({ event }: { event: Event }) {
 
             <div className="flex gap-3 mt-6">
                 <Link
-                    href={`/eventos/${event.idevento}`}
+                    href={`/eventos/${event.idevento}?from=${from}`}
                     className="flex-1 py-2 px-4 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition text-center"
                 >
                     Ver Detalhes
                 </Link>
-                <button className="flex-1 py-2 px-4 rounded-md bg-zinc-700 hover:bg-zinc-600 text-zinc-100 font-medium transition">
-                    Inscreva-se
-                </button>
+                {button}
             </div>
         </div>
     );
