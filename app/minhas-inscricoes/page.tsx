@@ -68,7 +68,8 @@ export default function EventosInscritos() {
                         {events.map((event) => (
                             <EventCard
                                 key={event.idevento}
-                                event={event} 
+                                event={event}
+                                from={"minhas-inscricoes"}
                                 button={<EventUnsubscribeButton eventId={event.idevento} />}
                             />
                         ))}
