@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { EventCard } from "@/app/components/cards";
-import { EventEditButton } from "../components/buttons";
+import { EventEditButton, EventVolunteerButton } from "../components/buttons";
 
 type Event = {
     idevento: number;
@@ -109,6 +109,9 @@ export default function MeusEventos() {
                                         >
                                             Dashboard
                                         </Link>
+                                        <EventVolunteerButton
+                                            eventId={event.idevento}
+                                        />
                                         <EventEditButton
                                             eventId={event.idevento}
                                         />

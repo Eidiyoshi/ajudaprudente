@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { EventReviewPopup } from "./popup";
+import { EventReviewPopup, EventVolunteerPopup } from "./popup";
 
 export function EventSubscribeButton({ eventId, }: { eventId: number }) {
     const [subscribed, setSubscribed] = useState(false);
@@ -116,6 +116,28 @@ export function EventReviewButton({ eventId, }: { eventId: number }) {
                         setReviewed(true);
                         setShowPopup(false);
                     }}
+                />
+            )}
+        </div>
+    );
+}
+
+export function EventVolunteerButton({ eventId}: { eventId: number }) {
+    const [showPopup, setShowPopup] = useState(false);
+
+    return (
+        <div>
+            <button
+                onClick={() => setShowPopup(true)}
+                className="px-4 py-2 rounded-md text-sm font-medium bg-zinc-600 hover:bg-zinc-500 text-white transition"
+            >
+                Ver Voluntários
+            </button>
+
+            {showPopup && (
+                <EventVolunteerPopup
+                    eventId={eventId}
+                    onClose={() => setShowPopup(false)}
                 />
             )}
         </div>
