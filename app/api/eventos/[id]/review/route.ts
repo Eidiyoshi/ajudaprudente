@@ -2,6 +2,24 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/session";
 
+interface AvaliacaoComVoluntario {
+    idavaliacao: number;
+    evento: number;
+    voluntario: number;
+    organizacao: number;
+    comunicacao: number;
+    clarezaAtividadesDesempenhadas: number;
+    apoioEquipe: number;
+    satisfacaoGeral: number;
+    interesseVoluntariarNovamente: number;
+    pontosPositivos: string | null;
+    pontosNegativos: string | null;
+    criado: Date;
+    voluntario_avaliacao_eventoTovoluntario?: {
+        nome: string;
+    } | null;
+}
+
 export async function POST(
     req: NextRequest,
     { params }: { params: { id: string } },
@@ -81,24 +99,38 @@ export async function POST(
 
 export async function GET(
     req: NextRequest,
-    { params }: { params: { id: string } },
+    { params }: { params: Promise<{ id: string }> },
 ) {
-    const eventId = Number(params.id);
+    const resolvedParams = await params;
+    const eventId = Number(resolvedParams.id);
 
     if (isNaN(eventId)) {
         return NextResponse.json({ error: "ID inválido." }, { status: 400 });
     }
 
     try {
-        const avaliacoes = await prisma.avaliacao_evento.findMany({
-            where: { evento: eventId },
-            include: {
-                voluntario_avaliacao_eventoTovoluntario: {
-                    select: { nome: true },
+        let avaliacoes: AvaliacaoComVoluntario[];
+
+        try {
+            avaliacoes = (await prisma.avaliacao_evento.findMany({
+                where: { evento: eventId },
+                include: {
+                    voluntario_avaliacao_eventoTovoluntario: {
+                        select: { nome: true },
+                    },
                 },
-            },
-            orderBy: { criado: "desc" },
-        });
+                orderBy: { criado: "desc" },
+            })) as AvaliacaoComVoluntario[];
+        } catch (relationError) {
+            console.warn(
+                "Aviso: Falha no include automático do voluntário. Buscando dados simplificados.",
+                relationError,
+            );
+            avaliacoes = (await prisma.avaliacao_evento.findMany({
+                where: { evento: eventId },
+                orderBy: { criado: "desc" },
+            })) as AvaliacaoComVoluntario[];
+        }
 
         const inicializarMetricas = () => ({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 });
 
@@ -111,12 +143,11 @@ export async function GET(
             interesseVoluntariarNovamente: inicializarMetricas(),
         };
 
+        type MetricaKey = keyof typeof contagemHistogramas;
+        const chavesMetricas = Object.keys(contagemHistogramas) as MetricaKey[];
+
         avaliacoes.forEach((av) => {
-            (
-                Object.keys(contagemHistogramas) as Array<
-                    keyof typeof contagemHistogramas
-                >
-            ).forEach((metrica) => {
+            chavesMetricas.forEach((metrica) => {
                 const nota = av[metrica] as 1 | 2 | 3 | 4 | 5;
                 if (contagemHistogramas[metrica][nota] !== undefined) {
                     contagemHistogramas[metrica][nota]++;
@@ -145,7 +176,6 @@ export async function GET(
             ),
         };
 
-        // 2. PROCESSAMENTO DA NUVEM DE PALAVRAS (Word-Cloud)
         const textoAgrupado = avaliacoes
             .map(
                 (av) =>
@@ -154,7 +184,6 @@ export async function GET(
             .join(" ")
             .toLowerCase();
 
-        // Lista de Stopwords em português para limpar artigos, preposições e pronomes
         const stopwords = new Set([
             "de",
             "a",
@@ -181,12 +210,10 @@ export async function GET(
             "como",
             "mas",
             "foi",
-            "foi",
             "ele",
             "ela",
         ]);
 
-        // Expressão regular para isolar palavras removendo pontuações
         const palavras = textoAgrupado.match(/\b[a-zA-Zà-úÀ-Ú0-9_]+\b/g) || [];
         const mapaFrequencia: Record<string, number> = {};
 
@@ -196,22 +223,23 @@ export async function GET(
             }
         });
 
-        // Converte o mapa de frequência em uma Array ordenada aceita pelo d3-cloud
         const wordCloud = Object.entries(mapaFrequencia)
             .map(([text, value]) => ({ text, value }))
             .sort((a, b) => b.value - a.value)
-            .slice(0, 50); // Limitando em até 50 termos para não quebrar o layout da nuvem
+            .slice(0, 50);
 
-        // 3. SEPARAÇÃO E FORMATAÇÃO DOS COMENTÁRIOS
-        const comments = avaliacoes.map((av) => ({
-            id: av.idavaliacao,
-            voluntarioNome:
-                av.voluntario_avaliacao_eventoTovoluntario?.nome ||
-                "Voluntário Anônimo",
-            pontosPositivos: av.pontosPositivos,
-            pontosNegativos: av.pontosNegativos,
-            criado: av.criado,
-        }));
+        const comments = avaliacoes.map((av) => {
+            const relacaoVoluntario =
+                av.voluntario_avaliacao_eventoTovoluntario;
+            return {
+                id: av.idavaliacao,
+                voluntarioNome:
+                    relacaoVoluntario?.nome || `Voluntário #${av.voluntario}`,
+                pontosPositivos: av.pontosPositivos,
+                pontosNegativos: av.pontosNegativos,
+                criado: av.criado,
+            };
+        });
 
         return NextResponse.json(
             {
@@ -222,7 +250,7 @@ export async function GET(
             { status: 200 },
         );
     } catch (error) {
-        console.error("Erro ao gerar dashboard:", error);
+        console.error("Erro crítico ao gerar dashboard:", error);
         return NextResponse.json(
             { error: "Erro interno ao processar dados do painel." },
             { status: 500 },
