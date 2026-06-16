@@ -68,10 +68,6 @@ export default function NavBar() {
         ...(isLoggedIn && user?.userKind === "organizador"
             ? [
                   {
-                      name: "Dashboard",
-                      href: "/dashboard",
-                  },
-                  {
                       name: "Meus Eventos",
                       href: "/meus-eventos",
                   },
