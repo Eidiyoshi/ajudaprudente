@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CRITERIOS = [
   { key: "organizacao",                     label: "Organização" },
@@ -113,6 +113,75 @@ export function EventReviewPopup({
                 </form>
             
                 <button onClick={onClose} className="mt-3 w-full rounded-lg px-4 py-2 text-sm font-medium text-zinc-500 transition hover:bg-zinc-100 dark:hover:bg-zinc-800">Cancelar</button>
+            </div>
+        </div>
+    );
+}
+
+export function EventVolunteerPopup({
+    eventId,
+    onClose,
+}: {
+    eventId: number;
+    onClose: () => void;
+}) {
+    const [volunteers, setVolunteers] = useState<
+        { idusuarios: number; nome: string; email: string; telefone: string | null; inscritoEm: string }[]
+    >([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null> (null);
+
+    useEffect(() => {
+        fetch(`/api/eventos/${eventId}/voluntarios`)
+        .then((res) => {
+            if (!res.ok) throw new Error("Erro ao buscar voluntários.");
+            return res.json();
+        })
+        .then(setVolunteers)
+        .catch((e: unknown) => setError(e instanceof Error ? e.message : "Erro desconhecido"))
+        .finally(() => setLoading(false));
+    }, [eventId]);
+
+    return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+            <div className="bg-zinc-900 border border-zinc-700 rounded-xl w-full max-w-lg mx-4 p-6">
+                <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-lg font-semibold text-zinc-100">Voluntários Inscritos</h2>
+                    <button onClick={onClose} className="text-zinc-400 hover:text-zinc-100 text-xl leading-none">✕</button>
+                </div>
+
+                {loading && <p className="text-zinc-400 text-center py-6">Carregando...</p>}
+                {error && <p className="text-red-400 text-center py-6">{error}</p>}
+
+                {!loading && !error && volunteers.length === 0 && (
+                    <p className="text-zinc-400 text-center py-6">Nenhum voluntário inscrito ainda.</p>
+                )}
+
+                {!loading && !error && volunteers.length > 0 && (
+                    <ul className="divide-y divide-zinc-700 max-h-80 overflow-y-auto">
+                        {volunteers.map((v) => (
+                            <li key={v.idusuarios ?? v.email} className="py-3 flex flex-col gap-0.5">
+                                <span className="text-zinc-100 font-medium">{v.nome}</span>
+                                <span className="text-zinc-400 text-sm">{v.email}</span>
+                                {v.telefone && (
+                                    <span className="text-zinc-400 text-sm">{v.telefone}</span>
+                                )}
+                                <span className="text-zinc-500 text-xs">
+                                    Inscrito em {new Date(v.inscritoEm).toLocaleDateString("pt-BR")}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+
+                <div className="mt-5 flex justify-end">
+                    <button
+                        onClick={onClose}
+                        className="px-4 py-2 rounded-md bg-zinc-700 hover:bg-zinc-600 text-white text-sm"
+                    >
+                        Fechar
+                    </button>
+                </div>
             </div>
         </div>
     );
