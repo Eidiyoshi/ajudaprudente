@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CRITERIOS = [
   { key: "organizacao",                     label: "Organização" },
@@ -113,6 +113,65 @@ export function EventReviewPopup({
                 </form>
             
                 <button onClick={onClose} className="mt-3 w-full rounded-lg px-4 py-2 text-sm font-medium text-zinc-500 transition hover:bg-zinc-100 dark:hover:bg-zinc-800">Cancelar</button>
+            </div>
+        </div>
+    );
+}
+
+export function EventVolunteerPopup({
+    eventId,
+    onClose,
+}: {
+    eventId: number;
+    onClose: () => void;
+}) {
+    const [volunteers, setVolunteers] = useState<
+        { idusuarios: number; nome: string; email: string; telefone: string | null; inscritoEm: string }[]
+    >([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null> (null);
+
+    useEffect(() => {
+        fetch(`/api/eventos/${eventId}/voluntarios`)
+        .then((res) => {
+            if (!res.ok) throw new Error("Erro ao buscar voluntários.");
+            return res.json();
+        })
+        .then(setVolunteers)
+        .catch((e: unknown) => setError(e instanceof Error ? e.message : "Erro desconhecido"))
+        .finally(() => setLoading(false));
+    }, [eventId]);
+
+    return (
+        <div className="modal-overlay">
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <button className="modal-close" onClick={onClose}>x</button>
+
+                <div className="modal-descricao">
+                    <h2 style={{ marginBottom: "1rem" }}>Voluntários Inscritos</h2>
+                    {loading && <p>Carregando...</p>}
+                    {error && <p style={{ color: "red" }}>{error}</p>}
+
+                    {!loading && !error && volunteers.length === 0 && (
+                        <p>Nenhum voluntário inscrito ainda.</p>
+                    )}
+
+                    {!loading && !error && volunteers.length > 0 && (
+                        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                            {volunteers.map((v) => (
+                                <li key={v.idusuarios ?? v.email} style={{ padding: "0.75rem 0", borderBottom: "1px solid #3f3f46" }}>
+                                    <strong>{v.nome}</strong>
+                                    <br />
+                                    <small>{v.email}</small>
+                                    {v.telefone && <><br/><small>{v.telefone}</small></>}
+                                    <small style={{ opacity: 0.6 }}>
+                                        Inscrito em {new Date(v.inscritoEm).toLocaleDateString("pt-BR")}
+                                    </small>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
             </div>
         </div>
     );
