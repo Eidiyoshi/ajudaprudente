@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { EventCard } from "./cards";
 import { EventSubscribeButton } from "./buttons"
+import { useSearchParams } from "next/navigation";
 
 type Event = {
     idevento: number;
@@ -21,20 +22,20 @@ type Event = {
 }
 
 export function EventList({ tipoUsuario }: { tipoUsuario: string | null }) {
+
+    const searchParams = useSearchParams();
+    const query = searchParams.get("q") ?? "";
+
     const [events, setEvents] = useState<Event[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch("/api/eventos")
-            .then((res) => {
-                if (!res.ok) throw new Error("Erro ao buscar eventos.");
-                return res.json();
-            })
-            .then((data) => setEvents(data))
-            .catch((e: unknown) => setError(e instanceof Error ? e.message : "Erro desconhecido."))
-            .finally(() => setLoading(false));
-    }, []);
+        const url = query
+            ? `api/eventos/search?q=${encodeURIComponent(query)}`
+            : `api/eventos`;
+        fetch(url).then((res) => res.json()).then((data) => setEvents(Array.isArray(data) ? data : [])).finally(() => setLoading(false));
+    }, [query]);
 
     if (loading) return <p className="text-zinc-400 text-center py-10">Carregando eventos...</p>;
     if (error)   return <p className="text-red-400 text-center py-10">{error}</p>;
