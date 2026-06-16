@@ -143,44 +143,34 @@ export function EventVolunteerPopup({
     }, [eventId]);
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-            <div className="bg-zinc-900 border border-zinc-700 rounded-xl w-full max-w-lg mx-4 p-6">
-                <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-lg font-semibold text-zinc-100">Voluntários Inscritos</h2>
-                    <button onClick={onClose} className="text-zinc-400 hover:text-zinc-100 text-xl leading-none">✕</button>
-                </div>
+        <div className="modal-overlay">
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <button className="modal-close" onClick={onClose}>x</button>
 
-                {loading && <p className="text-zinc-400 text-center py-6">Carregando...</p>}
-                {error && <p className="text-red-400 text-center py-6">{error}</p>}
+                <div className="modal-descricao">
+                    <h2 style={{ marginBottom: "1rem" }}>Voluntários Inscritos</h2>
+                    {loading && <p>Carregando...</p>}
+                    {error && <p style={{ color: "red" }}>{error}</p>}
 
-                {!loading && !error && volunteers.length === 0 && (
-                    <p className="text-zinc-400 text-center py-6">Nenhum voluntário inscrito ainda.</p>
-                )}
+                    {!loading && !error && volunteers.length === 0 && (
+                        <p>Nenhum voluntário inscrito ainda.</p>
+                    )}
 
-                {!loading && !error && volunteers.length > 0 && (
-                    <ul className="divide-y divide-zinc-700 max-h-80 overflow-y-auto">
-                        {volunteers.map((v) => (
-                            <li key={v.idusuarios ?? v.email} className="py-3 flex flex-col gap-0.5">
-                                <span className="text-zinc-100 font-medium">{v.nome}</span>
-                                <span className="text-zinc-400 text-sm">{v.email}</span>
-                                {v.telefone && (
-                                    <span className="text-zinc-400 text-sm">{v.telefone}</span>
-                                )}
-                                <span className="text-zinc-500 text-xs">
-                                    Inscrito em {new Date(v.inscritoEm).toLocaleDateString("pt-BR")}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-
-                <div className="mt-5 flex justify-end">
-                    <button
-                        onClick={onClose}
-                        className="px-4 py-2 rounded-md bg-zinc-700 hover:bg-zinc-600 text-white text-sm"
-                    >
-                        Fechar
-                    </button>
+                    {!loading && !error && volunteers.length > 0 && (
+                        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                            {volunteers.map((v) => (
+                                <li key={v.idusuarios ?? v.email} style={{ padding: "0.75rem 0", borderBottom: "1px solid #3f3f46" }}>
+                                    <strong>{v.nome}</strong>
+                                    <br />
+                                    <small>{v.email}</small>
+                                    {v.telefone && <><br/><small>{v.telefone}</small></>}
+                                    <small style={{ opacity: 0.6 }}>
+                                        Inscrito em {new Date(v.inscritoEm).toLocaleDateString("pt-BR")}
+                                    </small>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
             </div>
         </div>
