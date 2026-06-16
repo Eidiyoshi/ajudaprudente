@@ -3,6 +3,7 @@
 import React, { use } from "react";
 import Link from "next/link";
 import { useDashboardLogic } from "./logic";
+import { EventWordCloud } from "@/app/components/word-cloud";
 
 interface DashboardProps {
     params: Promise<{
@@ -80,30 +81,8 @@ export default function DashboardPage({ params }: DashboardProps) {
                                     negativos.
                                 </p>
 
-                                <div className="flex-1 min-h-[280px] bg-zinc-900 rounded-lg border border-dashed border-zinc-700 flex items-center justify-center p-4">
-                                    {wordCloudData.length === 0 ? (
-                                        <p className="text-zinc-500 text-xs">
-                                            Aguardando avaliações textuais
-                                            suficientes.
-                                        </p>
-                                    ) : (
-                                        <div className="flex flex-wrap gap-3 justify-center items-center max-w-md">
-                                            {/* O d3-cloud será instanciado ou encapsulado aqui dentro */}
-                                            {wordCloudData
-                                                .slice(0, 15)
-                                                .map((word, idx) => (
-                                                    <span
-                                                        key={idx}
-                                                        style={{
-                                                            fontSize: `${Math.min(12 + word.value * 3, 32)}px`,
-                                                        }}
-                                                        className="text-indigo-400 font-semibold tracking-wide hover:text-indigo-300 transition-colors cursor-default"
-                                                    >
-                                                        {word.text}
-                                                    </span>
-                                                ))}
-                                        </div>
-                                    )}
+                                <div className="flex-1 bg-zinc-900 rounded-lg border border-dashed border-zinc-700 p-4 min-h-[300px] flex items-center justify-center">
+                                    <EventWordCloud words={wordCloudData} />
                                 </div>
                             </div>
 
