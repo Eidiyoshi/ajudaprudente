@@ -10,7 +10,13 @@ export type UserProfile = {
     telefone: string;
     cidade: string;
     estado: string;
+    bairro: string;
+    rua: string;
+    cep: string;
+    numero: string;
+    apartamento: string;
     imagem?: string;
+    tipoUsuario: "voluntario" | "organizador";
 };
 
 const emptyProfile: UserProfile = {
@@ -19,7 +25,13 @@ const emptyProfile: UserProfile = {
     telefone: "",
     cidade: "",
     estado: "",
+    bairro: "",
+    rua: "",
+    cep: "",
+    numero: "",
+    apartamento: "",
     biografia: "",
+    tipoUsuario: "voluntario",
 };
 
 type Errors = Partial<Record<keyof UserProfile, string>>;
@@ -71,22 +83,25 @@ export function useUserProfileForm() {
                     setError(data?.error ?? "Erro ao carregar o perfil.");
                     return;
                 }
-                setProfile({
+                const userType = data.tipoUsuario as
+                    | "voluntario"
+                    | "organizador";
+                const parsedProfile: UserProfile = {
                     nome: data.nome,
                     email: data.email,
                     telefone: formatPhone(data.telefone ?? ""),
+                    biografia: "",
                     cidade: data.endere_o?.cidade ?? "",
                     estado: "",
-                    biografia: "",
-                });
-                setDraft({
-                    nome: data.nome,
-                    email: data.email,
-                    telefone: data.telefone ?? "",
-                    cidade: data.endere_o?.cidade ?? "",
-                    estado: "",
-                    biografia: "",
-                });
+                    bairro: data.endere_o?.bairro ?? "",
+                    rua: data.endere_o?.rua ?? "",
+                    cep: data.endere_o?.cep ?? "",
+                    numero: data.endere_o?.numero ?? "",
+                    apartamento: data.endere_o?.apartamento ?? "",
+                    tipoUsuario: userType,
+                };
+                setProfile(parsedProfile);
+                setDraft(parsedProfile);
             } catch (err) {
                 setError(
                     err instanceof Error ? err.message : "Erro inesperado.",
@@ -152,8 +167,15 @@ export function useUserProfileForm() {
             formData.append("nome", draft.nome);
             formData.append("email", draft.email);
             formData.append("telefone", draft.telefone.replace(/\D/g, ""));
-            formData.append("estado", draft.estado);
-            formData.append("biografia", draft.biografia);
+            formData.append("biografia", draft.biografia || "");
+            formData.append("cidade", draft.cidade || "");
+            formData.append("estado", draft.estado || "");
+            formData.append("bairro", draft.bairro || "");
+            formData.append("cep", draft.cep || "");
+            formData.append("rua", draft.rua || "");
+            formData.append("numero", draft.numero || "");
+
+            formData.append("tipoUsuario", draft.tipoUsuario);
 
             const result = await updateProfile(formData);
 
