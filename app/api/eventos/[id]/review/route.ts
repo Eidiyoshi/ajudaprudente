@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma"
+import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/session";
 
 export async function POST(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: { id: string } },
 ) {
     const eventId = Number(params.id);
 
@@ -13,10 +13,13 @@ export async function POST(
     }
 
     const sessionUser = await getSessionUser();
-    const voluntarioId = sessionUser?.userId
+    const voluntarioId = sessionUser?.userId;
 
     if (!voluntarioId) {
-        return NextResponse.json({ error: "Não autenticado."}, { status: 401 });
+        return NextResponse.json(
+            { error: "Não autenticado." },
+            { status: 401 },
+        );
     }
 
     const body = await req.json();
@@ -31,12 +34,19 @@ export async function POST(
         pontosNegativos,
     } = body;
 
-    const campos = { organizacao, comunicacao, clarezaAtividadesDesempenhadas, apoioEquipe, satisfacaoGeral, interesseVoluntariarNovamente };
+    const campos = {
+        organizacao,
+        comunicacao,
+        clarezaAtividadesDesempenhadas,
+        apoioEquipe,
+        satisfacaoGeral,
+        interesseVoluntariarNovamente,
+    };
     for (const [key, value] of Object.entries(campos)) {
         if (!value || value < 1 || value > 5) {
             return NextResponse.json(
                 { error: `Campo "${key}" deve ser entre 1 e 5.` },
-                { status: 400 }
+                { status: 400 },
             );
         }
     }
@@ -59,12 +69,163 @@ export async function POST(
 
         return NextResponse.json(avaliacao, { status: 201 });
     } catch (e: unknown) {
-        if (e instanceof Error && 'code' in e && e.code === "P2002") {
+        if (e instanceof Error && "code" in e && e.code === "P2002") {
             return NextResponse.json(
                 { error: "Você já avaliou este evento." },
-                { status: 409 }
+                { status: 409 },
             );
         }
         return NextResponse.json({ error: "Erro interno." }, { status: 500 });
+    }
+}
+
+export async function GET(
+    req: NextRequest,
+    { params }: { params: { id: string } },
+) {
+    const eventId = Number(params.id);
+
+    if (isNaN(eventId)) {
+        return NextResponse.json({ error: "ID inválido." }, { status: 400 });
+    }
+
+    try {
+        const avaliacoes = await prisma.avaliacao_evento.findMany({
+            where: { evento: eventId },
+            include: {
+                voluntario_avaliacao_eventoTovoluntario: {
+                    select: { nome: true },
+                },
+            },
+            orderBy: { criado: "desc" },
+        });
+
+        const inicializarMetricas = () => ({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 });
+
+        const contagemHistogramas = {
+            organizacao: inicializarMetricas(),
+            comunicacao: inicializarMetricas(),
+            clarezaAtividadesDesempenhadas: inicializarMetricas(),
+            apoioEquipe: inicializarMetricas(),
+            satisfacaoGeral: inicializarMetricas(),
+            interesseVoluntariarNovamente: inicializarMetricas(),
+        };
+
+        avaliacoes.forEach((av) => {
+            (
+                Object.keys(contagemHistogramas) as Array<
+                    keyof typeof contagemHistogramas
+                >
+            ).forEach((metrica) => {
+                const nota = av[metrica] as 1 | 2 | 3 | 4 | 5;
+                if (contagemHistogramas[metrica][nota] !== undefined) {
+                    contagemHistogramas[metrica][nota]++;
+                }
+            });
+        });
+
+        const formatarHistograma = (obj: Record<number, number>) =>
+            Object.entries(obj).map(([nota, quantidade]) => ({
+                nota: Number(nota),
+                quantidade,
+            }));
+
+        const histograms = {
+            organizacao: formatarHistograma(contagemHistogramas.organizacao),
+            comunicacao: formatarHistograma(contagemHistogramas.comunicacao),
+            clarezaAtividadesDesempenhadas: formatarHistograma(
+                contagemHistogramas.clarezaAtividadesDesempenhadas,
+            ),
+            apoioEquipe: formatarHistograma(contagemHistogramas.apoioEquipe),
+            satisfacaoGeral: formatarHistograma(
+                contagemHistogramas.satisfacaoGeral,
+            ),
+            interesseVoluntariarNovamente: formatarHistograma(
+                contagemHistogramas.interesseVoluntariarNovamente,
+            ),
+        };
+
+        // 2. PROCESSAMENTO DA NUVEM DE PALAVRAS (Word-Cloud)
+        const textoAgrupado = avaliacoes
+            .map(
+                (av) =>
+                    `${av.pontosPositivos || ""} ${av.pontosNegativos || ""}`,
+            )
+            .join(" ")
+            .toLowerCase();
+
+        // Lista de Stopwords em português para limpar artigos, preposições e pronomes
+        const stopwords = new Set([
+            "de",
+            "a",
+            "o",
+            "que",
+            "e",
+            "do",
+            "da",
+            "em",
+            "um",
+            "para",
+            "com",
+            "na",
+            "no",
+            "os",
+            "as",
+            "dos",
+            "das",
+            "ao",
+            "aos",
+            "por",
+            "mais",
+            "uma",
+            "como",
+            "mas",
+            "foi",
+            "foi",
+            "ele",
+            "ela",
+        ]);
+
+        // Expressão regular para isolar palavras removendo pontuações
+        const palavras = textoAgrupado.match(/\b[a-zA-Zà-úÀ-Ú0-9_]+\b/g) || [];
+        const mapaFrequencia: Record<string, number> = {};
+
+        palavras.forEach((palavra) => {
+            if (!stopwords.has(palavra) && palavra.length > 2) {
+                mapaFrequencia[palavra] = (mapaFrequencia[palavra] || 0) + 1;
+            }
+        });
+
+        // Converte o mapa de frequência em uma Array ordenada aceita pelo d3-cloud
+        const wordCloud = Object.entries(mapaFrequencia)
+            .map(([text, value]) => ({ text, value }))
+            .sort((a, b) => b.value - a.value)
+            .slice(0, 50); // Limitando em até 50 termos para não quebrar o layout da nuvem
+
+        // 3. SEPARAÇÃO E FORMATAÇÃO DOS COMENTÁRIOS
+        const comments = avaliacoes.map((av) => ({
+            id: av.idavaliacao,
+            voluntarioNome:
+                av.voluntario_avaliacao_eventoTovoluntario?.nome ||
+                "Voluntário Anônimo",
+            pontosPositivos: av.pontosPositivos,
+            pontosNegativos: av.pontosNegativos,
+            criado: av.criado,
+        }));
+
+        return NextResponse.json(
+            {
+                histograms,
+                wordCloud,
+                comments,
+            },
+            { status: 200 },
+        );
+    } catch (error) {
+        console.error("Erro ao gerar dashboard:", error);
+        return NextResponse.json(
+            { error: "Erro interno ao processar dados do painel." },
+            { status: 500 },
+        );
     }
 }

@@ -1,5 +1,5 @@
 "use client";
- 
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { EventCard } from "@/app/components/cards";
@@ -33,7 +33,9 @@ export default function MeusEventos() {
                 return res.json();
             })
             .then((data) => setEvents(data))
-            .catch((e: unknown) => setError(e instanceof Error ? e.message : "Erro desconhecido."))
+            .catch((e: unknown) =>
+                setError(e instanceof Error ? e.message : "Erro desconhecido."),
+            )
             .finally(() => setLoading(false));
     }, []);
 
@@ -42,8 +44,12 @@ export default function MeusEventos() {
             <div className="max-w-6xl mx-auto">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-zinc-100">Meus Eventos</h1>
-                        <p className="text-zinc-400 mt-1">Eventos que você está organizando.</p>
+                        <h1 className="text-3xl font-bold text-zinc-100">
+                            Meus Eventos
+                        </h1>
+                        <p className="text-zinc-400 mt-1">
+                            Eventos que você está organizando.
+                        </p>
                         <div className="flex gap-3 mt-4">
                             <Link
                                 href="/eventos"
@@ -62,7 +68,9 @@ export default function MeusEventos() {
                 </div>
 
                 {loading && (
-                    <p className="text-zinc-400 text-center py-10">Carregando...</p>
+                    <p className="text-zinc-400 text-center py-10">
+                        Carregando...
+                    </p>
                 )}
 
                 {error && (
@@ -95,9 +103,19 @@ export default function MeusEventos() {
                                 from="meus-eventos"
                                 button={
                                     <div className="flex gap-2">
-                                        <EventVolunteerButton eventId={event.idevento}/>
-                                        <EventEditButton eventId={event.idevento} />
-                                    </div>    
+                                        <Link
+                                            href={`/meus-eventos/${event.idevento}/dashboard`}
+                                            className="px-3 py-1.5 rounded-md bg-zinc-700 hover:bg-zinc-600 text-zinc-100 text-sm font-medium transition-colors"
+                                        >
+                                            Dashboard
+                                        </Link>
+                                        <EventVolunteerButton
+                                            eventId={event.idevento}
+                                        />
+                                        <EventEditButton
+                                            eventId={event.idevento}
+                                        />
+                                    </div>
                                 }
                             />
                         ))}
