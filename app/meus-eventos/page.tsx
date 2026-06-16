@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { EventCard } from "@/app/components/cards";
-import { EventEditButton } from "../components/buttons";
+import { EventEditButton, EventVolunteerButton } from "../components/buttons";
 
 type Event = {
     idevento: number;
@@ -93,7 +93,12 @@ export default function MeusEventos() {
                                 key={event.idevento}
                                 event={event}
                                 from="meus-eventos"
-                                button={<EventEditButton eventId={event.idevento} />}
+                                button={
+                                    <div className="flex gap-2">
+                                        <EventVolunteerButton eventId={event.idevento}/>
+                                        <EventEditButton eventId={event.idevento} />
+                                    </div>    
+                                }
                             />
                         ))}
                     </div>
