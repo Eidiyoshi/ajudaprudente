@@ -244,6 +244,43 @@ function ProfileEditForm({
                     maxLength={2}
                 />
             </div>
+            <div className="grid grid-cols-2 gap-4">
+                <Field
+                    id="bairro"
+                    label="Bairro"
+                    value={draft.bairro}
+                    onChange={onChange}
+                    error={errors.bairro}
+                    placeholder="Bairro"
+                />
+                <Field
+                    id="cep"
+                    label="CEP"
+                    value={draft.cep}
+                    onChange={onChange}
+                    error={errors.cep}
+                    placeholder="01000-000"
+                />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+                <Field
+                    id="rua"
+                    label="Rua"
+                    value={draft.rua}
+                    onChange={onChange}
+                    error={errors.rua}
+                    placeholder="Rua"
+                />
+                <Field
+                    id="numero"
+                    label="Numero"
+                    value={draft.numero}
+                    onChange={onChange}
+                    error={errors.numero}
+                    placeholder="123"
+                />
+            </div>
             <Field
                 id="telefone"
                 label="Telefone"
