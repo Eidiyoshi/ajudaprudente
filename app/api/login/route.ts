@@ -78,6 +78,9 @@ export async function POST(request: Request) {
     select: { idorganizador: true, nome: true, email: true, senha: true },
   });
 
+  console.log("Looking for:", email);
+    console.log("Found:", organizador);
+
   if (!organizador) {
     return Response.json({ error: "Credenciais inválidas." }, { status: 401 });
   }

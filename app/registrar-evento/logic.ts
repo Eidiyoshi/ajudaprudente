@@ -83,6 +83,13 @@ export function useEventoForm() {
 
         try {
             const userResponse = await getUserSession();
+            
+            if (!userResponse) {
+                setErrors((prev) => ({ ...prev, geral: "Sessão expirada. Faça login novamente."}));
+                setIsSubmitting(false);
+                return;
+            }
+            
             const response = await fetch('/api/registrar_evento', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

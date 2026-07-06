@@ -8,8 +8,6 @@ export class Voluntario extends Usuario {
     private readonly email: string;
     private readonly senha: string;
     private readonly telefone: number;
-    private readonly rg: string;
-    private readonly cpf: string;
 
     constructor(
         nome: string,
@@ -25,7 +23,7 @@ export class Voluntario extends Usuario {
         this.telefone = telefone;
     }
 
-    public async storeOnDb(endereco: number) {
+    public async storeOnDb() {
         if (this.idusuarios === undefined) {
             const lastVoluntario = await prisma.voluntario.findFirst({
                 select: { idusuarios: true },

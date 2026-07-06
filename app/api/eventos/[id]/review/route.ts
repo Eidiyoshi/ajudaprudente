@@ -22,9 +22,9 @@ interface AvaliacaoComVoluntario {
 
 export async function POST(
     req: NextRequest,
-    { params }: { params: { id: string } },
+    { params }: { params: Promise<{ id: string }> },
 ) {
-    const eventId = Number(params.id);
+    const eventId = Number(await params);
 
     if (isNaN(eventId)) {
         return NextResponse.json({ error: "ID inválido." }, { status: 400 });
