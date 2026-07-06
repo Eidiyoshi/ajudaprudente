@@ -13,6 +13,7 @@ interface EventoRaw {
     descricao: string | null;
     status: string;
     vagas: number | null;
+    total_inscritos: number;
     end_id: number | null;
     end_cidade: string | null;
     end_bairro: string | null;
@@ -27,6 +28,7 @@ export async function GET() {
         const eventos = await prisma.$queryRaw<EventoRaw[]>`
             SELECT 
                 e.*,
+                CAST((SELECT COUNT(*) FROM inscricao i WHERE i.evento = e.idevento) AS SIGNED) AS total_inscritos,
                 en.idendereço   AS end_id,
                 en.cidade       AS end_cidade,
                 en.bairro       AS end_bairro,
@@ -43,10 +45,12 @@ export async function GET() {
 
         const shaped = eventos.map(({ 
             end_id, end_cidade, end_bairro, end_rua, 
-            end_cep, end_apartamento, end_numero, 
+            end_cep, end_apartamento, end_numero,
+            total_inscritos,
             ...e 
         }) => ({
             ...e,
+            vagas: e.vagas !== null ? Math.max(0, e.vagas - Number(total_inscritos)) : null,
             endere_o: end_id ? {
                 idendere_o:  end_id,
                 cidade:      end_cidade,

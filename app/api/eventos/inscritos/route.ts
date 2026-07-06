@@ -24,14 +24,29 @@ export async function GET() {
             where: { voluntario: sessionUser.userId },
             include: {
                 evento_inscricao_eventoToevento: {
-                    include: { endere_o: true },
+                    include: {
+                        endere_o: true,
+                        _count: {
+                            select: {
+                                inscricao_inscricao_eventoToevento: true,
+                            },
+                        },
+                    },
                 },
             },
         });
 
         const eventos = inscricoes.map((i) => i.evento_inscricao_eventoToevento);
 
-        return NextResponse.json(eventos);
+        const eventosFormatados = eventos.map(({ _count, ...evento }) => {
+            const totalInscritos = _count?.inscricao_inscricao_eventoToevento ?? 0;
+            return {
+                ...evento,
+                vagas: evento.vagas !== null ? Math.max(0, evento.vagas - totalInscritos) : null
+            }
+        });
+
+        return NextResponse.json(eventosFormatados);
     } catch (error) {
         console.error(error);
         return NextResponse.json({ error: "Erro ao buscar inscrições." }, { status: 500 });

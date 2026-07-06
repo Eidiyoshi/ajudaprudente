@@ -16,11 +16,24 @@ export async function GET() {
     });
     const eventos = await prisma.evento.findMany({
       include: {
-        endere_o: true,
-      },
+            endere_o: true,
+            _count: {
+                select: {
+                    inscricao_inscricao_eventoToevento: true,
+                },
+            },
+        },
     });
 
-    return NextResponse.json(eventos);
+    const eventosFormatados = eventos.map(({ _count, ...evento }) => {
+            const totalInscritos = _count?.inscricao_inscricao_eventoToevento ?? 0;
+            return {
+                ...evento,
+                vagas: evento.vagas !== null ? Math.max(0, evento.vagas - totalInscritos) : null
+            }
+        });
+
+    return NextResponse.json(eventosFormatados);
   } catch (error) {
     console.error(error);
 
