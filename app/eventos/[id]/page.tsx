@@ -20,6 +20,11 @@ type Event = {
     } | null;
 }
 
+const formatDate = (dateStr: string | null) => {
+    if (!dateStr) return "-";
+    return new Date(dateStr).toLocaleDateString("pt-BR");
+}
+
 export default function DetalhesEvento() {
     const params = useParams();
     const searchParams = useSearchParams();
@@ -80,6 +85,7 @@ export default function DetalhesEvento() {
                 </Link>
                 <h1 className="text-3xl font-bold text-zinc-100 mt-4">{event.nome}</h1>
                 <div className="mt-6 flex flex-col gap-3 text-zinc-100">
+                    <p><span className="text-zinc-400">Data:</span> {formatDate(event.data)}</p>
                     <p><span className="text-zinc-400">Horário de Início:</span> {event.horarioInicio ?? "-"}</p>
                     <p><span className="text-zinc-400">Horário de Término:</span> {event.horarioFim ?? "-"}</p>
                     <p><span className="text-zinc-400">Status:</span> {event.status}</p>
