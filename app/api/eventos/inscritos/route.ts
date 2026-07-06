@@ -9,6 +9,17 @@ export async function GET() {
     }
 
     try {
+        await prisma.evento.updateMany({
+        where: {
+            status: "Ativo",
+            data: {
+                lt: new Date()
+            }
+        },
+        data: {
+            status: "Encerrado"
+        }
+    });
         const inscricoes = await prisma.inscricao.findMany({
             where: { voluntario: sessionUser.userId },
             include: {

@@ -80,10 +80,12 @@ export default function EditarEvento() {
         setError(null);
 
         try {
+            const horaValida = horarioFim ? horarioFim : "23:59";
+            const dataComHoraLocal = `${data}T${horaValida}`;
             const response = await fetch(`/api/eventos/${idevento}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nome, descricao, data, horarioInicio, horarioFim, status, vagas: Number(vagas) }),
+                body: JSON.stringify({ nome, descricao, data: dataComHoraLocal, horarioInicio, horarioFim, status, vagas: Number(vagas) }),
             });
 
             if (!response.ok) {
